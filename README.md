@@ -269,9 +269,9 @@ La llave `service_role`/secreta **nunca** va en la app: si alguien la pone, la a
   "+" nuevo entregable; cargar la plantilla del mundo; "+" nuevo proyecto (cliente, tipo, nombre, plan, fechas, a cargo).
   «Dinero del proyecto» y la pestaña Cotizaciones llegan con P2. Parrilla del proyecto llega con 04 Parrillas.
 - **Paridad:** etapas, plantillas, tipos y estados se **generan** desde content.js y quote-sources.js
-  (etapas 3 mundos · plantillas 17 · tipos 8 · estados 4); fechas límite a las 6 p. m. como la web; plazos (vencido/hoy/semana) como .
-- **Común:** ,  (con buscador), , ; Solicitudes y Clientes los usan.
-- **Probado:** 98 pruebas; capturas , ,  (dos temas, reloj fijo).
+  (`node tool/generar_proyectos.mjs`); fechas límite a las 6 p. m. como la web; plazos (vencido/hoy/semana) como `bucket`.
+- **Común:** `RkOpcion`, `elegirEnHoja` (con buscador), `RkCampoElegible`, `RkAvatar`; Solicitudes y Clientes los usan.
+- **Probado:** 98 pruebas; capturas `60-proyectos`, `61-proyecto`, `62-entregable` (dos temas, reloj fijo).
   **Falta** la prueba en el emulador con datos reales (se detuvo por poca memoria del computador).
 
 ## 10. Estado actual y próximos pasos
