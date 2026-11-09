@@ -78,7 +78,7 @@ class _RecuperarPageState extends ConsumerState<RecuperarPage> {
               padding: const EdgeInsets.all(14),
               decoration: BoxDecoration(color: c.s2, border: Border.all(color: c.linea)),
               child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                Icon(Symbols.mark_email_read, color: c.ok),
+                Icon(Symbols.mark_email_read_sharp, color: c.ok),
                 const SizedBox(width: 12),
                 Expanded(
                   child: Text(

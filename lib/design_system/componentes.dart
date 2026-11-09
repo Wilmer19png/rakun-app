@@ -180,7 +180,7 @@ class RkGrupo extends StatelessWidget {
           TextButton.icon(
             onPressed: onAccion,
             iconAlignment: IconAlignment.end,
-            icon: const Icon(Symbols.chevron_right, size: 20),
+            icon: const Icon(Symbols.chevron_right_sharp, size: 20),
             label: Text(accion!, style: RkType.mono12.copyWith(color: c.texto2)),
           )
         else if (cuenta != null)
@@ -236,7 +236,7 @@ class RkFila extends StatelessWidget {
 
 /* ---------------- Botón flotante: la única placa desplazada ---------------- */
 class RkFab extends StatelessWidget {
-  const RkFab({super.key, required this.onPressed, required this.etiqueta, this.icono = Symbols.add});
+  const RkFab({super.key, required this.onPressed, required this.etiqueta, this.icono = Symbols.add_sharp});
   final VoidCallback? onPressed;
   final String etiqueta;
   final IconData icono;
@@ -366,7 +366,7 @@ class RkSinConexion extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: RkSpace.g, vertical: 8),
         constraints: const BoxConstraints(minHeight: 40),
         child: Row(children: [
-          const Icon(Symbols.cloud_off, size: 20, color: RkColors.navy),
+          const Icon(Symbols.cloud_off_sharp, size: 20, color: RkColors.navy),
           const SizedBox(width: 10),
           Expanded(child: Text('Sin conexión · ves lo guardado a las $desde. Los cambios se activan al volver.', style: RkType.small.copyWith(color: RkColors.navy))),
         ]),
@@ -385,7 +385,7 @@ class RkSinPermiso extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.fromLTRB(RkSpace.g, 48, RkSpace.g, 32),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        const Icon(Symbols.lock, size: 40, color: RkColors.rosa),
+        const Icon(Symbols.lock_sharp, size: 40, color: RkColors.rosa),
         const SizedBox(height: 16),
         Text.rich(
           TextSpan(children: [const TextSpan(text: 'NO ESTÁ EN '), TextSpan(text: 'TUS PERMISOS.', style: const TextStyle(color: RkColors.rosa))]),
@@ -418,7 +418,7 @@ class RkEnVivo extends StatelessWidget {
             height: 40,
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Row(mainAxisSize: MainAxisSize.min, children: [
-              const Icon(Symbols.arrow_upward, size: 20, color: RkColors.navy),
+              const Icon(Symbols.arrow_upward_sharp, size: 20, color: RkColors.navy),
               const SizedBox(width: 6),
               Text(texto, style: RkType.small.copyWith(fontWeight: FontWeight.w500, color: RkColors.navy)),
             ]),
@@ -447,7 +447,7 @@ Future<T?> mostrarHoja<T>(BuildContext context, {required String titulo, require
               padding: const EdgeInsets.fromLTRB(RkSpace.g, 0, 4, 8),
               child: Row(children: [
                 Expanded(child: Text(mayus(titulo), style: RkType.hoja.copyWith(color: c.texto))),
-                IconButton(onPressed: () => Navigator.pop(ctx), tooltip: 'Cerrar', icon: const Icon(Symbols.close)),
+                IconButton(onPressed: () => Navigator.pop(ctx), tooltip: 'Cerrar', icon: const Icon(Symbols.close_sharp)),
               ]),
             ),
             Flexible(child: SingleChildScrollView(padding: const EdgeInsets.fromLTRB(RkSpace.g, 8, RkSpace.g, 16), child: cuerpo)),

@@ -10,14 +10,14 @@ import '../supabase/sesion.dart';
 import 'rutas.dart';
 
 const _info = <Destino, (String, IconData)>{
-  Destino.hoy: ('Hoy', Symbols.today),
-  Destino.solicitudes: ('Solicitudes', Symbols.inbox),
-  Destino.clientes: ('Clientes', Symbols.groups),
-  Destino.agenda: ('Agenda', Symbols.calendar_month),
-  Destino.proyectos: ('Proyectos', Symbols.folder_open),
-  Destino.parrillas: ('Parrillas', Symbols.grid_view),
-  Destino.mensajes: ('Mensajes', Symbols.forum),
-  Destino.mas: ('Más', Symbols.menu),
+  Destino.hoy: ('Hoy', Symbols.today_sharp),
+  Destino.solicitudes: ('Solicitudes', Symbols.inbox_sharp),
+  Destino.clientes: ('Clientes', Symbols.groups_sharp),
+  Destino.agenda: ('Agenda', Symbols.calendar_month_sharp),
+  Destino.proyectos: ('Proyectos', Symbols.folder_open_sharp),
+  Destino.parrillas: ('Parrillas', Symbols.grid_view_sharp),
+  Destino.mensajes: ('Mensajes', Symbols.forum_sharp),
+  Destino.mas: ('Más', Symbols.menu_sharp),
 };
 
 /// Pantallas con barra inferior. La barra se arma con los permisos de quien entra.

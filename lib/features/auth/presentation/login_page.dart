@@ -82,7 +82,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                 labelText: 'CONTRASEÑA',
                 suffixIcon: IconButton(
                   tooltip: _ver ? 'Ocultar contraseña' : 'Mostrar contraseña',
-                  icon: Icon(_ver ? Symbols.visibility_off : Symbols.visibility),
+                  icon: Icon(_ver ? Symbols.visibility_off_sharp : Symbols.visibility_sharp),
                   onPressed: () => setState(() => _ver = !_ver),
                 ),
               ),

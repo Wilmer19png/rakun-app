@@ -64,23 +64,23 @@ class MasPage extends ConsumerWidget {
             ),
           const RkGrupo('Cuenta'),
           const _Apariencia(),
-          RkFila(titulo: 'Cambiar contraseña', final_: Padding(padding: const EdgeInsets.only(right: 12), child: Icon(Symbols.password, color: c.texto3)), onTap: () => _cambiarClave(context, ref)),
+          RkFila(titulo: 'Cambiar contraseña', final_: Padding(padding: const EdgeInsets.only(right: 12), child: Icon(Symbols.password_sharp, color: c.texto3)), onTap: () => _cambiarClave(context, ref)),
           RkFila(
             titulo: 'Abrir el gestor web',
             subtitulo: const Text('Para lo que solo vive en la web'),
-            final_: Padding(padding: const EdgeInsets.only(right: 12), child: Icon(Symbols.open_in_new, color: c.texto3)),
+            final_: Padding(padding: const EdgeInsets.only(right: 12), child: Icon(Symbols.open_in_new_sharp, color: c.texto3)),
             onTap: () => launchUrl(Uri.parse('${Env.webUrl}/admin.html'), mode: LaunchMode.externalApplication),
           ),
           if (perfil?.esAdmin == true)
             RkFila(
               titulo: 'Galería de componentes',
               subtitulo: const Text('Para comparar con el diseño aprobado'),
-              final_: Padding(padding: const EdgeInsets.only(right: 12), child: Icon(Symbols.palette, color: c.texto3)),
+              final_: Padding(padding: const EdgeInsets.only(right: 12), child: Icon(Symbols.palette_sharp, color: c.texto3)),
               onTap: () => context.go('/mas/galeria'),
             ),
           RkFila(
             titulo: 'Salir',
-            final_: Padding(padding: const EdgeInsets.only(right: 12), child: Icon(Symbols.logout, color: c.esClaro ? c.texto : RkColors.rosa)),
+            final_: Padding(padding: const EdgeInsets.only(right: 12), child: Icon(Symbols.logout_sharp, color: c.esClaro ? c.texto : RkColors.rosa)),
             onTap: () => ref.read(cuentaProvider).salir(),
           ),
           Padding(
@@ -188,7 +188,7 @@ class _Apariencia extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final c = RkColors.of(context);
     final actual = ref.watch(aparienciaProvider);
-    const opciones = [(Apariencia.oscuro, 'Oscuro', Symbols.dark_mode), (Apariencia.claro, 'Claro', Symbols.light_mode), (Apariencia.telefono, 'Teléfono', Symbols.smartphone)];
+    const opciones = [(Apariencia.oscuro, 'Oscuro', Symbols.dark_mode_sharp), (Apariencia.claro, 'Claro', Symbols.light_mode_sharp), (Apariencia.telefono, 'Teléfono', Symbols.smartphone_sharp)];
     return Padding(
       padding: const EdgeInsets.fromLTRB(RkSpace.g, 12, RkSpace.g, 16),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [

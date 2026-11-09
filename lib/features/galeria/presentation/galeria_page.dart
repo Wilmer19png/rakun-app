@@ -25,7 +25,7 @@ class GaleriaPage extends ConsumerWidget {
         acciones: [
           IconButton(
             tooltip: 'Cambiar tema',
-            icon: Icon(ap == Apariencia.claro ? Symbols.dark_mode : Symbols.light_mode),
+            icon: Icon(ap == Apariencia.claro ? Symbols.dark_mode_sharp : Symbols.light_mode_sharp),
             onPressed: () => ref.read(aparienciaProvider.notifier).elegir(ap == Apariencia.claro ? Apariencia.oscuro : Apariencia.claro),
           ),
         ],
@@ -88,7 +88,7 @@ class GaleriaPage extends ConsumerWidget {
         RkFila(
           titulo: 'Guiones del mes',
           subtitulo: const Row(children: [RkMundo(Mundo.marca), SizedBox(width: 6), Flexible(child: Text('Marca Ejemplo'))]),
-          final_: IconButton(onPressed: () {}, tooltip: 'Entregar', icon: const Icon(Symbols.upload)),
+          final_: IconButton(onPressed: () {}, tooltip: 'Entregar', icon: const Icon(Symbols.upload_sharp)),
           onTap: () {},
         ),
         RkFila(titulo: 'Fila nueva', nueva: true, subtitulo: const Text('Con punto rosa'), onTap: () {}),
