@@ -42,7 +42,7 @@ Es la fuente de las fases, reglas y puntos `ALTO`.
 reemplaza "oscuro siempre"; en claro nunca rosa pequeño sobre crema → navy + marca rosa; barra inferior noche en ambos),
 inicio en pantalla "Hoy", barra inferior por rol, **Solicitudes = dirección A** (por estado). Mapa de navegación confirmado.
 Prototipo hecho: `design/index.html` (galería) + `design/pantallas/*.html` (21) + `design/proto/` (app.css, app.js, eye.js copia, fuentes).
-Abrir: `node design/servir.mjs` → http://localhost:5173 (los módulos JS no cargan con file://).
+Abrir: doble clic en `design/ABRIR-PROTOTIPO.cmd` (o `node design/servir.mjs`) → http://localhost:5173. Con file:// falla (CORS): la galería lo avisa.
 Capturas: `cd design/tools && npm install && npm run capturas` (Playwright 1.65.0, Chrome instalado) → `design/capturas/{oscuro,claro}/{360x800,390x844}`.
 OJO al editar con `node -e "..."` en Bash: los `$(...)`, `$$` y las comillas invertidas se interpretan; usar la herramienta Edit.
 Docs: `design/DESIGN_MOVIL.md`, `design/APROBACION.md`. Revisión: detector + critique (2 subagentes) → `design/REVISION.md`.

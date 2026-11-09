@@ -6,8 +6,8 @@
 > En la galería puedes cambiar **Tema**, **Tamaño** y **Rol** arriba.
 
 ## Cómo abrir el prototipo
-1. En una terminal: `node design/servir.mjs` (desde la carpeta `rakun-app`).
-2. Abre **http://localhost:5173** en Chrome: es la galería con todas las pantallas, el cambio de tamaño y de rol.
+1. **Doble clic en `design/ABRIR-PROTOTIPO.cmd`.** Se abre una ventana negra (el servidor: déjala abierta) y Chrome en **http://localhost:5173**.
+2. No abras `index.html` con doble clic: Chrome bloquea los scripts y sale error (la galería lo avisa).
 3. Para sentirlo como en el teléfono: abre una pantalla sola (↗) y activa el modo dispositivo de Chrome (F12 → ícono de celular).
 
 ## Decisiones tomadas

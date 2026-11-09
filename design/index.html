@@ -51,7 +51,9 @@
     <fieldset data-rol><legend>Rol</legend><button type="button" aria-pressed="true" data-r="admin">Admin</button><button type="button" aria-pressed="false" data-r="manager">Manager</button><button type="button" aria-pressed="false" data-r="directora">Directora</button><button type="button" aria-pressed="false" data-r="editor">Editor</button><button type="button" aria-pressed="false" data-r="camara">Cámara</button></fieldset>
   </div>
 </header>
+<p class="note" id="file-warn" hidden style="margin:24px 32px;border-color:var(--pink)"><b>Así no carga.</b> Abriste el archivo directamente y Chrome bloquea los scripts del prototipo. Cierra esta pestaña y haz <b>doble clic en <code>design/ABRIR-PROTOTIPO.cmd</code></b>: abre el servidor y esta galería en http://localhost:5173.</p>
 <main id="g"></main>
+<script>if (location.protocol === 'file:') document.getElementById('file-warn').hidden = false;</script>
 <script>
   const SECTIONS = [
     ['Entrada', 'Splash, login y casos de acceso', [

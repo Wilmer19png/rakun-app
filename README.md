@@ -108,6 +108,7 @@ La llave de Supabase que usa la app es la **publicable** (la misma de la web). L
 | La app de prueba no compilaba en Android | Faltaba el **NDK** (kit nativo de Android) que pide la plantilla de Flutter | Instalar `ndk;28.2.13676358` con `sdkmanager` |
 | `sdkmanager.bat "ndk;28.2..."` falla desde PowerShell | PowerShell parte el texto en el `;` | Escribir el paquete en un archivo y usar `sdkmanager --package_file=archivo.txt` |
 | El emulador no arrancaba con aceleración | Virtualización apagada en la BIOS (`VirtualizationFirmwareEnabled = False`) | Activar *SVM Mode* en la BIOS y correr `herramientas/preparar_windows.ps1` como administrador; reiniciar |
+| El prototipo muestra errores al abrir `design/index.html` con doble clic | Chrome bloquea los scripts de una página abierta como archivo (`file://`) | Abrirlo con `design/ABRIR-PROTOTIPO.cmd` (servidor local en http://localhost:5173) |
 | La captura de pantalla del emulador salía dañada | En PowerShell, `adb exec-out screencap -p > archivo.png` altera los bytes | `adb shell screencap -p /sdcard/c.png` y luego `adb pull /sdcard/c.png` |
 
 ## 9. Bitácora
@@ -149,7 +150,7 @@ La llave de Supabase que usa la app es la **publicable** (la misma de la web). L
   dos tamaños (`design/capturas/`), revisión con el detector y la crítica de Impeccable (`design/REVISION.md`) y la lista
   para aprobar (`design/APROBACION.md`).
 - **Por qué:** el encargo exige aprobar el diseño antes de tocar Flutter.
-- **Comandos:** `node design/servir.mjs` (abrir), `cd design/tools && npm install && npm run capturas` (capturas),
+- **Comandos:** doble clic en `design/ABRIR-PROTOTIPO.cmd` o `node design/servir.mjs` (abrir; NO con doble clic en index.html), `cd design/tools && npm install && npm run capturas` (capturas),
   `npx impeccable detect …` (revisión automática).
 - **Resultado:** ver `design/REVISION.md`. El diseño **no está aprobado** hasta que Wilmer escriba `DISEÑO APROBADO`.
 - **Cómo comprobarlo:** abrir http://localhost:5173 con el servidor encendido.
