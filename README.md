@@ -147,5 +147,5 @@ La llave de Supabase que usa la app es la **publicable** (la misma de la web). L
 
 - ✅ Fase 0 · ambiente listo y comprobado.
 - ✅ Fase 1 · repositorio y organización.
-- ⏸️ Fase 2 · auditoría lista (`docs/AUDITORIA_GESTOR.md`, rama `fase-2/auditoria`). **En ALTO**: esperando que Wilmer revise alcance y prioridad.
-- ⏭️ Fase 3 · diseño en HTML/CSS (no empieza hasta cerrar la Fase 2).
+- ✅ Fase 2 · auditoría (`docs/AUDITORIA_GESTOR.md`). Wilmer aprobó el alcance, la prioridad P1/P2/P3 y las funciones "solo web".
+- ⏭️ Fase 3 · diseño en HTML/CSS (rama `fase-3/diseno`).

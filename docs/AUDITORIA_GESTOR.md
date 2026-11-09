@@ -357,7 +357,15 @@ Pagos y comisiones (admin) · 11 Métricas de consulta y seguimiento · 12 Tarif
 
 ---
 
-## 7. Lo que necesito de ti (ALTO)
+## 7. Decisiones de Wilmer (2026-11-08)
+
+- ✅ **Alcance y prioridad P1 / P2 / P3: aprobados.**
+- ✅ **Las tres funciones "solo web" (sección 2.4): aprobadas.**
+- ⏳ Hallazgos H1–H10: sin decisión aún. Quedan anotados; **no se toca `rakun-web`** hasta que Wilmer lo pida.
+- ⏳ Barra inferior por rol (3.3): se usa como punto de partida del diseño en la Fase 3; se valida allí.
+- ⏳ Preguntas de negocio (descuento desde el mes 2, ronda extra): se resuelven antes de montar P2.
+
+## 8. Preguntas que se le hicieron a Wilmer (ALTO)
 
 1. ¿Apruebas el alcance y la prioridad P1 / P2 / P3?
 2. ¿Aceptas las tres funciones **solo web** de la sección 2.4, o quieres alguna en la app?
