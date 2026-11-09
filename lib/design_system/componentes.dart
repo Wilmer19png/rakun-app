@@ -148,9 +148,8 @@ class RkEtiqueta extends StatelessWidget {
     return Container(
       height: 22,
       padding: const EdgeInsets.symmetric(horizontal: 8),
-      alignment: Alignment.center,
       decoration: BoxDecoration(color: fondo, border: borde == null ? null : Border.all(color: borde)),
-      child: Text(texto.toUpperCase(), style: RkType.mono11.copyWith(color: tinta)),
+      child: Center(widthFactor: 1, child: Text(texto.toUpperCase(), style: RkType.mono11.copyWith(color: tinta))),
     );
   }
 }

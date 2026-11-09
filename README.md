@@ -237,6 +237,17 @@ La llave `service_role`/secreta **nunca** va en la app: si alguien la pone, la a
 - **Web sin publicar:** por decisión de Wilmer la rama `fase-18/tiempo-real` de rakun-web queda local (no Netlify) hasta que él diga.
   "Cambio en la app → se ve en la web" se prueba cuando exista la primera sección que escribe (Fase 6).
 
+### 2026-11-09 · Fase 6 · 01 Solicitudes
+- **Qué se hizo:** lista por estado (dirección A) con contador, filtro por mundo, buscador, llamar a un toque, píldora
+  "N nuevas" en vivo; ficha con Llamar · WhatsApp (mismo mensaje de la web) · Correo, plan elegido, anuncio, estado y
+  responsable en hojas, notas que se guardan solas, "Hacer cliente" + acceso al portal (Edge Function `invitar`, enlace por
+  `cuenta.html`), eliminar (solo admin). Sin conexión: se ve lo guardado y no se escribe. "Cotizar" llega con P2.
+- **Paridad:** `util.js` (waNumber, safeUrl, initials) probado contra el original; encontró que el navegador normaliza los
+  enlaces (barra final, dominios inválidos) y se igualó.
+- **Probado:** 72 pruebas; capturas con datos de ejemplo en los dos temas (`design/capturas/comparacion/solicitud*`);
+  en el emulador con datos reales: lista y ficha, y **cambio de estado de una solicitud PRUEBA APP desde la app** (pasó a Reunión).
+  No se probó crear accesos reales (regla: nada de invitaciones reales de prueba).
+
 ## 10. Estado actual y próximos pasos
 
 - ✅ Fase 0 · ambiente listo y comprobado.

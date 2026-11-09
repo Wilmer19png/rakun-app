@@ -1,0 +1,115 @@
+{
+  "origen": "rakun-web/app/util.js",
+  "casos": {
+    "waNumber": [
+      [
+        "3001234567",
+        "573001234567"
+      ],
+      [
+        "300 123 4567",
+        "573001234567"
+      ],
+      [
+        "+57 300 123 4567",
+        "573001234567"
+      ],
+      [
+        "573001234567",
+        "573001234567"
+      ],
+      [
+        "6012345678",
+        "6012345678"
+      ],
+      [
+        "12345",
+        "12345"
+      ],
+      [
+        "",
+        ""
+      ],
+      [
+        null,
+        ""
+      ],
+      [
+        "(300) 123-4567",
+        "573001234567"
+      ],
+      [
+        "30012345678",
+        "30012345678"
+      ]
+    ],
+    "safeUrl": [
+      [
+        "instagram.com/ana",
+        "https://instagram.com/ana"
+      ],
+      [
+        "https://tiktok.com/@ana",
+        "https://tiktok.com/@ana"
+      ],
+      [
+        "http://web.co",
+        "http://web.co/"
+      ],
+      [
+        "javascript:alert(1)",
+        ""
+      ],
+      [
+        "ftp://x.com",
+        "https://ftp//x.com"
+      ],
+      [
+        "  www.ejemplo.com  ",
+        "https://www.ejemplo.com/"
+      ],
+      [
+        "",
+        ""
+      ],
+      [
+        "mailto:a@b.co",
+        "https://mailto:a@b.co/"
+      ],
+      [
+        "HTTPS://EJEMPLO.COM/Ruta",
+        "https://ejemplo.com/Ruta"
+      ],
+      [
+        "no es un enlace con espacios",
+        ""
+      ]
+    ],
+    "initials": [
+      [
+        "Ana Ejemplo",
+        "AE"
+      ],
+      [
+        "wilmer alejandro buriticá",
+        "WA"
+      ],
+      [
+        "  Sofía  ",
+        "S"
+      ],
+      [
+        "",
+        "?"
+      ],
+      [
+        null,
+        "?"
+      ],
+      [
+        "Dr. Ejemplo Pérez",
+        "DE"
+      ]
+    ]
+  }
+}
