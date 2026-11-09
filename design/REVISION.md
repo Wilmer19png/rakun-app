@@ -52,7 +52,12 @@
 
 **Se dejó a propósito:** la píldora "llegó algo nuevo" flota encima de la lista. Así no mueve lo que estás leyendo, que era la regla del encargo.
 
-## 4. Solicitudes: A o B
+## 4. Cambios pedidos por Wilmer (2026-11-09)
+
+- **Tema claro y oscuro a elección** (antes: oscuro siempre). Tema claro revisado con el detector en 10 pantallas: **0 problemas de contraste**. Único aviso: "paleta crema", genérico; no aplica porque es el crema oficial de la marca y lo pidió Wilmer.
+- **Solicitudes: dirección A.** Wilmer la prefiere "por organización, no tanta información en una sola parte". La crítica recomendaba B; manda la decisión del dueño.
+
+## 5. Solicitudes: A o B (lo que dijo la crítica)
 
 La crítica **recomienda B (bandeja)**. Sus razones:
 - En la calle la pregunta es "¿a quién no he llamado?". B lo responde sin tocar nada: "Sin atender" arriba y "En curso" debajo.

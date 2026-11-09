@@ -1,6 +1,6 @@
 // RAKÜN Studio · capturas del prototipo a tamaño real (360×800 y 390×844)
 // Uso: cd design/tools && npm install && npm run capturas
-// Guarda en design/capturas/<tamaño>/<nombre>.png. Usa el Chrome instalado (channel: 'chrome').
+// Guarda en design/capturas/<tema>/<tamaño>/<nombre>.png (tema: oscuro y claro). Usa el Chrome instalado (channel: 'chrome').
 import { chromium } from 'playwright';
 import { spawn } from 'node:child_process';
 import { mkdir } from 'node:fs/promises';
@@ -21,7 +21,6 @@ const SHOTS = [
   ['13-revisar', 'revisar.html'],
   ['14-revisar-devolver', 'revisar.html?hoja=devolver'],
   ['20-solicitudes-A', 'solicitudes-a.html'],
-  ['21-solicitudes-B', 'solicitudes-b.html'],
   ['22-solicitud', 'solicitud.html'],
   ['23-solicitud-estado', 'solicitud.html?hoja=estado'],
   ['24-clientes', 'clientes.html'],
@@ -39,6 +38,7 @@ const SHOTS = [
   ['51-parrilla-pieza', 'parrilla.html?hoja=pieza'],
   ['60-mensajes', 'mensajes.html'],
   ['61-mas', 'mas.html'],
+  ['62-mas-apariencia', 'mas.html', 700, true],
   ['70-documentos', 'documentos.html'],
   ['71-cotizacion', 'cotizacion.html'],
   ['72-cotizacion-pago', 'cotizacion.html?hoja=pago'],
@@ -61,24 +61,25 @@ await new Promise((r) => setTimeout(r, 600));
 const browser = await chromium.launch({ channel: 'chrome' });
 const only = process.argv[2];
 try {
-  for (const [w, h] of SIZES) {
-    const dir = `${DESIGN}capturas/${w}x${h}`;
+  for (const tema of ['oscuro', 'claro']) for (const [w, h] of SIZES) {
+    const dir = `${DESIGN}capturas/${tema}/${w}x${h}`;
     await mkdir(dir, { recursive: true });
     const ctx = await browser.newContext({ viewport: { width: w, height: h }, deviceScaleFactor: 1, isMobile: true, hasTouch: true, reducedMotion: 'no-preference' });
     const page = await ctx.newPage();
     const errors = [];
     page.on('pageerror', (e) => errors.push(e.message));
     page.on('console', (m) => { if (m.type() === 'error') errors.push(m.text()); });
-    for (const [name, url, wait = 700] of SHOTS) {
+    for (const [name, url, wait = 700, bottom] of SHOTS) {
       if (only && !name.includes(only)) continue;
-      await page.goto(BASE + url, { waitUntil: 'networkidle' });
+      await page.goto(BASE + url + (url.includes('?') ? '&' : '?') + 'tema=' + tema, { waitUntil: 'networkidle' });
+      if (bottom) await page.evaluate(() => { const m = document.querySelector('.main'); m.scrollTop = m.scrollHeight; });
       await page.evaluate(() => document.fonts.ready);
       await page.waitForTimeout(wait);
       await page.screenshot({ path: `${dir}/${name}.png` });
     }
     if (errors.length) console.log(`Errores en ${w}x${h}:\n - ${[...new Set(errors)].join('\n - ')}`);
     await ctx.close();
-    console.log(`✓ ${w}×${h}`);
+    console.log(`✓ ${tema} ${w}×${h}`);
   }
 } finally {
   await browser.close();

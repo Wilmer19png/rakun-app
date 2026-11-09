@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&family=JetBrains+Mono:wght@500;600&family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,300..400,0..1,0&display=block">
 <link rel="stylesheet" href="../proto/app.css">
+<script src="../proto/tema.js"></script>
 </head>
 <body data-screen="mas" data-nav="mas">
 <header class="top top--large">
@@ -29,6 +30,14 @@
   </nav>
   <p class="soon"><b>Próximamente</b> · Tarifario y Carga de trabajo (P2) · Nuestro trabajo, Planes y precios, Permisos (P3). El editor del catálogo sigue en la web.</p>
   <h2 class="gh"><span>Cuenta</span></h2>
+  <div class="pad" style="padding-bottom:16px">
+    <p class="mono dim" style="margin:0 0 8px">Apariencia</p>
+    <div class="seg" id="tema" role="group" aria-label="Apariencia" style="grid-template-columns:1fr 1fr 1fr;margin:0">
+      <button type="button" aria-pressed="true" data-tema="oscuro"><span class="ic ic--sm">dark_mode</span>Oscuro</button>
+      <button type="button" aria-pressed="false" data-tema="claro"><span class="ic ic--sm">light_mode</span>Claro</button>
+      <button type="button" aria-pressed="false" data-tema="sistema"><span class="ic ic--sm">smartphone</span>Teléfono</button>
+    </div>
+  </div>
   <div class="list">
     <button class="row" type="button"><span class="row__t">Cambiar contraseña</span><span class="ic dimmer" style="padding-right:12px">password</span></button>
     <a class="row" href="https://rakundesigns.netlify.app/admin.html"><span><span class="row__t">Abrir el gestor web</span><span class="row__s">Para lo que solo vive en la web</span></span><span class="ic dimmer" style="padding-right:12px">open_in_new</span></a>

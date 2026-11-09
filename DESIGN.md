@@ -22,6 +22,11 @@ colors:
   dim: "#9A97BD"           # texto terciario: 7,3:1 sobre #010221
   ok: "#4FB58C"            # ganado/confirmado: el #3C8C6E de la web no pasa AA sobre navy (4,15:1)
   propuesta: "#8B6CF0"     # estado "Propuesta" de solicitudes (ya existe en la web)
+  # Tema claro (crema), propuesto en la Fase 3
+  light-surface-2: "#E8E4DB"
+  light-surface-3: "#DCD7CC"
+  light-dim: "#5C5980"     # terciario sobre crema: 5,8:1
+  light-ok: "#17664A"      # verde sobre crema: 6,2:1
 typography:
   display: "Knuckle Down (fonts/KnuckleDown.otf), un solo peso, MAYÚSCULAS, interlineado < 1"
   body: "Jost (lectura); peso y tracking a validar en móvil en la Fase 3"

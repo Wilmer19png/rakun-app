@@ -1,12 +1,12 @@
 import { chromium } from 'playwright';
 import { readdir, readFile } from 'node:fs/promises';
 import { pathToFileURL, fileURLToPath } from 'node:url';
-const size = process.argv[2] || '360x800';
+const size = process.argv[2] || 'oscuro/360x800';
 const out = process.argv[3];
 const dir = fileURLToPath(new URL(`../capturas/${size}/`, import.meta.url));
 const files = (await readdir(dir)).filter((f) => f.endsWith('.png')).sort();
 const imgs = Object.fromEntries(await Promise.all(files.map(async (f) => [f, (await readFile(dir + f)).toString('base64')])));
-const per = 8; const [w, h] = size.split('x').map(Number); const s = 0.6;
+const per = 8; const [w, h] = size.split('/').pop().split('x').map(Number); const s = 0.6;
 const b = await chromium.launch({ channel: 'chrome' });
 for (let i = 0; i < files.length; i += per) {
   const p = await b.newPage({ viewport: { width: Math.ceil(per / 2) * (w * s + 12) + 12, height: 2 * (h * s + 30) + 12 } });

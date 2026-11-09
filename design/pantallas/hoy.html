@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&family=JetBrains+Mono:wght@500;600&family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,300..400,0..1,0&display=block">
 <link rel="stylesheet" href="../proto/app.css">
+<script src="../proto/tema.js"></script>
 </head>
 <body data-screen="hoy" data-nav="hoy">
 <main class="main" id="main">
@@ -109,7 +110,7 @@
   <div class="sheet__grab"></div>
   <div class="sheet__h"><h2 class="sheet__t" id="entregar-t">Entregar</h2><button class="ib" type="button" data-close aria-label="Cerrar"><span class="ic">close</span></button></div>
   <div class="sheet__b">
-    <p class="dim" style="margin:0 0 16px">Guiones del mes · Marca Ejemplo · lo revisa <b style="color:#fff;font-weight:500">Mariana</b></p>
+    <p class="dim" style="margin:0 0 16px">Guiones del mes · Marca Ejemplo · lo revisa <b style="color:var(--white);font-weight:500">Mariana</b></p>
     <div class="seg" id="modo" role="group" aria-label="Cómo entregar"><button type="button" aria-pressed="true" data-show="link"><span class="ic ic--sm">link</span>Enlace</button><button type="button" aria-pressed="false" data-show="file"><span class="ic ic--sm">attach_file</span>Archivo</button></div>
     <label class="f" data-when-of="modo" data-when="link"><span>Pega el enlace</span><input class="in" type="url" inputmode="url" placeholder="Drive, Docs, Frame.io, Vimeo, Figma…"></label>
     <div data-when-of="modo" data-when="file" hidden>

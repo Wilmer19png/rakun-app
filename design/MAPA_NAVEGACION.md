@@ -2,7 +2,8 @@
 
 > Fase 3 · paso 1 (`/impeccable shape`) · 2026-11-08 · **borrador para confirmar antes de dibujar.**
 > Base: `PRODUCT.md`, `docs/AUDITORIA_GESTOR.md` (alcance aprobado) y las respuestas de Wilmer:
-> **fondo oscuro siempre**, **inicio en una pantalla "Hoy"**, **barra inferior por rol tal como se propuso**.
+> **inicio en una pantalla "Hoy"**, **barra inferior por rol tal como se propuso**. Actualizado 2026-11-09: **tema oscuro y claro a elección**
+> (antes: oscuro siempre) y **Solicitudes en la dirección A** (por estado).
 
 ## 1. Qué es y para quién (modo *Operate*)
 

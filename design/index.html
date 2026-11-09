@@ -47,6 +47,7 @@
   </div>
   <div class="ctrl">
     <fieldset data-size><legend>Tamaño</legend><button type="button" aria-pressed="true" data-w="360" data-h="800">360 × 800</button><button type="button" aria-pressed="false" data-w="390" data-h="844">390 × 844</button></fieldset>
+    <fieldset data-tema><legend>Tema</legend><button type="button" aria-pressed="true" data-t="oscuro">Oscuro</button><button type="button" aria-pressed="false" data-t="claro">Claro</button></fieldset>
     <fieldset data-rol><legend>Rol</legend><button type="button" aria-pressed="true" data-r="admin">Admin</button><button type="button" aria-pressed="false" data-r="manager">Manager</button><button type="button" aria-pressed="false" data-r="directora">Directora</button><button type="button" aria-pressed="false" data-r="editor">Editor</button><button type="button" aria-pressed="false" data-r="camara">Cámara</button></fieldset>
   </div>
 </header>
@@ -78,9 +79,9 @@
       ['mensajes.html', 'Mensajes', ''],
       ['mas.html', 'Más', 'Todo lo demás, según permisos'],
     ]],
-    ['Solicitudes · dos direcciones', 'Elige una', [
-      ['solicitudes-a.html', 'A · por estado', 'Como la web: una pestaña por estado'],
-      ['solicitudes-b.html', 'B · bandeja', 'Una lista: sin atender arriba'],
+    ['Solicitudes', 'Dirección A elegida por Wilmer', [
+      ['solicitudes-a.html', 'Solicitudes · por estado', 'Una pestaña por estado, como la web'],
+      ['solicitudes-b.html', 'B · descartada', 'Se guarda solo como registro'],
     ]],
     ['P2 · consulta y dinero', 'Se monta después de P1', [
       ['documentos.html', 'Documentos', 'Escanear con la cámara'],
@@ -93,6 +94,7 @@
       ['hoy.html?estado=vacio', 'Vacío', 'Momento de marca'],
       ['solicitudes-a.html?estado=error', 'Error', ''],
       ['hoy.html?estado=offline', 'Sin conexión', 'Se ve lo guardado; no se escribe'],
+      ['mas.html', 'Apariencia', 'Más → Cuenta: Oscuro · Claro · Teléfono'],
       ['solicitudes-a.html?estado=sinpermiso', 'Sin permiso', ''],
       ['agenda.html?estado=vivo', 'Llegó algo en vivo', 'No mueve lo que estás leyendo'],
     ]],
@@ -104,8 +106,8 @@
       ['hoy.html?rol=camara', 'Cámara', 'Hoy · Agenda · Mensajes · Más'],
     ]],
   ];
-  let rol = 'admin';
-  const src = (u) => { if (/[?&]rol=/.test(u)) return `pantallas/${u}`; return `pantallas/${u}${u.includes('?') ? '&' : '?'}rol=${rol}`; };
+  let rol = 'admin'; let tema = 'oscuro';
+  const src = (u) => { const sep = u.includes('?') ? '&' : '?'; return /[?&]rol=/.test(u) ? `pantallas/${u}&tema=${tema}` : `pantallas/${u}${sep}rol=${rol}&tema=${tema}`; };
   function draw() {
     document.getElementById('g').innerHTML = SECTIONS.map(([t, s, items]) => `
       <h2>${t} <small>${s} · ${items.length}</small></h2>
@@ -122,6 +124,10 @@
   document.querySelectorAll('[data-rol] button').forEach((b) => b.addEventListener('click', () => {
     document.querySelectorAll('[data-rol] button').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
     rol = b.dataset.r; draw();
+  }));
+  document.querySelectorAll('[data-tema] button').forEach((b) => b.addEventListener('click', () => {
+    document.querySelectorAll('[data-tema] button').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+    tema = b.dataset.t; draw();
   }));
   draw();
 </script>

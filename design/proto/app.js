@@ -49,6 +49,7 @@ function keepRole(href) {
   const [path, qs = ''] = href.split('?');
   const p = new URLSearchParams(qs);
   if (!p.has('rol')) p.set('rol', ROL);
+  if (q.get('tema') && !p.has('tema')) p.set('tema', q.get('tema'));
   return `${path}?${p}`;
 }
 
@@ -177,6 +178,11 @@ function toggles() {
     const seg = e.target.closest('.seg button');
     if (seg) {
       $$('button', seg.parentElement).forEach((b) => b.setAttribute('aria-pressed', String(b === seg)));
+      if (seg.dataset.tema) {
+        try { localStorage.setItem('rk-tema', seg.dataset.tema); } catch { /* solo esta vez */ }
+        const v = seg.dataset.tema === 'sistema' ? (matchMedia('(prefers-color-scheme: light)').matches ? 'claro' : 'oscuro') : seg.dataset.tema;
+        document.documentElement.dataset.theme = v;
+      }
       if (seg.dataset.show) $$(`[data-when-of="${seg.parentElement.id}"]`).forEach((el) => { el.hidden = el.dataset.when !== seg.dataset.show; });
     }
     const opt = e.target.closest('.opt[role="menuitemradio"]');
@@ -205,6 +211,16 @@ function eyes() {
   });
 }
 
+/* el selector de Apariencia muestra lo elegido */
+function themePicker() {
+  const box = document.getElementById('tema');
+  if (!box) return;
+  let saved = q.get('tema');
+  try { saved = saved || localStorage.getItem('rk-tema'); } catch { /* nada */ }
+  saved = saved || 'oscuro';
+  $$('button', box).forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.tema === saved)));
+}
+
 /* ---------- arranque ---------- */
 $$('a[href]').forEach((a) => { a.setAttribute('href', keepRole(a.getAttribute('href'))); });
 roleText();
@@ -213,6 +229,7 @@ states();
 sheets();
 snack();
 toggles();
+themePicker();
 collapse();
 eyes();
 

@@ -2,16 +2,17 @@
 
 > Marca cada pantalla con **[x]** si está bien o escribe al lado qué cambiar.
 > El diseño solo queda aprobado cuando escribas exactamente: **`DISEÑO APROBADO`**.
-> Capturas en `design/capturas/360x800/` y `design/capturas/390x844/` (mismo nombre en las dos carpetas).
+> Capturas en `design/capturas/oscuro/` y `design/capturas/claro/`, cada una en `360x800/` y `390x844/` (mismo nombre).
+> En la galería puedes cambiar **Tema**, **Tamaño** y **Rol** arriba.
 
 ## Cómo abrir el prototipo
 1. En una terminal: `node design/servir.mjs` (desde la carpeta `rakun-app`).
 2. Abre **http://localhost:5173** en Chrome: es la galería con todas las pantallas, el cambio de tamaño y de rol.
 3. Para sentirlo como en el teléfono: abre una pantalla sola (↗) y activa el modo dispositivo de Chrome (F12 → ícono de celular).
 
-## Decisión pendiente
-- [ ] **Solicitudes: dirección A** (pestañas por estado, como la web) — `20-solicitudes-A`
-- [ ] **Solicitudes: dirección B** (bandeja única: sin atender arriba) — `21-solicitudes-B`
+## Decisiones tomadas
+- [x] **Solicitudes: dirección A** (pestañas por estado), elegida por Wilmer el 2026-11-09 — `20-solicitudes-A`. La B queda descartada.
+- [x] **Tema claro y oscuro a elección** (Más → Apariencia), pedido por Wilmer el 2026-11-09 — `62-mas-apariencia`.
 
 ## Entrada
 - [ ] `01-splash` · el ojo se abre, RAKÜN, onda
@@ -32,7 +33,7 @@
 - [ ] `43-grabacion` · cómo llegar, llamar, qué prepara el cliente
 - [ ] `50-parrilla` / `51-parrilla-pieza` · por día (y vista de mes), enviar al cliente
 - [ ] `60-mensajes` · mensajes del equipo
-- [ ] `61-mas` · el resto de secciones según permisos y la cuenta
+- [ ] `61-mas` / `62-mas-apariencia` · el resto de secciones, la cuenta y el tema
 
 ## P2 · consulta y dinero
 - [ ] `70-documentos` · con escáner de la cámara
@@ -47,7 +48,9 @@
 - [ ] `90` Admin · [ ] `91` Manager · [ ] `92` Directora · [ ] `93` Editor/a · [ ] `94` Cámara
 
 ## Sistema (design/DESIGN_MOVIL.md)
-- [ ] Fondo noche siempre, rosa en toda pantalla, colores por mundo
+- [ ] Tema oscuro por defecto y tema claro crema; barra inferior noche en los dos
+- [ ] En claro: rosa pequeño pasa a navy con marca rosa (regla de la marca)
+- [ ] Rosa en toda pantalla, colores por mundo
 - [ ] Jost 400 para leer (en vez de 300), Knuckle Down solo en títulos
 - [ ] Verde nuevo `#4FB58C` y gris terciario `#9A97BD`
 - [ ] Botón flotante con placa amarilla desplazada

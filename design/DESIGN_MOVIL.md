@@ -13,7 +13,13 @@ ahí la marca está en los detalles (el rosa de la acción, el índice mono, la 
 Estructura **Android Material 3**: barra de navegación inferior, barra superior, hojas inferiores para editar, *snackbars* para confirmar,
 gesto Atrás del sistema. La marca entra por el tema: **radio 0**, **sin sombras difusas**, **líneas de 1 px**, tipografía propia.
 
-## 2. Color (fondo oscuro siempre)
+## 2. Color · dos temas: **oscuro** (por defecto) y **claro** (crema, como el gestor web)
+
+Se elige en **Más → Cuenta → Apariencia**: Oscuro · Claro · Como el teléfono. Se guarda en el celular.
+La entrada (splash) es siempre noche: es el momento de la marca. La **barra inferior es noche en los dos temas**,
+como el menú lateral del gestor web (contenido crema, navegación noche).
+
+### 2.1 Tema oscuro
 
 | Token | Valor | Uso | Contraste sobre `ink-0` |
 |---|---|---|---|
@@ -30,6 +36,24 @@ gesto Atrás del sistema. La marca entra por el tema: **radio 0**, **sin sombras
 | `ok` *(nuevo)* | `#4FB58C` | Ganado, confirmado, "con acceso" | 8,1:1 (6,7:1 sobre navy) |
 | `line` | blanco 14 % | Separadores | — |
 | `line-2` | blanco 28 % | Bordes de campos y chips | — |
+
+### 2.2 Tema claro (crema)
+
+| Token | Valor | Uso | Contraste sobre crema |
+|---|---|---|---|
+| fondo |  | Crema de la marca | — |
+|  |  | Campos | — |
+|  |  | Hojas, barras de acción | — |
+| texto |  navy | Principal | 14,8:1 |
+| secundario |  ink-soft | | 9,5:1 |
+| terciario *(nuevo)* |  | | 5,8:1 |
+|  *(nuevo)* |  | Ganado, confirmado | 6,2:1 |
+
+**Regla de la marca en claro: nunca rosa pequeño sobre crema** (el rosa da 3,18:1). Por eso, en claro:
+- Lo que en oscuro es texto rosa pequeño (vencido, "2 vencidos", índice) pasa a **navy con una marca rosa**: cuadro rosa al lado, subrayado rosa de 2 px o **pastilla rosa con texto navy** (el índice de sección).
+- El rosa sigue en toda pantalla como acción (botones, FAB, aviso), relleno con tinta navy, y como palabra gigante en Knuckle Down (permitido en tamaño display).
+- Los cuadros de mundo (amarillo, azul) llevan un filo navy para verse sobre crema.
+- La franja sin conexión es lila claro  con navy en los dos temas.
 
 Reglas que se conservan de la web:
 - **Tinta navy sobre rosa, amarillo o azul** (rosa con navy: 4,67:1, pasa AA).
@@ -114,7 +138,7 @@ Cambio frente a la web: el verde `#3C8C6E` de "ganado" no pasa AA sobre navy (4,
 | Intro larga una vez por sesión | Splash de menos de 1,5 s | Se abre muchas veces al día |
 | Tablas de 6–9 columnas | Filas + hoja de edición | No caben; la hoja da campos de 48 dp |
 | Arrastrar para reasignar | Hoja "Reasignar" (P2) | Arrastrar es impreciso con el pulgar |
-| Fondos crema | Noche siempre | Decisión de Wilmer (rodajes, noche, batería) |
+| Fondos crema | Tema claro opcional (crema) + oscuro por defecto | Decisión de Wilmer: elegir según el momento (noche/rodaje u oficina) |
 | Modal centrado | Hoja inferior | Patrón de Android, alcance del pulgar |
 
 ## 10. Pendiente para Flutter (Fase 4)
