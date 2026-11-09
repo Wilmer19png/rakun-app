@@ -133,8 +133,19 @@ La llave de Supabase que usa la app es la **publicable** (la misma de la web). L
 - **Por qué:** dejar el proyecto ordenado, versionado y con el contexto de producto y marca antes de auditar y diseñar.
 - **Resultado y comprobación:** ver la sección *Estado actual*.
 
+### 2026-11-08 · Fase 2: auditoría funcional del gestor web
+- **Qué se hizo:** lectura completa del gestor de `rakun-web` (commit `cd85fe1`): `admin.html`, los `app/admin*.js`,
+  permisos, lógica de dinero, `planes/`, los 17 SQL y las 3 Edge Functions. Resultado en `docs/AUDITORIA_GESTOR.md`.
+- **Por qué:** antes de diseñar hay que saber todo lo que hace la web, para que nada se pierda en silencio.
+- **Comandos:** solo lectura (`cat`, `grep`); dos comprobaciones ejecutando con Node el código original de la web,
+  sin modificarlo (cálculo de comisiones y fechas en hora universal).
+- **Resultado:** matriz de paridad con 107 funciones y su decisión; mapa de permisos por rol; inventario de la lógica
+  a portar; 10 hallazgos para revisar en la web (ninguno corregido); prioridad P1/P2/P3 propuesta.
+- **Cómo comprobarlo:** abrir `docs/AUDITORIA_GESTOR.md`.
+
 ## 10. Estado actual y próximos pasos
 
 - ✅ Fase 0 · ambiente listo y comprobado.
 - ✅ Fase 1 · repositorio y organización.
-- ⏭️ Fase 2 · auditoría funcional del gestor web (`docs/AUDITORIA_GESTOR.md`) con matriz de paridad y prioridades P1/P2/P3.
+- ⏸️ Fase 2 · auditoría lista (`docs/AUDITORIA_GESTOR.md`, rama `fase-2/auditoria`). **En ALTO**: esperando que Wilmer revise alcance y prioridad.
+- ⏭️ Fase 3 · diseño en HTML/CSS (no empieza hasta cerrar la Fase 2).

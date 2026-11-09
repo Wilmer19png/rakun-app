@@ -38,7 +38,13 @@ Es la fuente de las fases, reglas y puntos `ALTO`.
 - Hay un repo Git vacío accidental en `C:\Users\wburi\.git` (sin commits ni remoto). No tocar sin permiso de Wilmer.
 
 ## Estado actual · 2026-11-08
-**FASE 1 COMPLETA.** Siguiente: FASE 2 (auditoría funcional → `docs/AUDITORIA_GESTOR.md`, termina en `ALTO`).
+**FASE 2 en `ALTO`.** `docs/AUDITORIA_GESTOR.md` escrita en la rama `fase-2/auditoria` (subida). Esperando de Wilmer:
+alcance P1/P2/P3, las 3 funciones "solo web", qué hacer con hallazgos H1–H10, barra inferior por rol, 2 preguntas de negocio.
+Hallazgos clave (NO corregidos): H1 autoaprobación de entregables vía API; H2 comprobantes en bucket `entregas` legibles por todo staff;
+H4 fechas "hoy" en UTC (comprobado); H6 comisión mal calculada si se quita la grabación a un plan "con grabación" (comprobado con Node).
+Al portar dinero: copiar el comportamiento actual (incluidos H4/H6) salvo que Wilmer decida otra cosa.
+
+**FASE 1 COMPLETA.**
 
 **FASE 0 COMPLETA y verificada (2026-11-08, tras reinicio).**
 - Modo desarrollador = 1; VirtualizationFirmwareEnabled = True; HypervisorPresent = True.
