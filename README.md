@@ -108,6 +108,7 @@ La llave de Supabase que usa la app es la **publicable** (la misma de la web). L
 | La app de prueba no compilaba en Android | Faltaba el **NDK** (kit nativo de Android) que pide la plantilla de Flutter | Instalar `ndk;28.2.13676358` con `sdkmanager` |
 | `sdkmanager.bat "ndk;28.2..."` falla desde PowerShell | PowerShell parte el texto en el `;` | Escribir el paquete en un archivo y usar `sdkmanager --package_file=archivo.txt` |
 | El emulador no arrancaba con aceleración | Virtualización apagada en la BIOS (`VirtualizationFirmwareEnabled = False`) | Activar *SVM Mode* en la BIOS y correr `herramientas/preparar_windows.ps1` como administrador; reiniciar |
+| El prototipo muestra errores al abrir `design/index.html` con doble clic | Chrome bloquea los scripts de una página abierta como archivo (`file://`) | Abrirlo con `design/ABRIR-PROTOTIPO.cmd` (servidor local en http://localhost:5173) |
 | La captura de pantalla del emulador salía dañada | En PowerShell, `adb exec-out screencap -p > archivo.png` altera los bytes | `adb shell screencap -p /sdcard/c.png` y luego `adb pull /sdcard/c.png` |
 
 ## 9. Bitácora
@@ -143,9 +144,22 @@ La llave de Supabase que usa la app es la **publicable** (la misma de la web). L
   a portar; 10 hallazgos para revisar en la web (ninguno corregido); prioridad P1/P2/P3 propuesta.
 - **Cómo comprobarlo:** abrir `docs/AUDITORIA_GESTOR.md`.
 
+### 2026-11-08/09 · Fase 3: diseño (prototipo navegable)
+- **Qué se hizo:** mapa de navegación y flujos (`design/MAPA_NAVEGACION.md`), sistema móvil (`design/DESIGN_MOVIL.md`),
+  prototipo HTML/CSS con 21 pantallas, sus estados y la barra inferior de 5 roles (`design/index.html`), 43 capturas en
+  dos tamaños (`design/capturas/`), revisión con el detector y la crítica de Impeccable (`design/REVISION.md`) y la lista
+  para aprobar (`design/APROBACION.md`).
+- **Por qué:** el encargo exige aprobar el diseño antes de tocar Flutter.
+- **Comandos:** doble clic en `design/ABRIR-PROTOTIPO.cmd` o `node design/servir.mjs` (abrir; NO con doble clic en index.html), `cd design/tools && npm install && npm run capturas` (capturas),
+  `npx impeccable detect …` (revisión automática).
+- **Resultado:** ver `design/REVISION.md`. Cambios pedidos: tema claro a elección y Solicitudes en dirección A.
+  **DISEÑO APROBADO** por Wilmer el 2026-11-09 → etiqueta `v0.1-diseno-aprobado`; `DESIGN_MOVIL.md` pasó a `DESIGN.md`.
+- **Cómo comprobarlo:** abrir http://localhost:5173 con el servidor encendido.
+
 ## 10. Estado actual y próximos pasos
 
 - ✅ Fase 0 · ambiente listo y comprobado.
 - ✅ Fase 1 · repositorio y organización.
 - ✅ Fase 2 · auditoría (`docs/AUDITORIA_GESTOR.md`). Wilmer aprobó el alcance, la prioridad P1/P2/P3 y las funciones "solo web".
-- ⏭️ Fase 3 · diseño en HTML/CSS (rama `fase-3/diseno`).
+- ✅ Fase 3 · diseño **aprobado** el 2026-11-09 (etiqueta `v0.1-diseno-aprobado`). Sistema oficial en `DESIGN.md`.
+- ⏭️ Fase 4 · base de la app en Flutter (rama `fase-4/base`).

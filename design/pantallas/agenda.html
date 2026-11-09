@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Agenda · RAKÜN Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&family=JetBrains+Mono:wght@500;600&family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,300..400,0..1,0&display=block">
+<link rel="stylesheet" href="../proto/app.css">
+<script src="../proto/tema.js"></script>
+</head>
+<body data-screen="agenda" data-nav="agenda">
+<header class="top top--large">
+  <div class="top__row"><span class="top__sp"></span><button class="ib" type="button" aria-label="Ver anteriores"><span class="ic">history</span></button></div>
+  <h1 class="top__title"><span class="top__idx">05·06</span>Agenda</h1>
+</header>
+<main class="main">
+  <div class="chips" data-single role="group" aria-label="Qué ver">
+    <button class="chip" type="button" aria-pressed="true">Todo</button>
+    <button class="chip" type="button" aria-pressed="false"><span class="ic ic--sm">videocam</span>Grabaciones</button>
+    <button class="chip" type="button" aria-pressed="false"><span class="ic ic--sm">groups</span>Reuniones</button>
+  </div>
+  <div data-region data-live="Mariana movió una grabación">
+    <h2 class="gh gh--late"><span>Pedidas por clientes</span><b>1</b></h2>
+    <div class="list">
+      <button class="row row--lead" type="button" data-open="confirmar">
+        <span class="when"><b class="pk">?</b><span>por definir</span></span>
+        <span><span class="row__t">Revisión del diseño</span><span class="row__s">Consultorio Ejemplo · “antes del viernes”</span></span>
+        <span class="row__r"><span class="tag tag--pink">Confirmar</span><span style="width:12px"></span></span>
+      </button>
+    </div>
+
+    <h2 class="gh"><span>Hoy · dom 9 nov</span></h2>
+    <div class="list">
+      <div class="row row--lead">
+        <span class="when"><b>3:00</b><span>p. m.</span></span>
+        <a class="row__a" href="grabacion.html"><span class="row__t">Grabación · Marca Ejemplo</span><span class="row__s"><span class="w w--prod">3 h</span> Estudio Ejemplo · <span class="ok">confirmó</span></span></a>
+        <span class="row__r"><a class="ib" href="https://maps.google.com" aria-label="Abrir en Maps"><span class="ic">near_me</span></a></span>
+      </div>
+    </div>
+
+    <h2 class="gh"><span>Mañana · lun 10 nov</span></h2>
+    <div class="list">
+      <div class="row row--lead">
+        <span class="when"><b>10:00</b><span>a. m.</span></span>
+        <a class="row__a" href="#"><span class="row__t">Reporte del mes · Mentor Ejemplo</span><span class="row__s"><span class="ic ic--sm" style="color:var(--mist)">videocam</span>Meet · 20 min · Santiago</span></a>
+        <span class="row__r"><a class="ib" href="https://meet.google.com" aria-label="Abrir Meet"><span class="ic">open_in_new</span></a></span>
+      </div>
+    </div>
+
+    <h2 class="gh"><span>Jue 13 nov</span></h2>
+    <div class="list">
+      <div class="row row--lead">
+        <span class="when"><b>9:00</b><span>a. m.</span></span>
+        <a class="row__a" href="grabacion.html"><span class="row__t">Grabación · Videoclip Ejemplo</span><span class="row__s"><span class="w w--prod">8 h</span> Locación Ejemplo · <span class="pk">pide otra fecha</span></span></a>
+        <span class="row__r"><a class="ib" href="https://maps.google.com" aria-label="Abrir en Maps"><span class="ic">near_me</span></a></span>
+      </div>
+    </div>
+    <div class="end"></div>
+  </div>
+  <template data-empty>
+    <div class="empty"><svg class="empty__eye" data-eye="eye-vacio" data-eye-explore></svg><p class="empty__t">Agenda <em>libre.</em></p><p>No hay grabaciones ni reuniones próximas. Programa una con el botón +.</p></div>
+  </template>
+</main>
+<button class="fab" type="button" data-open="nueva" aria-label="Programar" data-write><span class="ic">add</span></button>
+
+<section class="sheet" id="confirmar" role="dialog" aria-modal="true" aria-labelledby="cf-t">
+  <div class="sheet__grab"></div>
+  <div class="sheet__h"><h2 class="sheet__t" id="cf-t">Ponle fecha</h2><button class="ib" type="button" data-close aria-label="Cerrar"><span class="ic">close</span></button></div>
+  <div class="sheet__b">
+    <div class="note" style="margin-bottom:16px"><b>Consultorio Ejemplo escribió:</b> “Quiero revisar el diseño antes del viernes.”</div>
+    <div class="f2"><label class="f"><span>Fecha</span><input class="in" type="date" value="2026-11-12"></label><label class="f"><span>Hora</span><input class="in" type="time" value="10:00"></label></div>
+    <label class="f"><span>Enlace de Meet</span><input class="in" type="url" inputmode="url" placeholder="https://meet.google.com/…"></label>
+    <div class="f2"><label class="f"><span>Con quién</span><select class="in"><option>Wilmer</option></select></label><label class="f"><span>Duración</span><select class="in"><option>20 min</option><option>30 min</option></select></label></div>
+  </div>
+  <div class="sheet__f"><button class="btn btn--block" type="button" data-write data-snack="Reunión confirmada · el cliente ya la ve">Confirmar reunión</button></div>
+</section>
+<section class="sheet" id="nueva" role="dialog" aria-modal="true" aria-labelledby="nv-t">
+  <div class="sheet__grab"></div>
+  <div class="sheet__h"><h2 class="sheet__t" id="nv-t">Programar</h2><button class="ib" type="button" data-close aria-label="Cerrar"><span class="ic">close</span></button></div>
+  <div class="sheet__b">
+    <div class="seg" id="tipo" role="group" aria-label="Tipo"><button type="button" aria-pressed="true" data-show="g"><span class="ic ic--sm">videocam</span>Grabación</button><button type="button" aria-pressed="false" data-show="r"><span class="ic ic--sm">groups</span>Reunión</button></div>
+    <div class="f2"><label class="f"><span>Cliente *</span><select class="in"><option>Marca Ejemplo</option></select></label><label class="f"><span>Proyecto</span><select class="in"><option>Redes · noviembre</option></select></label></div>
+    <div class="f2"><label class="f"><span>Fecha *</span><input class="in" type="date"></label><label class="f"><span>Hora *</span><input class="in" type="time" value="09:00"></label></div>
+    <div data-when-of="tipo" data-when="g">
+      <label class="f"><span>Lugar</span><input class="in" placeholder="Busca: estudio, consultorio…"></label>
+      <p class="help">Abajo salen los lugares donde ya grabamos.</p>
+      <fieldset class="f" style="border:0;padding:0;margin:0 0 16px"><span class="mono dim" style="font-size:12px;letter-spacing:.06em;text-transform:uppercase">Quién va del equipo *</span>
+        <div class="chips" style="padding:8px 0 0;flex-wrap:wrap"><button class="chip" type="button" aria-pressed="true">Alexander</button><button class="chip" type="button" aria-pressed="false">Sofía</button><button class="chip" type="button" aria-pressed="false">Mariana</button><button class="chip" type="button" aria-pressed="false">Wilmer</button></div>
+      </fieldset>
+      <label class="f"><span>Qué prepara el cliente · uno por línea</span><textarea class="in" rows="3" placeholder="3 cambios de ropa en colores lisos"></textarea></label>
+    </div>
+    <div data-when-of="tipo" data-when="r" hidden>
+      <label class="f"><span>Tema *</span><input class="in" placeholder="Revisión del mes"></label>
+      <label class="f"><span>Enlace de Meet</span><input class="in" type="url" inputmode="url"></label>
+    </div>
+  </div>
+  <div class="sheet__f"><button class="btn btn--block" type="button" data-write data-snack="Programada · el cliente la ve en su portal">Programar</button></div>
+</section>
+<script type="module" src="../proto/app.js"></script>
+</body>
+</html>

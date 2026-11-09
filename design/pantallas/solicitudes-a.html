@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Solicitudes (A) · RAKÜN Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&family=JetBrains+Mono:wght@500;600&family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,300..400,0..1,0&display=block">
+<link rel="stylesheet" href="../proto/app.css">
+<script src="../proto/tema.js"></script>
+</head>
+<body data-screen="solicitudes" data-nav="solicitudes">
+<header class="top top--large">
+  <div class="top__row"><span class="top__sp"></span><button class="ib" type="button" aria-label="Buscar"><span class="ic">search</span></button><button class="ib" type="button" aria-label="Filtros"><span class="ic">tune</span><span class="ib__dot"></span></button></div>
+  <h1 class="top__title"><span class="top__idx">01</span>Solicitudes</h1>
+</header>
+<div class="tabs" role="tablist" aria-label="Estado de la solicitud">
+  <button class="tab" role="tab" aria-selected="true" type="button">Nuevas <b>2</b></button>
+  <button class="tab" role="tab" aria-selected="false" type="button">Contactado <b>4</b></button>
+  <button class="tab" role="tab" aria-selected="false" type="button">Reunión <b>1</b></button>
+  <button class="tab" role="tab" aria-selected="false" type="button">Propuesta <b>3</b></button>
+  <button class="tab" role="tab" aria-selected="false" type="button">Ganado <b>9</b></button>
+  <button class="tab" role="tab" aria-selected="false" type="button">Perdido <b>5</b></button>
+</div>
+<main class="main">
+  <div class="chips" data-single role="group" aria-label="Mundo">
+    <button class="chip" type="button" aria-pressed="true">Todos</button>
+    <button class="chip" type="button" aria-pressed="false"><span class="w w--marca"></span>Redes</button>
+    <button class="chip" type="button" aria-pressed="false"><span class="w w--prod"></span>Producción</button>
+    <button class="chip" type="button" aria-pressed="false"><span class="w w--web"></span>Web</button>
+  </div>
+  <div data-region data-live="1 solicitud nueva">
+    <div class="list">
+      <div class="row is-new">
+        <a class="row__a" href="solicitud.html"><span class="row__t">Ana Ejemplo</span><span class="row__s"><span class="w w--marca">Redes</span> Gestión completa · Equilibrio</span><span class="row__s">Manizales · 3 perfiles · sin asignar</span></a>
+        <span class="row__r"><span class="row__due">12 min</span><a class="ib" href="tel:+570000000000" aria-label="Llamar a Ana Ejemplo"><span class="ic">call</span></a></span>
+      </div>
+      <div class="row is-new">
+        <a class="row__a" href="solicitud.html"><span class="row__t">Dr. Ejemplo Pérez</span><span class="row__s"><span class="w w--web">Web</span> Página de citas</span><span class="row__s"><span class="ic ic--sm pk">campaign</span>Anuncio · Médicos noviembre</span></a>
+        <span class="row__r"><span class="row__due">2 h</span><a class="ib" href="tel:+570000000000" aria-label="Llamar a Dr. Ejemplo Pérez"><span class="ic">call</span></a></span>
+      </div>
+    </div>
+  </div>
+  <template data-empty>
+    <div class="empty">
+      <svg class="empty__eye" data-eye="eye-vacio" data-eye-explore></svg>
+      <p class="empty__t">Nadie <em>todavía.</em></p>
+      <p>Cuando alguien toque “Quiero este plan” en la página, su solicitud aparece aquí y te avisamos.</p>
+    </div>
+  </template>
+</main>
+<script type="module" src="../proto/app.js"></script>
+</body>
+</html>

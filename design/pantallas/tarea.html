@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tarea · RAKÜN Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&family=JetBrains+Mono:wght@500;600&family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,300..400,0..1,0&display=block">
+<link rel="stylesheet" href="../proto/app.css">
+<script src="../proto/tema.js"></script>
+</head>
+<body data-screen="tarea">
+<header class="top top--detail">
+  <div class="top__row"><a class="ib" href="hoy.html" aria-label="Volver"><span class="ic">arrow_back</span></a><span class="top__name">Tarea</span><button class="ib" type="button" aria-label="Más opciones"><span class="ic">more_vert</span></button></div>
+</header>
+<main class="main">
+  <div class="pad" style="padding-top:20px;padding-bottom:20px">
+    <p class="mono pk" style="margin:0 0 10px">Venció ayer · sáb 8 nov · 6:00 p. m.</p>
+    <h1 class="ficha-t" style="margin-bottom:10px">Guiones del mes</h1>
+    <p style="margin:0" class="row__s"><span class="w w--marca">Redes</span> Marca Ejemplo · Redes · noviembre</p>
+  </div>
+  <button class="ctl" type="button" data-open="estado"><span><span class="ctl__k">Estado</span><span class="ctl__v"><span class="tag tag--line tag--hi">En curso</span></span></span><span class="ic dimmer" style="padding-right:12px">expand_more</span></button>
+  <dl class="dl">
+    <div><dt>Lo revisa</dt><dd><span style="display:inline-flex;gap:8px;align-items:center"><span class="av av--sm" style="--ac:var(--yellow)">MH</span>Mariana</span></dd></div>
+    <div><dt>Tipo</dt><dd>Guion</dd></div>
+    <div><dt>Brief</dt><dd><a href="#">docs.google.com/brief-ejemplo</a></dd></div>
+    <div><dt>Nota</dt><dd class="dim">“Devuelto: el guion 4 debe abrir con la pregunta, no con el logo.”</dd></div>
+    <div data-money><dt>Ganas</dt><dd class="num">$400.000 <span class="dim" style="font-family:var(--jost)">· 16 guiones</span></dd></div>
+  </dl>
+  <div class="end"></div>
+</main>
+<div class="sendbar"><p>Pega un enlace o sube el archivo. <b>Mariana</b> lo revisa.</p><button class="btn" type="button" data-open="entregar" data-write><span class="ic ic--sm">upload</span>Entregar</button></div>
+
+<section class="sheet" id="estado" role="dialog" aria-modal="true" aria-labelledby="estado-t">
+  <div class="sheet__grab"></div>
+  <div class="sheet__h"><h2 class="sheet__t" id="estado-t">Estado</h2><button class="ib" type="button" data-close aria-label="Cerrar"><span class="ic">close</span></button></div>
+  <div class="sheet__b" role="menu">
+    <button class="opt" role="menuitemradio" aria-checked="false" type="button"><span class="tag tag--line">Por hacer</span><span class="ic">check</span></button>
+    <button class="opt" role="menuitemradio" aria-checked="true" type="button"><span class="tag tag--line tag--hi">En curso</span><span class="ic">check</span></button>
+    <p class="help" style="margin:16px 0">“Aprobado” lo marca quien revisa. Para enviarlo a revisión, usa <b>Entregar</b>.</p>
+  </div>
+</section>
+
+<section class="sheet" id="entregar" role="dialog" aria-modal="true" aria-labelledby="entregar-t">
+  <div class="sheet__grab"></div>
+  <div class="sheet__h"><h2 class="sheet__t" id="entregar-t">Entregar</h2><button class="ib" type="button" data-close aria-label="Cerrar"><span class="ic">close</span></button></div>
+  <div class="sheet__b">
+    <div class="seg" id="modo" role="group" aria-label="Cómo entregar"><button type="button" aria-pressed="false" data-show="link"><span class="ic ic--sm">link</span>Enlace</button><button type="button" aria-pressed="true" data-show="file"><span class="ic ic--sm">attach_file</span>Archivo</button></div>
+    <label class="f" data-when-of="modo" data-when="link" hidden><span>Pega el enlace</span><input class="in" type="url" inputmode="url" placeholder="Drive, Docs, Frame.io, Vimeo, Figma…"></label>
+    <div data-when-of="modo" data-when="file">
+      <div class="pick"><button type="button"><span class="ic">photo_camera</span>Cámara</button><button type="button"><span class="ic">photo_library</span>Galería</button><button type="button"><span class="ic">folder</span>Archivos</button></div>
+      <div class="note" style="margin-bottom:16px;display:flex;gap:12px;align-items:center"><span class="ic" style="color:var(--mist)">description</span><span style="flex:1;min-width:0"><b>guiones-noviembre.pdf</b><br><span class="mono">2,4 MB · listo para subir</span></span><button class="ib" type="button" aria-label="Quitar archivo"><span class="ic">close</span></button></div>
+    </div>
+    <label class="f"><span>Nota para Mariana</span><textarea class="in" rows="3">Corregí el guion 4: abre con la pregunta.</textarea></label>
+  </div>
+  <div class="sheet__f"><button class="btn btn--block" type="button" data-write data-snack="Enviado a revisión de Mariana" data-undo>Enviar a revisión de Mariana</button></div>
+</section>
+<script type="module" src="../proto/app.js"></script>
+</body>
+</html>
