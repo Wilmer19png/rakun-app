@@ -435,6 +435,7 @@ Future<T?> mostrarHoja<T>(BuildContext context, {required String titulo, require
     context: context,
     isScrollControlled: true,
     useSafeArea: true,
+    useRootNavigator: true, // encima de toda la app: tapa la barra inferior, como en el diseño
     builder: (ctx) {
       final c = RkColors.of(ctx);
       return Padding(
@@ -460,4 +461,48 @@ Future<T?> mostrarHoja<T>(BuildContext context, {required String titulo, require
       );
     },
   );
+}
+
+/* ---------------- Franja de acciones de contacto (Llamar · WhatsApp · Correo) ---------------- */
+class RkAccion {
+  const RkAccion(this.texto, this.icono, this.onTap, {this.principal = false, this.colorIcono});
+  final String texto;
+  final IconData icono;
+  final VoidCallback onTap;
+  final bool principal;
+  final Color? colorIcono;
+}
+
+/// Ícono arriba y palabra abajo: caben tres en 360 dp sin partir palabras.
+class RkAcciones extends StatelessWidget {
+  const RkAcciones(this.acciones, {super.key});
+  final List<RkAccion> acciones;
+
+  @override
+  Widget build(BuildContext context) {
+    final c = RkColors.of(context);
+    return Container(
+      decoration: BoxDecoration(border: Border.symmetric(horizontal: BorderSide(color: c.linea))),
+      child: Row(children: [
+        for (final a in acciones)
+          Expanded(
+            child: Material(
+              color: a.principal ? RkColors.rosa : Colors.transparent,
+              child: InkWell(
+                onTap: a.onTap,
+                child: Container(
+                  height: 72,
+                  decoration: BoxDecoration(border: Border(right: BorderSide(color: c.linea))),
+                  child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+                    Icon(a.icono, size: 26, color: a.principal ? RkColors.navy : (a.colorIcono ?? c.texto)),
+                    const SizedBox(height: 6),
+                    Text(a.texto.toUpperCase(), style: RkType.mono11.copyWith(color: a.principal ? RkColors.navy : c.texto)),
+                  ]),
+                ),
+              ),
+            ),
+          ),
+      ]),
+    );
+  }
 }

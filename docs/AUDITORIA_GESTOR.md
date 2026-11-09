@@ -85,7 +85,7 @@ Columnas: **Función** · **Tablas / RPC / almacenamiento** · **Permiso** (inte
 | Cotizar desde la solicitud (crea cliente, pasa a "propuesta", abre cotización) | `clients`, `leads`, `quotes` | `$` + `can(proyectos, editar)` | **Igual** (llega con Cotizaciones) | P2 |
 | Eliminar solicitud | `leads` (delete) | `admin` | **Igual**, con confirmación | P1 |
 
-#### 02 · Clientes (`admin.js` → `viewClients`)
+#### 02 · Clientes (`admin.js` → `viewClients`) · ✅ en la app (Fase 6, 2026-11-09) salvo «Eliminar» (P3)
 | Función | Datos | Permiso | Decisión | Prio |
 |---|---|---|---|---|
 | Lista con contacto, ciudad y si tiene acceso al portal | `clients` | `can(clientes)` | **Adaptada**: tarjetas + búsqueda | P1 |

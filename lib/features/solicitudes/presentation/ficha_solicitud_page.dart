@@ -297,31 +297,11 @@ class _Acciones extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final c = RkColors.of(context);
-    Widget accion(String t, IconData i, VoidCallback f, {bool principal = false, Color? colorIcono}) => Expanded(
-          child: Material(
-            color: principal ? RkColors.rosa : Colors.transparent,
-            child: InkWell(
-              onTap: f,
-              child: Container(
-                height: 72,
-                decoration: BoxDecoration(border: Border(right: BorderSide(color: c.linea))),
-                child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-                  Icon(i, size: 26, color: principal ? RkColors.navy : (colorIcono ?? c.texto)),
-                  const SizedBox(height: 6),
-                  Text(t.toUpperCase(), style: RkType.mono11.copyWith(color: principal ? RkColors.navy : c.texto)),
-                ]),
-              ),
-            ),
-          ),
-        );
-    return Container(
-      decoration: BoxDecoration(border: Border.symmetric(horizontal: BorderSide(color: c.linea))),
-      child: Row(children: [
-        accion('Llamar', Symbols.call_sharp, () => Abrir.llamar(s.telefono), principal: true),
-        accion('WhatsApp', Symbols.chat_sharp, () => Abrir.whatsapp(s.telefono, texto: mensaje), colorIcono: c.ok),
-        accion('Correo', Symbols.mail_sharp, () => Abrir.correo(s.correo, asunto: 'RAKÜN · tu solicitud')),
-      ]),
-    );
+    return RkAcciones([
+      RkAccion('Llamar', Symbols.call_sharp, () => Abrir.llamar(s.telefono), principal: true),
+      RkAccion('WhatsApp', Symbols.chat_sharp, () => Abrir.whatsapp(s.telefono, texto: mensaje), colorIcono: c.ok),
+      RkAccion('Correo', Symbols.mail_sharp, () => Abrir.correo(s.correo, asunto: 'RAKÜN · tu solicitud')),
+    ]);
   }
 }
 

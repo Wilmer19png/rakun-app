@@ -65,6 +65,7 @@ class _SolicitudesPageState extends ConsumerState<SolicitudesPage> {
     final barra = RkBarraGrande(
       titulo: 'Solicitudes',
       indice: '01',
+      atras: Navigator.canPop(context),
       acciones: [
         IconButton(
           tooltip: _buscando ? 'Cerrar búsqueda' : 'Buscar',

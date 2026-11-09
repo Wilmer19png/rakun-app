@@ -6,6 +6,7 @@ import '../../features/auth/presentation/entrada_page.dart';
 import '../../features/auth/presentation/login_page.dart';
 import '../../features/auth/presentation/recuperar_page.dart';
 import '../../features/auth/presentation/sin_acceso_page.dart';
+import '../../features/clientes/presentation/clientes_page.dart';
 import '../../features/diagnostico/presentation/en_vivo_page.dart';
 import '../../features/galeria/presentation/galeria_page.dart';
 import '../../features/hoy/presentation/hoy_page.dart';
@@ -94,7 +95,7 @@ final routerProvider = Provider<GoRouter>((ref) {
         routes: [
           GoRoute(path: '/hoy', pageBuilder: (_, s) => sinAnimacion(const HoyPage(), s)),
           GoRoute(path: '/solicitudes', pageBuilder: (_, s) => sinAnimacion(const SolicitudesPage(), s)),
-          GoRoute(path: '/clientes', pageBuilder: (_, s) => sinAnimacion(const SeccionPendientePage(seccion: 'clientes'), s)),
+          GoRoute(path: '/clientes', pageBuilder: (_, s) => sinAnimacion(const ClientesPage(), s)),
           GoRoute(path: '/agenda', pageBuilder: (_, s) => sinAnimacion(const SeccionPendientePage(seccion: 'agenda'), s)),
           GoRoute(path: '/proyectos', pageBuilder: (_, s) => sinAnimacion(const SeccionPendientePage(seccion: 'proyectos'), s)),
           GoRoute(path: '/parrillas', pageBuilder: (_, s) => sinAnimacion(const SeccionPendientePage(seccion: 'parrillas'), s)),
@@ -103,7 +104,7 @@ final routerProvider = Provider<GoRouter>((ref) {
             path: '/mas',
             pageBuilder: (_, s) => sinAnimacion(const MasPage(), s),
             routes: [
-              GoRoute(path: 'seccion/:clave', builder: (_, s) => SeccionPendientePage(seccion: s.pathParameters['clave']!, desdeMas: true)),
+              GoRoute(path: 'seccion/:clave', builder: (_, s) => paginaDesdeMas(s.pathParameters['clave']!)),
               GoRoute(path: 'galeria', builder: (_, _) => const GaleriaPage()),
               GoRoute(path: 'en-vivo', builder: (_, _) => const EnVivoPage()),
             ],
@@ -113,3 +114,10 @@ final routerProvider = Provider<GoRouter>((ref) {
     ],
   );
 });
+
+/// Secciones abiertas desde Más (con flecha atrás). Las que aún no existen muestran su pendiente.
+Widget paginaDesdeMas(String clave) => switch (clave) {
+      'solicitudes' => const SolicitudesPage(),
+      'clientes' => const ClientesPage(),
+      _ => SeccionPendientePage(seccion: clave, desdeMas: true),
+    };

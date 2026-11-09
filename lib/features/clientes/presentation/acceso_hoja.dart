@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:material_symbols_icons/symbols.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../../../core/config/env.dart';
@@ -11,6 +12,7 @@ import '../../../core/utils/abrir.dart';
 import '../../../design_system/componentes.dart';
 import '../../../design_system/tipografia.dart';
 import '../../../design_system/tokens.dart';
+import '../data/clientes_repo.dart';
 
 /// Datos mínimos de a quién se le crea el acceso.
 class PersonaAcceso {
@@ -56,6 +58,7 @@ class _AccesoState extends ConsumerState<_Acceso> {
       });
       final data = (r.data as Map?) ?? const {};
       if (data['ok'] != true) throw Exception(data['error'] ?? 'No se pudo crear el acceso.');
+      if (widget.p.rol == 'cliente') ref.invalidate(clientesProvider); // la lista pasa a «Con acceso»
       setState(() {
         _existia = data['existed'] == true;
         final link = data['link'] as String?;
@@ -130,6 +133,11 @@ class _AccesoState extends ConsumerState<_Acceso> {
           onPressed: () => Abrir.correo(p.correo, asunto: 'Tu acceso a RAKÜN', cuerpo: _mensaje),
           icon: const Icon(Symbols.mail_sharp, size: 20),
           label: const Text('ENVIAR POR CORREO'),
+        ),
+        TextButton.icon(
+          onPressed: () => SharePlus.instance.share(ShareParams(text: _mensaje, subject: 'Tu acceso a RAKÜN')),
+          icon: const Icon(Symbols.share_sharp, size: 20),
+          label: const Text('OTRA APP…'),
         ),
       ]);
     }
