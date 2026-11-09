@@ -1,0 +1,906 @@
+{
+  "origen": "rakun-web/app/perms.js",
+  "casos": [
+    {
+      "nombre": "admin",
+      "role": "admin",
+      "perms": null,
+      "sinSesion": false,
+      "can": {
+        "pendientes": {
+          "ver": true,
+          "editar": true
+        },
+        "solicitudes": {
+          "ver": true,
+          "editar": true
+        },
+        "clientes": {
+          "ver": true,
+          "editar": true
+        },
+        "proyectos": {
+          "ver": true,
+          "editar": true
+        },
+        "parrillas": {
+          "ver": true,
+          "editar": true
+        },
+        "grabaciones": {
+          "ver": true,
+          "editar": true
+        },
+        "reuniones": {
+          "ver": true,
+          "editar": true
+        },
+        "documentos": {
+          "ver": true,
+          "editar": true
+        },
+        "trabajo": {
+          "ver": true,
+          "editar": true
+        },
+        "planes": {
+          "ver": true,
+          "editar": true
+        },
+        "equipo": {
+          "ver": true,
+          "editar": true
+        },
+        "metricas": {
+          "ver": true,
+          "editar": true
+        },
+        "tarifario": {
+          "ver": true,
+          "editar": true
+        }
+      },
+      "seesMoney": true,
+      "presetOf": "todo"
+    },
+    {
+      "nombre": "admin-con-perms",
+      "role": "admin",
+      "perms": {
+        "pendientes": "ver"
+      },
+      "sinSesion": false,
+      "can": {
+        "pendientes": {
+          "ver": true,
+          "editar": true
+        },
+        "solicitudes": {
+          "ver": true,
+          "editar": true
+        },
+        "clientes": {
+          "ver": true,
+          "editar": true
+        },
+        "proyectos": {
+          "ver": true,
+          "editar": true
+        },
+        "parrillas": {
+          "ver": true,
+          "editar": true
+        },
+        "grabaciones": {
+          "ver": true,
+          "editar": true
+        },
+        "reuniones": {
+          "ver": true,
+          "editar": true
+        },
+        "documentos": {
+          "ver": true,
+          "editar": true
+        },
+        "trabajo": {
+          "ver": true,
+          "editar": true
+        },
+        "planes": {
+          "ver": true,
+          "editar": true
+        },
+        "equipo": {
+          "ver": true,
+          "editar": true
+        },
+        "metricas": {
+          "ver": true,
+          "editar": true
+        },
+        "tarifario": {
+          "ver": true,
+          "editar": true
+        }
+      },
+      "seesMoney": true,
+      "presetOf": "personalizado"
+    },
+    {
+      "nombre": "equipo-total",
+      "role": "equipo",
+      "perms": null,
+      "sinSesion": false,
+      "can": {
+        "pendientes": {
+          "ver": true,
+          "editar": true
+        },
+        "solicitudes": {
+          "ver": true,
+          "editar": true
+        },
+        "clientes": {
+          "ver": true,
+          "editar": true
+        },
+        "proyectos": {
+          "ver": true,
+          "editar": true
+        },
+        "parrillas": {
+          "ver": true,
+          "editar": true
+        },
+        "grabaciones": {
+          "ver": true,
+          "editar": true
+        },
+        "reuniones": {
+          "ver": true,
+          "editar": true
+        },
+        "documentos": {
+          "ver": true,
+          "editar": true
+        },
+        "trabajo": {
+          "ver": true,
+          "editar": true
+        },
+        "planes": {
+          "ver": true,
+          "editar": true
+        },
+        "equipo": {
+          "ver": true,
+          "editar": true
+        },
+        "metricas": {
+          "ver": true,
+          "editar": true
+        },
+        "tarifario": {
+          "ver": true,
+          "editar": true
+        }
+      },
+      "seesMoney": true,
+      "presetOf": "todo"
+    },
+    {
+      "nombre": "preset-directora",
+      "role": "equipo",
+      "perms": {
+        "pendientes": "editar",
+        "proyectos": "editar",
+        "parrillas": "editar",
+        "grabaciones": "editar",
+        "reuniones": "editar",
+        "documentos": "editar",
+        "equipo": "ver"
+      },
+      "sinSesion": false,
+      "can": {
+        "pendientes": {
+          "ver": true,
+          "editar": true
+        },
+        "solicitudes": {
+          "ver": false,
+          "editar": false
+        },
+        "clientes": {
+          "ver": false,
+          "editar": false
+        },
+        "proyectos": {
+          "ver": true,
+          "editar": true
+        },
+        "parrillas": {
+          "ver": true,
+          "editar": true
+        },
+        "grabaciones": {
+          "ver": true,
+          "editar": true
+        },
+        "reuniones": {
+          "ver": true,
+          "editar": true
+        },
+        "documentos": {
+          "ver": true,
+          "editar": true
+        },
+        "trabajo": {
+          "ver": false,
+          "editar": false
+        },
+        "planes": {
+          "ver": false,
+          "editar": false
+        },
+        "equipo": {
+          "ver": true,
+          "editar": false
+        },
+        "metricas": {
+          "ver": false,
+          "editar": false
+        },
+        "tarifario": {
+          "ver": false,
+          "editar": false
+        }
+      },
+      "seesMoney": false,
+      "presetOf": "directora"
+    },
+    {
+      "nombre": "preset-manager",
+      "role": "equipo",
+      "perms": {
+        "pendientes": "editar",
+        "solicitudes": "editar",
+        "clientes": "editar",
+        "proyectos": "editar",
+        "metricas": "ver",
+        "tarifario": "ver",
+        "equipo": "ver",
+        "dinero": "ver"
+      },
+      "sinSesion": false,
+      "can": {
+        "pendientes": {
+          "ver": true,
+          "editar": true
+        },
+        "solicitudes": {
+          "ver": true,
+          "editar": true
+        },
+        "clientes": {
+          "ver": true,
+          "editar": true
+        },
+        "proyectos": {
+          "ver": true,
+          "editar": true
+        },
+        "parrillas": {
+          "ver": false,
+          "editar": false
+        },
+        "grabaciones": {
+          "ver": false,
+          "editar": false
+        },
+        "reuniones": {
+          "ver": false,
+          "editar": false
+        },
+        "documentos": {
+          "ver": false,
+          "editar": false
+        },
+        "trabajo": {
+          "ver": false,
+          "editar": false
+        },
+        "planes": {
+          "ver": false,
+          "editar": false
+        },
+        "equipo": {
+          "ver": true,
+          "editar": false
+        },
+        "metricas": {
+          "ver": true,
+          "editar": false
+        },
+        "tarifario": {
+          "ver": true,
+          "editar": false
+        }
+      },
+      "seesMoney": true,
+      "presetOf": "manager"
+    },
+    {
+      "nombre": "preset-editor",
+      "role": "equipo",
+      "perms": {
+        "pendientes": "editar",
+        "equipo": "ver"
+      },
+      "sinSesion": false,
+      "can": {
+        "pendientes": {
+          "ver": true,
+          "editar": true
+        },
+        "solicitudes": {
+          "ver": false,
+          "editar": false
+        },
+        "clientes": {
+          "ver": false,
+          "editar": false
+        },
+        "proyectos": {
+          "ver": false,
+          "editar": false
+        },
+        "parrillas": {
+          "ver": false,
+          "editar": false
+        },
+        "grabaciones": {
+          "ver": false,
+          "editar": false
+        },
+        "reuniones": {
+          "ver": false,
+          "editar": false
+        },
+        "documentos": {
+          "ver": false,
+          "editar": false
+        },
+        "trabajo": {
+          "ver": false,
+          "editar": false
+        },
+        "planes": {
+          "ver": false,
+          "editar": false
+        },
+        "equipo": {
+          "ver": true,
+          "editar": false
+        },
+        "metricas": {
+          "ver": false,
+          "editar": false
+        },
+        "tarifario": {
+          "ver": false,
+          "editar": false
+        }
+      },
+      "seesMoney": false,
+      "presetOf": "editor"
+    },
+    {
+      "nombre": "preset-camara",
+      "role": "equipo",
+      "perms": {
+        "pendientes": "editar",
+        "grabaciones": "ver",
+        "equipo": "ver"
+      },
+      "sinSesion": false,
+      "can": {
+        "pendientes": {
+          "ver": true,
+          "editar": true
+        },
+        "solicitudes": {
+          "ver": false,
+          "editar": false
+        },
+        "clientes": {
+          "ver": false,
+          "editar": false
+        },
+        "proyectos": {
+          "ver": false,
+          "editar": false
+        },
+        "parrillas": {
+          "ver": false,
+          "editar": false
+        },
+        "grabaciones": {
+          "ver": true,
+          "editar": false
+        },
+        "reuniones": {
+          "ver": false,
+          "editar": false
+        },
+        "documentos": {
+          "ver": false,
+          "editar": false
+        },
+        "trabajo": {
+          "ver": false,
+          "editar": false
+        },
+        "planes": {
+          "ver": false,
+          "editar": false
+        },
+        "equipo": {
+          "ver": true,
+          "editar": false
+        },
+        "metricas": {
+          "ver": false,
+          "editar": false
+        },
+        "tarifario": {
+          "ver": false,
+          "editar": false
+        }
+      },
+      "seesMoney": false,
+      "presetOf": "camara"
+    },
+    {
+      "nombre": "equipo-vacio",
+      "role": "equipo",
+      "perms": {},
+      "sinSesion": false,
+      "can": {
+        "pendientes": {
+          "ver": true,
+          "editar": true
+        },
+        "solicitudes": {
+          "ver": false,
+          "editar": false
+        },
+        "clientes": {
+          "ver": false,
+          "editar": false
+        },
+        "proyectos": {
+          "ver": false,
+          "editar": false
+        },
+        "parrillas": {
+          "ver": false,
+          "editar": false
+        },
+        "grabaciones": {
+          "ver": false,
+          "editar": false
+        },
+        "reuniones": {
+          "ver": false,
+          "editar": false
+        },
+        "documentos": {
+          "ver": false,
+          "editar": false
+        },
+        "trabajo": {
+          "ver": false,
+          "editar": false
+        },
+        "planes": {
+          "ver": false,
+          "editar": false
+        },
+        "equipo": {
+          "ver": false,
+          "editar": false
+        },
+        "metricas": {
+          "ver": false,
+          "editar": false
+        },
+        "tarifario": {
+          "ver": false,
+          "editar": false
+        }
+      },
+      "seesMoney": false,
+      "presetOf": "personalizado"
+    },
+    {
+      "nombre": "equipo-sin-pendientes",
+      "role": "equipo",
+      "perms": {
+        "solicitudes": "ver"
+      },
+      "sinSesion": false,
+      "can": {
+        "pendientes": {
+          "ver": true,
+          "editar": true
+        },
+        "solicitudes": {
+          "ver": true,
+          "editar": false
+        },
+        "clientes": {
+          "ver": false,
+          "editar": false
+        },
+        "proyectos": {
+          "ver": false,
+          "editar": false
+        },
+        "parrillas": {
+          "ver": false,
+          "editar": false
+        },
+        "grabaciones": {
+          "ver": false,
+          "editar": false
+        },
+        "reuniones": {
+          "ver": false,
+          "editar": false
+        },
+        "documentos": {
+          "ver": false,
+          "editar": false
+        },
+        "trabajo": {
+          "ver": false,
+          "editar": false
+        },
+        "planes": {
+          "ver": false,
+          "editar": false
+        },
+        "equipo": {
+          "ver": false,
+          "editar": false
+        },
+        "metricas": {
+          "ver": false,
+          "editar": false
+        },
+        "tarifario": {
+          "ver": false,
+          "editar": false
+        }
+      },
+      "seesMoney": false,
+      "presetOf": "personalizado"
+    },
+    {
+      "nombre": "equipo-dinero-sin-secciones",
+      "role": "equipo",
+      "perms": {
+        "dinero": "ver"
+      },
+      "sinSesion": false,
+      "can": {
+        "pendientes": {
+          "ver": true,
+          "editar": true
+        },
+        "solicitudes": {
+          "ver": false,
+          "editar": false
+        },
+        "clientes": {
+          "ver": false,
+          "editar": false
+        },
+        "proyectos": {
+          "ver": false,
+          "editar": false
+        },
+        "parrillas": {
+          "ver": false,
+          "editar": false
+        },
+        "grabaciones": {
+          "ver": false,
+          "editar": false
+        },
+        "reuniones": {
+          "ver": false,
+          "editar": false
+        },
+        "documentos": {
+          "ver": false,
+          "editar": false
+        },
+        "trabajo": {
+          "ver": false,
+          "editar": false
+        },
+        "planes": {
+          "ver": false,
+          "editar": false
+        },
+        "equipo": {
+          "ver": false,
+          "editar": false
+        },
+        "metricas": {
+          "ver": false,
+          "editar": false
+        },
+        "tarifario": {
+          "ver": false,
+          "editar": false
+        }
+      },
+      "seesMoney": true,
+      "presetOf": "personalizado"
+    },
+    {
+      "nombre": "equipo-valor-raro",
+      "role": "equipo",
+      "perms": {
+        "proyectos": "otro",
+        "clientes": "editar"
+      },
+      "sinSesion": false,
+      "can": {
+        "pendientes": {
+          "ver": true,
+          "editar": true
+        },
+        "solicitudes": {
+          "ver": false,
+          "editar": false
+        },
+        "clientes": {
+          "ver": true,
+          "editar": true
+        },
+        "proyectos": {
+          "ver": false,
+          "editar": false
+        },
+        "parrillas": {
+          "ver": false,
+          "editar": false
+        },
+        "grabaciones": {
+          "ver": false,
+          "editar": false
+        },
+        "reuniones": {
+          "ver": false,
+          "editar": false
+        },
+        "documentos": {
+          "ver": false,
+          "editar": false
+        },
+        "trabajo": {
+          "ver": false,
+          "editar": false
+        },
+        "planes": {
+          "ver": false,
+          "editar": false
+        },
+        "equipo": {
+          "ver": false,
+          "editar": false
+        },
+        "metricas": {
+          "ver": false,
+          "editar": false
+        },
+        "tarifario": {
+          "ver": false,
+          "editar": false
+        }
+      },
+      "seesMoney": false,
+      "presetOf": "personalizado"
+    },
+    {
+      "nombre": "cliente",
+      "role": "cliente",
+      "perms": null,
+      "sinSesion": false,
+      "can": {
+        "pendientes": {
+          "ver": false,
+          "editar": false
+        },
+        "solicitudes": {
+          "ver": false,
+          "editar": false
+        },
+        "clientes": {
+          "ver": false,
+          "editar": false
+        },
+        "proyectos": {
+          "ver": false,
+          "editar": false
+        },
+        "parrillas": {
+          "ver": false,
+          "editar": false
+        },
+        "grabaciones": {
+          "ver": false,
+          "editar": false
+        },
+        "reuniones": {
+          "ver": false,
+          "editar": false
+        },
+        "documentos": {
+          "ver": false,
+          "editar": false
+        },
+        "trabajo": {
+          "ver": false,
+          "editar": false
+        },
+        "planes": {
+          "ver": false,
+          "editar": false
+        },
+        "equipo": {
+          "ver": false,
+          "editar": false
+        },
+        "metricas": {
+          "ver": false,
+          "editar": false
+        },
+        "tarifario": {
+          "ver": false,
+          "editar": false
+        }
+      },
+      "seesMoney": false,
+      "presetOf": "todo"
+    },
+    {
+      "nombre": "sin-rol",
+      "role": null,
+      "perms": null,
+      "sinSesion": false,
+      "can": {
+        "pendientes": {
+          "ver": false,
+          "editar": false
+        },
+        "solicitudes": {
+          "ver": false,
+          "editar": false
+        },
+        "clientes": {
+          "ver": false,
+          "editar": false
+        },
+        "proyectos": {
+          "ver": false,
+          "editar": false
+        },
+        "parrillas": {
+          "ver": false,
+          "editar": false
+        },
+        "grabaciones": {
+          "ver": false,
+          "editar": false
+        },
+        "reuniones": {
+          "ver": false,
+          "editar": false
+        },
+        "documentos": {
+          "ver": false,
+          "editar": false
+        },
+        "trabajo": {
+          "ver": false,
+          "editar": false
+        },
+        "planes": {
+          "ver": false,
+          "editar": false
+        },
+        "equipo": {
+          "ver": false,
+          "editar": false
+        },
+        "metricas": {
+          "ver": false,
+          "editar": false
+        },
+        "tarifario": {
+          "ver": false,
+          "editar": false
+        }
+      },
+      "seesMoney": false,
+      "presetOf": "todo"
+    },
+    {
+      "nombre": "sin-sesion",
+      "role": null,
+      "perms": null,
+      "sinSesion": true,
+      "can": {
+        "pendientes": {
+          "ver": false,
+          "editar": false
+        },
+        "solicitudes": {
+          "ver": false,
+          "editar": false
+        },
+        "clientes": {
+          "ver": false,
+          "editar": false
+        },
+        "proyectos": {
+          "ver": false,
+          "editar": false
+        },
+        "parrillas": {
+          "ver": false,
+          "editar": false
+        },
+        "grabaciones": {
+          "ver": false,
+          "editar": false
+        },
+        "reuniones": {
+          "ver": false,
+          "editar": false
+        },
+        "documentos": {
+          "ver": false,
+          "editar": false
+        },
+        "trabajo": {
+          "ver": false,
+          "editar": false
+        },
+        "planes": {
+          "ver": false,
+          "editar": false
+        },
+        "equipo": {
+          "ver": false,
+          "editar": false
+        },
+        "metricas": {
+          "ver": false,
+          "editar": false
+        },
+        "tarifario": {
+          "ver": false,
+          "editar": false
+        }
+      },
+      "seesMoney": false,
+      "presetOf": null
+    }
+  ]
+}

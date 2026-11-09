@@ -1,0 +1,47 @@
+name: app
+description: "RAKÜN Studio: gestor móvil de RAKÜN Visual Design"
+publish_to: 'none'
+
+# versionName+versionCode de Android
+version: 0.2.0+1
+
+environment:
+  sdk: ^3.13.7
+
+# Versiones consultadas en pub.dev el 2026-11-09 (Flutter 3.47.9 stable, Dart 3.13.7).
+# Las exactas quedan fijadas en pubspec.lock (se sube a Git).
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:            # textos de Material en español (incluido en Flutter)
+    sdk: flutter
+  supabase_flutter: ^2.18.3        # misma base de datos, Auth y Storage que la web
+  flutter_riverpod: ^3.5.0         # estado de la app (pedido en el encargo)
+  go_router: ^18.1.3               # navegación y barra inferior por permisos (pedido en el encargo)
+  material_symbols_icons: ^4.2960.0  # íconos Material Symbols Sharp del diseño aprobado
+  shared_preferences: ^2.5.6       # guardar el tema elegido (oscuro/claro/teléfono)
+  flutter_svg: ^2.3.2              # isotipo oficial en SVG (paquete de flutter.dev)
+  url_launcher: ^6.3.3             # llamar, WhatsApp, Maps y abrir el portal web (paquete de flutter.dev)
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/brand/
+
+  # Fuentes locales (diseño aprobado). Jost y JetBrains Mono: SIL OFL 1.1 (licencias en assets/fonts/).
+  fonts:
+    - family: KnuckleDown
+      fonts:
+        - asset: assets/fonts/KnuckleDown.otf
+    - family: Jost
+      fonts:
+        - asset: assets/fonts/Jost-Variable.ttf
+    - family: JetBrainsMono
+      fonts:
+        - asset: assets/fonts/JetBrainsMono-Variable.ttf

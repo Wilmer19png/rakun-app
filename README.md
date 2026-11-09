@@ -63,18 +63,32 @@ En Windows además hace falta:
 - **Virtualización** activada en la BIOS (en este equipo AMD: *SVM Mode*) y la *Plataforma del hipervisor* de Windows, para que el emulador sea rápido.
   El script `herramientas/preparar_windows.ps1` activa ambas cosas de Windows (se corre como administrador y luego se reinicia).
 
-Instalación desde cero: *se completará en la Fase 4, cuando exista el código de la app.*
+**Instalación desde cero** (con lo de arriba ya instalado):
+
+```powershell
+git clone https://github.com/Wilmer19png/rakun-app.git C:\Users\<tu-usuario>\rakun-app
+cd C:\Users\<tu-usuario>\rakun-app
+copy env.example.json env.json      # luego pon los valores reales (ver sección 6)
+flutter pub get                     # descarga los paquetes (versiones fijas en pubspec.lock)
+flutter test                        # deben pasar todas las pruebas
+```
 
 ## 4. Cómo correr la app (sin Android Studio)
 
-*Se completará en la Fase 4.* Ya está comprobado que el emulador funciona:
+**En el emulador** (celular virtual):
 
 ```powershell
-# arrancar el emulador (celular virtual)
-& "$env:LOCALAPPDATA\Android\sdk\emulator\emulator.exe" -avd Pixel_10
-# ver que está conectado
-adb devices      # debe mostrar: emulator-5554   device
+& "$env:LOCALAPPDATA\Android\sdk\emulator\emulator.exe" -avd Pixel_10   # 1) encenderlo
+adb devices                                                              # 2) debe decir: emulator-5554   device
+flutter run --dart-define-from-file=env.json                            # 3) compila, instala y abre la app
 ```
+
+**En tu celular:** activa *Opciones de desarrollador → Depuración USB*, conéctalo por cable, acepta el aviso en
+el teléfono y usa el mismo `flutter run --dart-define-from-file=env.json` (`flutter devices` lo debe listar).
+
+- Siempre con `--dart-define-from-file=env.json`: sin eso la app muestra "Falta en env.json…".
+- La versión de prueba (*debug*) tarda unos 9 s en abrir en el emulador; la final abre en 1–2 s.
+- Galería de componentes para comparar con el diseño: entrar como admin → **Más → Galería de componentes**.
 
 ## 5. Estructura de carpetas
 
@@ -84,8 +98,20 @@ rakun-app/
 ├── PRODUCT.md        qué es el producto, para quién y con qué reglas
 ├── DESIGN.md         identidad visual heredada de la web (base; el diseño móvil se aprueba en la Fase 3)
 ├── README.md         este documento
+├── pubspec.yaml      paquetes de la app (cada uno con su motivo) · pubspec.lock = versiones exactas
+├── env.example.json  modelo de la configuración (env.json real: solo en tu equipo, no va a Git)
+├── lib/              el código de la app
+│   ├── main.dart     arranque: lee env.json, conecta Supabase, abre la app
+│   ├── app.dart      tema (oscuro/claro), idioma español y navegación
+│   ├── core/         config, conexión y sesión, permisos (copia de perms.js), errores en español, navegación
+│   ├── design_system/ colores, letras, tema Material, componentes, el ojo (puerto de eye.js)
+│   └── features/     una carpeta por sección (entrada, hoy, más, galería…; en la Fase 6, el resto)
+├── assets/           fuentes (Knuckle Down, Jost, JetBrains Mono + licencias) e isotipo/onda
+├── android/          proyecto Android (nombre "RAKÜN Studio", id com.rakundesigns.app)
+├── test/             pruebas: permisos con paridad contra la web, rutas y capturas visuales
+├── tool/             utilidades (svg_sin_estilos.mjs)
 ├── docs/             encargo completo y documentos de análisis (auditoría del gestor, Fase 2)
-├── design/           prototipo en HTML/CSS de las pantallas (Fase 3)
+├── design/           prototipo en HTML/CSS aprobado (Fase 3) y capturas de comparación
 ├── herramientas/     scripts de apoyo (preparar Windows)
 ├── .impeccable/      configuración de la herramienta de diseño Impeccable (design.json copiado de la web)
 └── .claude/          skills del proyecto: impeccable y frontend-design
@@ -93,9 +119,16 @@ rakun-app/
 
 ## 6. Variables y configuración
 
-*Se completará en la Fase 4.* La app leerá su configuración de un archivo `env.json` que **no se sube a Git**;
-en el repositorio solo habrá un `env.example.json` sin valores secretos.
-La llave de Supabase que usa la app es la **publicable** (la misma de la web). La llave `service_role` nunca va en la app.
+La app lee su configuración de **`env.json`**, que **no se sube a Git**. El modelo es `env.example.json`:
+
+| Clave | Qué es | De dónde sale |
+|---|---|---|
+| `SUPABASE_URL` | Dirección del proyecto Supabase | Supabase → Project Settings → API (o `rakun-web/app/config.js`) |
+| `SUPABASE_PUBLISHABLE_KEY` | Llave **publicable** (`sb_publishable_…`), la misma de la web | Igual que arriba |
+| `CUENTA_URL` | Página de la web donde terminan invitaciones y "olvidé mi contraseña" | `https://rakundesigns.netlify.app/cuenta.html` |
+| `WEB_URL` | Página pública (portal del cliente, gestor web) | `https://rakundesigns.netlify.app` |
+
+La llave `service_role`/secreta **nunca** va en la app: si alguien la pone, la app se niega a arrancar.
 
 ## 7. Generar el APK e instalarlo
 
@@ -109,6 +142,11 @@ La llave de Supabase que usa la app es la **publicable** (la misma de la web). L
 | `sdkmanager.bat "ndk;28.2..."` falla desde PowerShell | PowerShell parte el texto en el `;` | Escribir el paquete en un archivo y usar `sdkmanager --package_file=archivo.txt` |
 | El emulador no arrancaba con aceleración | Virtualización apagada en la BIOS (`VirtualizationFirmwareEnabled = False`) | Activar *SVM Mode* en la BIOS y correr `herramientas/preparar_windows.ps1` como administrador; reiniciar |
 | El prototipo muestra errores al abrir `design/index.html` con doble clic | Chrome bloquea los scripts de una página abierta como archivo (`file://`) | Abrirlo con `design/ABRIR-PROTOTIPO.cmd` (servidor local en http://localhost:5173) |
+| La primera compilación de la app instaló **CMake 3.22.1** sola | Uno de los paquetes lo necesita; Gradle lo descarga | Nada que hacer: tarda ~3 min la primera vez, luego ~20 s |
+| El isotipo salía **negro** en la app | El SVG oficial pone los colores en `<style>` y `flutter_svg` no lo aplica | Copia para la app con los colores en cada forma: `node tool/svg_sin_estilos.mjs entrada.svg assets/brand/rakun-isotipo.svg` |
+| Blanco con logo de Flutter al abrir | Pantalla nativa de la plantilla | Fondo noche en `android/app/src/main/res` (el ícono propio llega en la Fase 8) |
+| `adb shell screencap -p /sdcard/c.png` falla en Git Bash | Git Bash convierte `/sdcard/...` en una ruta de Windows | Anteponer `MSYS_NO_PATHCONV=1` o usar PowerShell |
+| Las capturas automáticas (golden) cambiaban en cada corrida | El ojo mira al azar | Se toman con "reducir movimiento" activado: el ojo queda quieto |
 | La captura de pantalla del emulador salía dañada | En PowerShell, `adb exec-out screencap -p > archivo.png` altera los bytes | `adb shell screencap -p /sdcard/c.png` y luego `adb pull /sdcard/c.png` |
 
 ## 9. Bitácora
@@ -156,10 +194,26 @@ La llave de Supabase que usa la app es la **publicable** (la misma de la web). L
   **DISEÑO APROBADO** por Wilmer el 2026-11-09 → etiqueta `v0.1-diseno-aprobado`; `DESIGN_MOVIL.md` pasó a `DESIGN.md`.
 - **Cómo comprobarlo:** abrir http://localhost:5173 con el servidor encendido.
 
+### 2026-11-09 · Fase 4: base de la app
+- **Qué se hizo:** proyecto Flutter (`com.rakundesigns.app`, "RAKÜN Studio"); paquetes con la versión estable
+  consultada en pub.dev ese día (supabase_flutter 2.18.3, flutter_riverpod 3.5.0, go_router 18.1.3,
+  material_symbols_icons 4.2960.0, shared_preferences 2.5.6, flutter_svg 2.3.2, url_launcher 6.3.3);
+  sistema de diseño aprobado en Flutter (dos temas, fuentes locales, radio 0, componentes, el ojo con la física de `eye.js`);
+  sesión que se mantiene, cuenta de cliente → acceso negado, barra inferior por permisos, Más con Apariencia,
+  cambiar contraseña y salir; galería de componentes.
+- **Por qué:** dejar lista la base sobre la que se montan las secciones (Fase 6) y la sincronización (Fase 5).
+- **Comandos:** `flutter create`, `flutter pub add`, `flutter analyze`, `flutter test`, `flutter build apk --debug --dart-define-from-file=env.json`.
+- **Resultado:** `flutter analyze` sin problemas; **54 pruebas** pasan (permisos idénticos a `perms.js` en 14 perfiles × 13
+  secciones, rutas, barra por rol y 19 capturas visuales). La app compila, abre en el emulador y muestra el login.
+  Comparación lado a lado con el prototipo en `design/capturas/comparacion/`.
+- **Prueba con cuenta real:** Wilmer entró con su cuenta en el emulador y vio todo (saludo, barra, Más). Etiqueta `v0.2-base`.
+- **Cómo comprobarlo:** `flutter test` y `flutter run --dart-define-from-file=env.json`.
+
 ## 10. Estado actual y próximos pasos
 
 - ✅ Fase 0 · ambiente listo y comprobado.
 - ✅ Fase 1 · repositorio y organización.
 - ✅ Fase 2 · auditoría (`docs/AUDITORIA_GESTOR.md`). Wilmer aprobó el alcance, la prioridad P1/P2/P3 y las funciones "solo web".
 - ✅ Fase 3 · diseño **aprobado** el 2026-11-09 (etiqueta `v0.1-diseno-aprobado`). Sistema oficial en `DESIGN.md`.
-- ⏭️ Fase 4 · base de la app en Flutter (rama `fase-4/base`).
+- ✅ Fase 4 · base de la app (etiqueta `v0.2-base`), probada con la cuenta real de Wilmer.
+- ⏭️ Fase 5 · sincronización en vivo (incluye un `ALTO` con el SQL de la fase 18 para la web).
