@@ -37,8 +37,15 @@ Es la fuente de las fases, reglas y puntos `ALTO`.
 - Al diseñar (Fase 3) cargar `.claude/skills/impeccable/reference/android.md`.
 - Hay un repo Git vacío accidental en `C:\Users\wburi\.git` (sin commits ni remoto). No tocar sin permiso de Wilmer.
 
-## Estado actual · 2026-11-08
-**FASE 3 en curso (rama fase-3/diseno)**: decisiones de Wilmer = fondo oscuro siempre, inicio en pantalla "Hoy", barra inferior por rol aprobada. `design/MAPA_NAVEGACION.md` (shape) espera confirmación antes de dibujar.
+## Estado actual · 2026-11-09
+**FASE 3 en curso (rama fase-3/diseno)**: decisiones de Wilmer = fondo oscuro siempre, inicio en pantalla "Hoy", barra inferior
+por rol aprobada, mapa de navegación confirmado ("todo está bien, sigamos").
+Prototipo hecho: `design/index.html` (galería) + `design/pantallas/*.html` (21) + `design/proto/` (app.css, app.js, eye.js copia, fuentes).
+Abrir: `node design/servir.mjs` → http://localhost:5173 (los módulos JS no cargan con file://).
+Capturas: `cd design/tools && npm install && npm run capturas` (Playwright 1.65.0, Chrome instalado) → `design/capturas/360x800|390x844`.
+Docs: `design/DESIGN_MOVIL.md`, `design/APROBACION.md`. Revisión: detector + critique (2 subagentes) → `design/REVISION.md`.
+Siguiente: `ALTO` hasta que Wilmer escriba exactamente `DISEÑO APROBADO`; luego etiqueta `v0.1-diseno-aprobado`, pasar
+DESIGN_MOVIL a DESIGN.md y FASE 4. Solicitudes: elegir dirección A o B.
 
 **FASE 2 CERRADA (2026-11-08)**: Wilmer aprobó alcance y prioridad P1/P2/P3 y las 3 funciones "solo web".
 Pendiente sin bloquear: decisión sobre hallazgos H1–H10 (no tocar rakun-web), validar barra inferior por rol en Fase 3,

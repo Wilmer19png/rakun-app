@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Proyectos · RAKÜN Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&family=JetBrains+Mono:wght@500;600&family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,300..400,0..1,0&display=block">
+<link rel="stylesheet" href="../proto/app.css">
+</head>
+<body data-screen="proyectos" data-nav="proyectos">
+<header class="top top--large">
+  <div class="top__row"><span class="top__sp"></span><button class="ib" type="button" aria-label="Buscar"><span class="ic">search</span></button></div>
+  <h1 class="top__title"><span class="top__idx">03</span>Proyectos</h1>
+</header>
+<div class="tabs" role="tablist" aria-label="Proyectos o cotizaciones">
+  <button class="tab" role="tab" aria-selected="true" type="button">Proyectos <b>11</b></button>
+  <a class="tab" role="tab" aria-selected="false" href="cotizacion.html" data-money>Cotizaciones <b>4</b></a>
+</div>
+<main class="main">
+  <div class="chips" role="group" aria-label="Filtrar">
+    <button class="chip" type="button" aria-pressed="true">Activos</button>
+    <button class="chip" type="button" aria-pressed="false"><span class="w w--marca"></span>Redes</button>
+    <button class="chip" type="button" aria-pressed="false"><span class="w w--prod"></span>Producción</button>
+    <button class="chip" type="button" aria-pressed="false"><span class="w w--web"></span>Web</button>
+    <button class="chip" type="button" aria-pressed="false">Míos</button>
+  </div>
+  <div data-region>
+    <div class="list">
+      <a class="row" href="proyecto.html">
+        <span><span class="row__t">Redes · noviembre</span><span class="row__s"><span class="w w--marca">Redes</span> Marca Ejemplo · Equilibrio</span><span class="row__s">Etapa <b style="color:#fff;font-weight:500">Guiones</b> · <span class="pk">1 vencido</span></span></span>
+        <span class="row__r" style="padding-right:12px"><span class="av av--sm" style="--ac:var(--yellow)">MH</span></span>
+      </a>
+      <a class="row" href="proyecto.html">
+        <span><span class="row__t">Página de citas</span><span class="row__s"><span class="w w--web">Web</span> Consultorio Ejemplo</span><span class="row__s">Etapa <b style="color:#fff;font-weight:500">Wireframe</b> · <span class="pk">1 vencido</span></span></span>
+        <span class="row__r" style="padding-right:12px"><span class="av av--sm" style="--ac:var(--pink)">MA</span></span>
+      </a>
+      <a class="row" href="proyecto.html">
+        <span><span class="row__t">Videoclip “Ejemplo”</span><span class="row__s"><span class="w w--prod">Producción</span> Colectivo Ejemplo</span><span class="row__s">Etapa <b style="color:#fff;font-weight:500">Postproducción</b> · al día</span></span>
+        <span class="row__r" style="padding-right:12px"><span class="av av--sm" style="--ac:var(--blue)">AP</span></span>
+      </a>
+      <a class="row" href="proyecto.html">
+        <span><span class="row__t">Redes · noviembre</span><span class="row__s"><span class="w w--marca">Redes</span> Mentor Ejemplo · Ritmo</span><span class="row__s">Etapa <b style="color:#fff;font-weight:500">Edición</b> · al día</span></span>
+        <span class="row__r" style="padding-right:12px"><span class="av av--sm" style="--ac:var(--yellow)">MH</span></span>
+      </a>
+    </div>
+    <div class="end"></div>
+  </div>
+  <template data-empty>
+    <div class="empty"><svg class="empty__eye" data-eye="eye-vacio" data-eye-explore></svg><p class="empty__t">Nada <em>arrancó</em> aún.</p><p>Crea el primero para un cliente, o registra el anticipo de una cotización y se crea solo.</p></div>
+  </template>
+</main>
+<button class="fab" type="button" aria-label="Nuevo proyecto" data-write data-can="proyectos"><span class="ic">add</span></button>
+<script type="module" src="../proto/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mensajes · RAKÜN Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&family=JetBrains+Mono:wght@500;600&family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,300..400,0..1,0&display=block">
+<link rel="stylesheet" href="../proto/app.css">
+</head>
+<body data-screen="mensajes" data-nav="mensajes">
+<header class="top top--large">
+  <div class="top__row"><a class="ib" href="mas.html" aria-label="Volver a Más" data-back-mas><span class="ic">arrow_back</span></a><span class="top__sp"></span></div>
+  <h1 class="top__title"><span class="top__idx">10</span>Mensajes</h1>
+</header>
+<div class="chips" data-single role="group" aria-label="Filtrar" style="flex:none;border-bottom:1px solid var(--line)">
+  <button class="chip" type="button" aria-pressed="true">Todos</button>
+  <button class="chip" type="button" aria-pressed="false">Para mí <b>1</b></button>
+  <button class="chip" type="button" aria-pressed="false">Fijados</button>
+</div>
+<main class="main">
+  <div class="chat" data-region data-live="Mensaje nuevo de Santiago">
+    <article class="bub is-pin">
+      <span class="av" style="--ac:var(--pink)">WB</span>
+      <div class="bub__b"><div class="bub__m"><span>Wilmer · todo el equipo</span><span>Fijado</span></div><p>Desde esta semana las entregas de edición van por Frame.io, no por Drive.</p><div class="bub__f"><span>Visto por 5</span><span>hace 3 d</span></div></div>
+    </article>
+    <article class="bub is-new">
+      <span class="av" style="--ac:var(--yellow)">MH</span>
+      <div class="bub__b"><div class="bub__m"><span>Mariana · todo el equipo</span><span class="pk">Nuevo</span></div><p>El lunes cambiamos la grabación de Marca Ejemplo a las 10 a. m. por la luz del estudio.</p><div class="bub__f"><button class="btn btn--line" type="button" data-snack="Marcado como visto" >Marcar visto</button><span>hace 1 h</span></div></div>
+    </article>
+    <article class="bub">
+      <span class="av" style="--ac:var(--blue)">SS</span>
+      <div class="bub__b"><div class="bub__m"><span>Santiago · equipo de Videoclip</span><span></span></div><p>El cliente aprobó el guion. Rodaje confirmado para el jueves 13.</p><div class="bub__f"><span>Visto</span><span>ayer</span></div></div>
+    </article>
+  </div>
+  <template data-empty>
+    <div class="empty"><svg class="empty__eye" data-eye="eye-vacio" data-eye-explore></svg><p class="empty__t">Silencio <em>total.</em></p><p>Aún no hay mensajes. Deja el primero para el equipo.</p></div>
+  </template>
+</main>
+<form class="compose" onsubmit="return false">
+  <div style="flex:1;min-width:0">
+    <button class="to" type="button" style="margin-left:0" data-open="para"><span class="ic ic--sm">group</span>Para: todo el equipo<span class="ic ic--sm">expand_more</span></button>
+    <label class="sr" for="m">Mensaje</label><textarea class="in" id="m" rows="1" placeholder="Escribe al equipo…"></textarea>
+  </div>
+  <button class="btn" type="submit" aria-label="Publicar mensaje" data-write data-snack="Mensaje publicado" style="width:48px;padding:0"><span class="ic">send</span></button>
+</form>
+
+<section class="sheet" id="para" role="dialog" aria-modal="true" aria-labelledby="pa-t">
+  <div class="sheet__grab"></div>
+  <div class="sheet__h"><h2 class="sheet__t" id="pa-t">Para</h2><button class="ib" type="button" data-close aria-label="Cerrar"><span class="ic">close</span></button></div>
+  <div class="sheet__b" role="menu">
+    <button class="opt" role="menuitemradio" aria-checked="true" type="button"><span class="ic">groups</span>Todo el equipo<span class="ic">check</span></button>
+    <button class="opt" role="menuitemradio" aria-checked="false" type="button"><span class="ic">person</span>Una persona…<span class="ic">check</span></button>
+    <button class="opt" role="menuitemradio" aria-checked="false" type="button"><span class="ic">folder_open</span>El equipo de un proyecto…<span class="ic">check</span></button>
+    <label class="opt" style="cursor:pointer"><input type="checkbox" style="width:22px;height:22px;accent-color:var(--pink)">Fijar arriba</label>
+    <div style="height:16px"></div>
+  </div>
+</section>
+<script type="module" src="../proto/app.js"></script>
+</body>
+</html>

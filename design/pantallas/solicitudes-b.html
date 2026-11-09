@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Solicitudes (B) · RAKÜN Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&family=JetBrains+Mono:wght@500;600&family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,300..400,0..1,0&display=block">
+<link rel="stylesheet" href="../proto/app.css">
+</head>
+<body data-screen="solicitudes" data-nav="solicitudes">
+<header class="top top--large">
+  <div class="top__row"><span class="top__sp"></span><button class="ib" type="button" aria-label="Buscar"><span class="ic">search</span></button><button class="ib" type="button" aria-label="Filtros"><span class="ic">tune</span></button></div>
+  <h1 class="top__title"><span class="top__idx">01</span>Solicitudes</h1>
+</header>
+<main class="main">
+  <div class="chips" data-single role="group" aria-label="Filtrar">
+    <button class="chip" type="button" aria-pressed="true">Abiertas <b>10</b></button>
+    <button class="chip" type="button" aria-pressed="false">Mías <b>4</b></button>
+    <button class="chip" type="button" aria-pressed="false">Ganadas</button>
+    <button class="chip" type="button" aria-pressed="false">Perdidas</button>
+  </div>
+  <div data-region data-live="1 solicitud nueva">
+    <h2 class="gh"><span>Sin atender</span><b>2</b></h2>
+    <div class="list inbox">
+      <div class="row is-new">
+        <span class="av" style="--ac:var(--yellow)">AE</span>
+        <a class="row__a" href="solicitud.html"><span class="row__t row__t--1">Ana Ejemplo</span><span class="row__s">Gestión completa · Equilibrio · Manizales</span></a>
+        <span class="row__r"><span class="row__due">12 min</span><a class="ib" href="tel:+570000000000" aria-label="Llamar a Ana Ejemplo"><span class="ic">call</span></a></span>
+      </div>
+      <div class="row is-new">
+        <span class="av" style="--ac:var(--pink)">EP</span>
+        <a class="row__a" href="solicitud.html"><span class="row__t row__t--1">Dr. Ejemplo Pérez</span><span class="row__s"><span class="ic ic--sm pk">campaign</span>Página de citas · anuncio</span></a>
+        <span class="row__r"><span class="row__due">2 h</span><a class="ib" href="tel:+570000000000" aria-label="Llamar a Dr. Ejemplo Pérez"><span class="ic">call</span></a></span>
+      </div>
+    </div>
+    <h2 class="gh"><span>En curso</span><b>8</b></h2>
+    <div class="list inbox">
+      <a class="row" href="solicitud.html">
+        <span class="av" style="--ac:var(--blue)">CE</span>
+        <span><span class="row__t row__t--1">Colectivo Ejemplo</span><span class="row__s"><span class="tag tag--line">Propuesta</span> Videoclip · Santiago</span></span>
+        <span class="row__due">ayer</span>
+      </a>
+      <a class="row" href="solicitud.html">
+        <span class="av" style="--ac:var(--yellow)">LE</span>
+        <span><span class="row__t row__t--1">Laura Ejemplo</span><span class="row__s"><span class="tag tag--line">Reunión</span> Solo contenido · Ritmo</span></span>
+        <span class="row__due">3 d</span>
+      </a>
+      <a class="row" href="solicitud.html">
+        <span class="av" style="--ac:var(--yellow)">ME</span>
+        <span><span class="row__t row__t--1">Mentor Ejemplo</span><span class="row__s"><span class="tag tag--line">Contactado</span> Gestión completa · Ritmo</span></span>
+        <span class="row__due">4 d</span>
+      </a>
+      <a class="row" href="solicitud.html">
+        <span class="av" style="--ac:var(--pink)">TE</span>
+        <span><span class="row__t row__t--1">Tienda Ejemplo</span><span class="row__s"><span class="tag tag--line">Contactado</span> Web · Tienda en línea</span></span>
+        <span class="row__due">6 d</span>
+      </a>
+    </div>
+    <div class="end"></div>
+  </div>
+</main>
+<script type="module" src="../proto/app.js"></script>
+</body>
+</html>

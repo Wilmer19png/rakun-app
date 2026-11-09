@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Recuperar contraseña · RAKÜN Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&family=JetBrains+Mono:wght@500;600&family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,300..400,0..1,0&display=block">
+<link rel="stylesheet" href="../proto/app.css">
+</head>
+<body data-screen="recuperar">
+<header class="top top--detail" style="border-bottom:0"><div class="top__row"><a class="ib" href="login.html" aria-label="Volver"><span class="ic">arrow_back</span></a></div></header>
+<form class="auth" onsubmit="return false">
+  <div class="auth__head" style="padding-top:8px">
+    <h1 class="auth__t">Te mandamos <em>un enlace.</em></h1>
+    <p class="dim" style="margin:-12px 0 0;max-width:32ch">Escribe tu correo. Te llega un enlace para crear una contraseña nueva; se abre en la página de RAKÜN.</p>
+  </div>
+  <div class="auth__body">
+    <label class="f"><span>Correo</span><input class="in" type="email" inputmode="email" autocomplete="email" autocapitalize="off" placeholder="tu@correo.com"></label>
+    <div class="note" style="display:flex;gap:12px"><span class="ic ok">mark_email_read</span><span><b>Listo.</b> Si ese correo tiene cuenta, el enlace llega en un par de minutos. Revisa también Spam.</span></div>
+  </div>
+  <div class="pad" style="padding-bottom:24px"><button class="btn btn--block" type="submit" data-snack="Enlace enviado">Enviar enlace</button></div>
+</form>
+<script type="module" src="../proto/app.js"></script>
+</body>
+</html>

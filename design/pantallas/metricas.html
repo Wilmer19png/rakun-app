@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Métricas · RAKÜN Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&family=JetBrains+Mono:wght@500;600&family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,300..400,0..1,0&display=block">
+<link rel="stylesheet" href="../proto/app.css">
+</head>
+<body data-screen="metricas" data-nav="metricas">
+<header class="top top--large">
+  <div class="top__row"><a class="ib" href="mas.html" aria-label="Volver a Más"><span class="ic">arrow_back</span></a><span class="top__sp"></span><button class="ib" type="button" aria-label="Qué significa cada métrica"><span class="ic">help</span></button></div>
+  <h1 class="top__title"><span class="top__idx">11</span>Métricas</h1>
+</header>
+<div class="tabs" role="tablist" aria-label="De quién">
+  <button class="tab" role="tab" aria-selected="true" type="button">RAKÜN</button>
+  <button class="tab" role="tab" aria-selected="false" type="button">Clientes</button>
+  <button class="tab" role="tab" aria-selected="false" type="button">Campañas</button>
+</div>
+<main class="main">
+  <div class="chips" data-single role="group" aria-label="Periodo">
+    <button class="chip" type="button" aria-pressed="false">7 días</button>
+    <button class="chip" type="button" aria-pressed="true">30 días</button>
+    <button class="chip" type="button" aria-pressed="false">Este año</button>
+  </div>
+  <div data-region>
+    <div class="kpis">
+      <div><span>Visitas</span><b>2.418</b><small>1.306 personas</small></div>
+      <div><span>Solicitudes</span><b>31</b><small>2,4 % de las personas</small></div>
+      <div><span>WhatsApp</span><b>87</b><small>23 de anuncios</small></div>
+      <div><span>Cotizaciones</span><b>12</b><small>5 aceptadas · 42 %</small></div>
+      <div data-money><span>Vendido</span><b>$18,4 M</b><small>con anticipo o pagadas</small></div>
+      <div data-money style="background:var(--s2)"><span>Cobrado</span><b>$11,2 M</b><small>pagos registrados</small></div>
+    </div>
+    <h2 class="gh"><span>Por anuncio</span><span>costo por solicitud</span></h2>
+    <div class="list">
+      <a class="row" href="#"><span><span class="row__t row__t--1">Médicos · página de citas</span><span class="row__s">14 solicitudes · gasto $310.000</span></span><span class="row__r" style="padding-right:12px;flex-direction:column;align-items:flex-end;gap:6px"><span class="num">$22.143</span><span class="light light--mid">En medio</span></span></a>
+      <a class="row" href="#"><span><span class="row__t row__t--1">Creadores · Equilibrio</span><span class="row__s">9 solicitudes · gasto $96.000</span></span><span class="row__r" style="padding-right:12px;flex-direction:column;align-items:flex-end;gap:6px"><span class="num">$10.667</span><span class="light light--ok">Bien</span></span></a>
+      <a class="row" href="#"><span><span class="row__t row__t--1">Videoclips · reel</span><span class="row__s">1 solicitud · gasto $58.000</span></span><span class="row__r" style="padding-right:12px;flex-direction:column;align-items:flex-end;gap:6px"><span class="num">$58.000</span><span class="light light--bad">Alerta</span></span></a>
+    </div>
+    <h2 class="gh"><span>Páginas más vistas</span></h2>
+    <div class="bar" style="--v:100%"><span>Inicio</span><b class="num">1.104</b><i></i></div>
+    <div class="bar" style="--v:62%;--c:var(--yellow)"><span>Redes</span><b class="num">684</b><i></i></div>
+    <div class="bar" style="--v:31%;--c:var(--pink)"><span>Web y apps</span><b class="num">342</b><i></i></div>
+    <div class="bar" style="--v:20%;--c:var(--blue)"><span>Producción</span><b class="num">221</b><i></i></div>
+    <p class="mono dimmer pad" style="padding-top:16px;padding-bottom:24px">Página: contador propio sin cookies · Gestor: solicitudes, cotizaciones y pagos</p>
+  </div>
+</main>
+<script type="module" src="../proto/app.js"></script>
+</body>
+</html>

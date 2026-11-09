@@ -17,6 +17,11 @@ colors:
   line-dark: "rgba(255, 255, 255, .17)"
   line-light: "rgba(27, 26, 53, .22)"
   line-pink: "rgba(27, 26, 53, .3)"
+  # Propuestos para la app en la Fase 3 (pendientes de DISEÑO APROBADO; ver design/DESIGN_MOVIL.md)
+  surface-1: "#0A0A2B"     # campos y filas tocadas sobre la noche
+  dim: "#9A97BD"           # texto terciario: 7,3:1 sobre #010221
+  ok: "#4FB58C"            # ganado/confirmado: el #3C8C6E de la web no pasa AA sobre navy (4,15:1)
+  propuesta: "#8B6CF0"     # estado "Propuesta" de solicitudes (ya existe en la web)
 typography:
   display: "Knuckle Down (fonts/KnuckleDown.otf), un solo peso, MAYÚSCULAS, interlineado < 1"
   body: "Jost (lectura); peso y tracking a validar en móvil en la Fase 3"

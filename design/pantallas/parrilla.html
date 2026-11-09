@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Parrilla · RAKÜN Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&family=JetBrains+Mono:wght@500;600&family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,300..400,0..1,0&display=block">
+<link rel="stylesheet" href="../proto/app.css">
+</head>
+<body data-screen="parrilla" data-nav="parrillas">
+<header class="top top--large">
+  <div class="top__row"><a class="ib" href="proyecto.html" aria-label="Volver"><span class="ic">arrow_back</span></a><span class="top__sp"></span><button class="ib" type="button" data-open="pieza" aria-label="Nueva pieza" data-write><span class="ic">add</span></button><button class="ib" type="button" aria-label="Duplicar al mes siguiente" data-write data-snack="14 piezas copiadas a diciembre como borrador" data-undo><span class="ic">content_copy</span></button></div>
+  <h1 class="top__title"><span class="top__idx">04</span>Parrilla</h1>
+</header>
+<button class="ctl" type="button" style="flex:none"><span><span class="ctl__k">Proyecto</span><span class="ctl__v"><span class="w w--marca"></span>Marca Ejemplo · Redes noviembre</span></span><span class="ic dimmer" style="padding-right:12px">expand_more</span></button>
+<div class="month"><button class="ib" type="button" aria-label="Mes anterior"><span class="ic">chevron_left</span></button><b>Noviembre</b><button class="ib" type="button" aria-label="Mes siguiente"><span class="ic">chevron_right</span></button>
+  <div class="seg" id="vista" role="group" aria-label="Vista" style="margin:0 8px 0 0;grid-template-columns:48px 48px"><button type="button" aria-pressed="true" data-show="lista" aria-label="Lista por día"><span class="ic ic--sm">view_agenda</span></button><button type="button" aria-pressed="false" data-show="mes" aria-label="Mes"><span class="ic ic--sm">calendar_view_month</span></button></div>
+</div>
+<main class="main">
+  <div data-when-of="vista" data-when="lista" class="days" data-region>
+    <div class="legend"><span><i style="--c:var(--mist)"></i>Borrador 6</span><span><i style="--c:var(--white)"></i>Lista 4</span><span><i style="--c:var(--mist)"></i>Por aprobar 1</span><span><i style="--c:var(--pink)"></i>Cambios 1</span><span><i style="--c:var(--ok)"></i>Aprobada 2</span></div>
+    <div class="dayh"><b>Lun 10</b><span>2 piezas</span></div>
+    <div class="list" style="border-top:0">
+      <button class="row" type="button" data-open="pieza">
+        <span><span class="row__t">Reel · “3 errores al entrenar”</span><span class="row__s"><span class="tag tag--line tag--hi">Lista</span> IG · TT · 6:30 p. m. · Alexander</span></span>
+        <span class="ic dimmer" style="padding-right:12px">chevron_right</span>
+      </button>
+      <button class="row" type="button" data-open="pieza">
+        <span><span class="row__t">Carrusel · rutina de 15 min</span><span class="row__s"><span class="tag tag--line">Por aprobar</span> IG · FB · 12:00 m.</span></span>
+        <span class="ic dimmer" style="padding-right:12px">chevron_right</span>
+      </button>
+    </div>
+    <div class="dayh"><b>Mié 12</b><span>1 pieza · el cliente pidió un cambio</span></div>
+    <div class="list" style="border-top:0">
+      <button class="row" type="button" data-open="pieza">
+        <span><span class="row__t">Reel · detrás de cámara</span><span class="row__s"><span class="tag tag--pink">Cambios</span> “Que se vea más el producto”</span></span>
+        <span class="ic dimmer" style="padding-right:12px">chevron_right</span>
+      </button>
+    </div>
+    <div class="dayh"><b>Vie 14</b><span>2 piezas</span></div>
+    <div class="list" style="border-top:0">
+      <button class="row" type="button" data-open="pieza">
+        <span><span class="row__t">Historia · encuesta</span><span class="row__s"><span class="tag tag--line">Borrador</span> IG</span></span>
+        <span class="ic dimmer" style="padding-right:12px">chevron_right</span>
+      </button>
+      <button class="row" type="button" data-open="pieza">
+        <span><span class="row__t">Reel · testimonio</span><span class="row__s"><span class="tag tag--line tag--hi">Lista</span> IG · TT · YT · lleva pauta</span></span>
+        <span class="ic dimmer" style="padding-right:12px">chevron_right</span>
+      </button>
+    </div>
+    <div class="end"></div>
+  </div>
+  <div data-when-of="vista" data-when="mes" hidden>
+    <div class="legend"><span><i style="--c:var(--mist)"></i>Borrador</span><span><i style="--c:var(--white)"></i>Lista</span><span><i style="--c:var(--mist)"></i>Por aprobar</span><span><i style="--c:var(--pink)"></i>Cambios</span><span><i style="--c:var(--ok)"></i>Aprobada</span></div>
+    <div class="cal" id="cal"></div>
+    <p class="help pad" style="margin-top:12px">Toca un día para ver sus piezas o agregar una.</p>
+  </div>
+</main>
+<div class="sendbar" data-can="parrillas"><p><b>4 listas</b> que el cliente aún no ve</p><button class="btn" type="button" data-write data-snack="4 piezas enviadas · el cliente ya puede aprobarlas" data-undo>Enviar al cliente</button></div>
+
+<section class="sheet" id="pieza" role="dialog" aria-modal="true" aria-labelledby="pz-t">
+  <div class="sheet__grab"></div>
+  <div class="sheet__h"><h2 class="sheet__t" id="pz-t">Pieza</h2><button class="ib" type="button" data-close aria-label="Cerrar"><span class="ic">close</span></button></div>
+  <div class="sheet__b">
+    <div class="note note--pink" style="margin-bottom:16px"><b>El cliente pidió un cambio:</b> “Que se vea más el producto.”</div>
+    <label class="f"><span>Título interno *</span><input class="in" value="Reel · detrás de cámara"></label>
+    <div class="f2"><label class="f"><span>Formato</span><select class="in"><option>Reel</option></select></label><label class="f"><span>Estado</span><select class="in"><option>Cambios</option></select></label></div>
+    <div class="f2"><label class="f"><span>Fecha</span><input class="in" type="date" value="2026-11-12"></label><label class="f"><span>Hora</span><input class="in" type="time" value="18:30"></label></div>
+    <div class="f"><span>Dónde se publica</span><div class="chips" style="padding:4px 0 0;flex-wrap:wrap"><button class="chip" type="button" aria-pressed="true">IG</button><button class="chip" type="button" aria-pressed="true">TT</button><button class="chip" type="button" aria-pressed="false">FB</button><button class="chip" type="button" aria-pressed="false">YT</button><button class="chip" type="button" aria-pressed="false">LI</button></div></div>
+    <label class="f"><span>Texto (copy)</span><textarea class="in" rows="4">Así se ve un día de grabación con nosotros…</textarea></label>
+    <label class="f"><span>Video o diseño (enlace)</span><input class="in" type="url" inputmode="url" value="https://drive.google.com/ejemplo"></label>
+  </div>
+  <div class="sheet__f btns"><button class="btn btn--text" type="button" style="color:var(--pink);flex:none">Eliminar</button><button class="btn" type="button" data-write data-snack="Pieza guardada">Guardar</button></div>
+</section>
+<script type="module" src="../proto/app.js"></script>
+<script>
+  // mes de ejemplo: noviembre 2026 empieza en domingo
+  const cal = document.getElementById('cal');
+  const dows = ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'];
+  const marks = { 3: ['var(--ok)'], 5: ['var(--ok)', 'var(--mist)'], 10: ['#FFFFFF', 'var(--mist)'], 12: ['var(--pink)'], 14: ['var(--mist)', '#FFFFFF'], 17: ['var(--mist)'], 19: ['#FFFFFF', 'var(--mist)'], 21: ['var(--mist)'], 24: ['var(--mist)'], 26: ['#FFFFFF'], 28: ['var(--mist)'] };
+  let h = dows.map((d) => `<span class="cal__h">${d}</span>`).join('');
+  for (let i = 0; i < 6; i++) h += '<span class="cal__d is-off" aria-hidden="true"></span>';
+  for (let d = 1; d <= 30; d++) h += `<button class="cal__d${d === 9 ? ' is-today' : ''}${d === 12 ? ' is-sel' : ''}" type="button" aria-label="${d} de noviembre, ${(marks[d] || []).length} piezas"><span>${d}</span>${(marks[d] || []).map((c) => `<i style="--c:${c}"></i>`).join('')}</button>`;
+  cal.innerHTML = h;
+</script>
+</body>
+</html>
