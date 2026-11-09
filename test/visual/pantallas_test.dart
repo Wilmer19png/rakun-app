@@ -16,6 +16,12 @@ import 'package:app/features/galeria/presentation/galeria_page.dart';
 import 'package:app/features/hoy/presentation/hoy_page.dart';
 import 'package:app/features/mas/presentation/mas_page.dart';
 import 'package:app/features/seccion/presentation/seccion_pendiente_page.dart';
+import 'package:app/core/supabase/equipo.dart';
+import 'package:app/core/sync/datos.dart';
+import 'package:app/features/solicitudes/data/solicitudes_repo.dart';
+import 'package:app/features/solicitudes/domain/solicitud.dart';
+import 'package:app/features/solicitudes/presentation/ficha_solicitud_page.dart';
+import 'package:app/features/solicitudes/presentation/solicitudes_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -24,6 +30,24 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 const _ejemploAdmin = Perfil(id: 'ejemplo-admin', rol: 'admin', nombre: 'Wilmer Ejemplo', area: 'Dirección', color: '#FF2C68');
 final _ejemploEditor = Perfil(id: 'ejemplo-editor', rol: 'equipo', nombre: 'Alexander Ejemplo', area: 'Edición', color: '#2BCDFF', perms: presets['editor']!.perms);
+
+/// Solicitudes DE EJEMPLO (nunca datos reales en las capturas del repositorio).
+final _ahora = DateTime.now();
+Map<String, dynamic> _lead(String id, String nombre, String mundo, String plan, String estado, int minutos, {String? ciudad, String? anuncio, String? aCargo, List<String> links = const []}) => {
+      'id': id, 'created_at': _ahora.subtract(Duration(minutes: minutos)).toUtc().toIso8601String(), 'world': mundo, 'name': nombre,
+      'email': '$id@ejemplo.com', 'phone': '3000000000', 'status': estado, 'plan': plan, 'city': ciudad, 'links': links,
+      'utm_source': anuncio == null ? null : 'meta', 'utm_content': anuncio, 'assigned_to': aCargo, 'occupation': 'Ocupación de ejemplo',
+      'goal': 'Texto de ejemplo de lo que quiere.', 'contact_via': 'WhatsApp', 'contact_time': 'En la tarde', 'price_label': r'$1.990.000 / mes (ejemplo)',
+    };
+final _solicitudes = [
+  _lead('ej1', 'Ana Ejemplo', 'marca', 'Gestión completa · Equilibrio', 'nueva', 12, ciudad: 'Manizales', links: ['instagram.com/ejemplo', 'tiktok.com/@ejemplo']),
+  _lead('ej2', 'Dr. Ejemplo Pérez', 'web', 'Página de citas', 'nueva', 130, ciudad: 'Medellín', anuncio: 'Médicos · ejemplo'),
+  _lead('ej3', 'Colectivo Ejemplo', 'produccion', 'Videoclip', 'contactado', 1500, ciudad: 'Bogotá', aCargo: 'ejemplo-admin'),
+].map(Solicitud.desdeFila).toList();
+final _extraSolicitudes = [
+  solicitudesProvider.overrideWith((ref) async => Datos(_solicitudes)),
+  equipoProvider.overrideWith((ref) async => [_ejemploAdmin]),
+];
 
 Future<void> _fuentes() async {
   Future<void> f(String familia, String ruta) async => (FontLoader(familia)..addFont(rootBundle.load(ruta))).load();
@@ -42,7 +66,7 @@ void main() {
     await _fuentes();
   });
 
-  Future<void> captura(WidgetTester tester, String nombre, Widget pantalla, {required bool claro, Perfil? perfil, int ms = 1400}) async {
+  Future<void> captura(WidgetTester tester, String nombre, Widget pantalla, {required bool claro, Perfil? perfil, int ms = 1400, List extra = const []}) async {
     tester.view.physicalSize = const Size(1080, 2400);
     tester.view.devicePixelRatio = 3;
     tester.view.padding = const FakeViewPadding(top: 72, bottom: 48); // barra de estado y gestos
@@ -54,6 +78,7 @@ void main() {
         prefsProvider.overrideWithValue(prefs),
         sesionProvider.overrideWith((ref) => Stream.value(null)),
         perfilProvider.overrideWith((ref) async => perfil),
+        ...extra.cast(),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -87,6 +112,10 @@ void main() {
         (t) => captura(t, '20-seccion', _conBarra(_ejemploAdmin, Destino.solicitudes, const SeccionPendientePage(seccion: 'solicitudes')), claro: claro, perfil: _ejemploAdmin));
     testWidgets('sin permiso ${claro ? 'claro' : 'oscuro'}',
         (t) => captura(t, '21-sin-permiso', _conBarra(_ejemploEditor, Destino.mas, const SeccionPendientePage(seccion: 'solicitudes')), claro: claro, perfil: _ejemploEditor));
+    testWidgets('solicitudes ${claro ? 'claro' : 'oscuro'}',
+        (t) => captura(t, '50-solicitudes', _conBarra(_ejemploAdmin, Destino.solicitudes, const SolicitudesPage()), claro: claro, perfil: _ejemploAdmin, extra: _extraSolicitudes));
+    testWidgets('ficha de solicitud ${claro ? 'claro' : 'oscuro'}',
+        (t) => captura(t, '51-solicitud', const FichaSolicitudPage(id: 'ej1'), claro: claro, perfil: _ejemploAdmin, extra: _extraSolicitudes));
     testWidgets('más ${claro ? 'claro' : 'oscuro'}',
         (t) => captura(t, '30-mas', _conBarra(_ejemploAdmin, Destino.mas, const MasPage()), claro: claro, perfil: _ejemploAdmin));
     testWidgets('galería ${claro ? 'claro' : 'oscuro'}',

@@ -11,6 +11,8 @@ import '../../features/galeria/presentation/galeria_page.dart';
 import '../../features/hoy/presentation/hoy_page.dart';
 import '../../features/mas/presentation/mas_page.dart';
 import '../../features/seccion/presentation/seccion_pendiente_page.dart';
+import '../../features/solicitudes/presentation/ficha_solicitud_page.dart';
+import '../../features/solicitudes/presentation/solicitudes_page.dart';
 import '../permisos/permisos.dart';
 import '../supabase/sesion.dart';
 import 'shell.dart';
@@ -85,11 +87,13 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(path: '/login', builder: (_, _) => const LoginPage()),
       GoRoute(path: '/recuperar', builder: (_, _) => const RecuperarPage()),
       GoRoute(path: '/sin-acceso', builder: (_, _) => const SinAccesoPage()),
+      // fichas: encima de la lista, sin barra inferior (como el diseño); Atrás vuelve a la lista
+      GoRoute(path: '/solicitudes/:id', builder: (_, s) => FichaSolicitudPage(id: s.pathParameters['id']!)),
       ShellRoute(
         builder: (context, state, child) => AppShell(ubicacion: state.matchedLocation, child: child),
         routes: [
           GoRoute(path: '/hoy', pageBuilder: (_, s) => sinAnimacion(const HoyPage(), s)),
-          GoRoute(path: '/solicitudes', pageBuilder: (_, s) => sinAnimacion(const SeccionPendientePage(seccion: 'solicitudes'), s)),
+          GoRoute(path: '/solicitudes', pageBuilder: (_, s) => sinAnimacion(const SolicitudesPage(), s)),
           GoRoute(path: '/clientes', pageBuilder: (_, s) => sinAnimacion(const SeccionPendientePage(seccion: 'clientes'), s)),
           GoRoute(path: '/agenda', pageBuilder: (_, s) => sinAnimacion(const SeccionPendientePage(seccion: 'agenda'), s)),
           GoRoute(path: '/proyectos', pageBuilder: (_, s) => sinAnimacion(const SeccionPendientePage(seccion: 'proyectos'), s)),

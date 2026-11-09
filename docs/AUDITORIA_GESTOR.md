@@ -71,7 +71,7 @@ Columnas: **Función** · **Tablas / RPC / almacenamiento** · **Permiso** (inte
 | "Por cobrar" y "En curso" (pago de tareas + comisiones) | `deliverables.pay_amount`, `commissions` | lo propio | **Igual** | P1 |
 | Seguimientos de campañas asignados a mí | `followups`, `leads`, `meta_insights` | asignado | **Igual** | P1 |
 
-#### 01 · Solicitudes (`admin.js` → `viewLeads`, `openLead`)
+#### 01 · Solicitudes (`admin.js` → `viewLeads`, `openLead`) · ✅ en la app (Fase 6, 2026-11-09) salvo «Cotizar» (P2)
 | Función | Datos | Permiso | Decisión | Prio |
 |---|---|---|---|---|
 | Tablero por estado (Nueva → Perdido); en celular, un estado a la vez | `leads` (500 más recientes) | `can(solicitudes)` | **Adaptada**: pestañas de estado con contador | P1 |

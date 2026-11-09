@@ -12,6 +12,8 @@ const PARES = [
   ['hoy', 'oscuro', '90-barra-admin', '10-hoy-admin-oscuro'], ['hoy', 'claro', '90-barra-admin', '10-hoy-admin-claro'],
   ['hoy-editor', 'oscuro', '93-barra-editor', '11-hoy-editor-oscuro'],
   ['sin-permiso', 'oscuro', '84-estado-sin-permiso', '21-sin-permiso-oscuro'],
+  ['solicitudes', 'oscuro', '20-solicitudes-A', '50-solicitudes-oscuro'], ['solicitudes', 'claro', '20-solicitudes-A', '50-solicitudes-claro'],
+  ['solicitud', 'oscuro', '22-solicitud', '51-solicitud-oscuro'], ['solicitud', 'claro', '22-solicitud', '51-solicitud-claro'],
   ['mas', 'oscuro', '61-mas', '30-mas-oscuro'], ['mas', 'claro', '61-mas', '30-mas-claro'],
 ];
 const b64 = async (p) => (await readFile(p)).toString('base64');
