@@ -38,6 +38,8 @@ Es la fuente de las fases, reglas y puntos `ALTO`.
 - Hay un repo Git vacío accidental en `C:\Users\wburi\.git` (sin commits ni remoto). No tocar sin permiso de Wilmer.
 
 ## Estado actual · 2026-11-08
+**FASE 3 en curso (rama fase-3/diseno)**: decisiones de Wilmer = fondo oscuro siempre, inicio en pantalla "Hoy", barra inferior por rol aprobada. `design/MAPA_NAVEGACION.md` (shape) espera confirmación antes de dibujar.
+
 **FASE 2 CERRADA (2026-11-08)**: Wilmer aprobó alcance y prioridad P1/P2/P3 y las 3 funciones "solo web".
 Pendiente sin bloquear: decisión sobre hallazgos H1–H10 (no tocar rakun-web), validar barra inferior por rol en Fase 3,
 2 preguntas de negocio antes de P2. **Siguiente: FASE 3 (diseño) en la rama `fase-3/diseno`.**
