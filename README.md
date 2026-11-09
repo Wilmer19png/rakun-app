@@ -232,7 +232,9 @@ La llave `service_role`/secreta **nunca** va en la app: si alguien la pone, la a
 
   Objetivo < 3 s: **cumplido**. Un cliente **sin sesión** escuchando `leads` recibió **0 avisos** en las 3 pruebas (RLS
   funciona en vivo). Corte de red: a los 4 s sale "Sin conexión" y al volver se reconecta solo a "En vivo".
-- **Falta (con Wilmer):** cambio en la web → se ve en la app y en otra pestaña; borrar las 3 solicitudes `PRUEBA APP`.
+- **Con Wilmer (2026-11-09):** probó el gestor web local (cambios entre pestañas y en la app). Las 3 solicitudes `PRUEBA APP`
+  se borran con un SQL exacto (solo esas 3 filas) que corre Wilmer: la app no tiene permiso de borrar.
+- **Web sin publicar:** por decisión de Wilmer la rama `fase-18/tiempo-real` de rakun-web queda local (no Netlify) hasta que él diga.
   "Cambio en la app → se ve en la web" se prueba cuando exista la primera sección que escribe (Fase 6).
 
 ## 10. Estado actual y próximos pasos
@@ -242,4 +244,5 @@ La llave `service_role`/secreta **nunca** va en la app: si alguien la pone, la a
 - ✅ Fase 2 · auditoría (`docs/AUDITORIA_GESTOR.md`). Wilmer aprobó el alcance, la prioridad P1/P2/P3 y las funciones "solo web".
 - ✅ Fase 3 · diseño **aprobado** el 2026-11-09 (etiqueta `v0.1-diseno-aprobado`). Sistema oficial en `DESIGN.md`.
 - ✅ Fase 4 · base de la app (etiqueta `v0.2-base`), probada con la cuenta real de Wilmer.
-- 🟡 Fase 5 · en vivo funcionando en la app (medido < 1 s). En `ALTO`: fusionar la rama de la web y limpieza de las pruebas.
+- ✅ Fase 5 · en vivo (etiqueta `v0.3-sync`, medido < 1 s). La parte web queda en rama local de rakun-web, sin publicar.
+- ⏭️ Fase 6 · montaje por secciones (P1), empezando por Solicitudes.
