@@ -33,12 +33,14 @@ Es la fuente de las fases, reglas y puntos `ALTO`.
 - El portal de clientes irá en esta MISMA app y con la misma marca (fase posterior). En v1, rol `cliente` → acceso negado.
 - Usuario principal: Wilmer (admin). Usos: rodajes, calle entre citas, revisión rápida y también trabajo largo (cotizaciones).
 - Skills del proyecto: Impeccable 4.8.1 (+hooks en `.claude/settings.local.json`, ignorado por Git) y frontend-design (commit 41bbe19).
-- `PRODUCT.md` (plataforma android) y `DESIGN.md` (base heredada, NO aprobada) en la raíz. `.impeccable/design.json` copiado de la web.
+- `PRODUCT.md` (plataforma android) y `DESIGN.md` (APROBADO, sistema móvil oficial) en la raíz. `.impeccable/design.json` copiado de la web.
 - Al diseñar (Fase 3) cargar `.claude/skills/impeccable/reference/android.md`.
 - Hay un repo Git vacío accidental en `C:\Users\wburi\.git` (sin commits ni remoto). No tocar sin permiso de Wilmer.
 
 ## Estado actual · 2026-11-09
-**FASE 3 en curso (rama fase-3/diseno)**: decisiones de Wilmer = **tema oscuro (defecto) y claro crema a elección** (2026-11-09,
+**FASE 3 APROBADA 2026-11-09** ("DISEÑO APROBADO", etiqueta v0.1-diseno-aprobado; DESIGN.md = oficial; cambiarlo requiere consultar a Wilmer).
+**FASE 4 en curso (rama fase-4/base).**
+Fase 3: decisiones de Wilmer = **tema oscuro (defecto) y claro crema a elección** (2026-11-09,
 reemplaza "oscuro siempre"; en claro nunca rosa pequeño sobre crema → navy + marca rosa; barra inferior noche en ambos),
 inicio en pantalla "Hoy", barra inferior por rol, **Solicitudes = dirección A** (por estado). Mapa de navegación confirmado.
 Prototipo hecho: `design/index.html` (galería) + `design/pantallas/*.html` (21) + `design/proto/` (app.css, app.js, eye.js copia, fuentes).
@@ -46,8 +48,7 @@ Abrir: doble clic en `design/ABRIR-PROTOTIPO.cmd` (o `node design/servir.mjs`) �
 Capturas: `cd design/tools && npm install && npm run capturas` (Playwright 1.65.0, Chrome instalado) → `design/capturas/{oscuro,claro}/{360x800,390x844}`.
 OJO al editar con `node -e "..."` en Bash: los `$(...)`, `$$` y las comillas invertidas se interpretan; usar la herramienta Edit.
 Docs: `design/DESIGN_MOVIL.md`, `design/APROBACION.md`. Revisión: detector + critique (2 subagentes) → `design/REVISION.md`.
-Siguiente: `ALTO` hasta que Wilmer escriba exactamente `DISEÑO APROBADO`; luego etiqueta `v0.1-diseno-aprobado`, pasar
-DESIGN_MOVIL a DESIGN.md y FASE 4. Capturas en design/capturas/{oscuro,claro}/{360x800,390x844}.
+Hecho: etiqueta, DESIGN_MOVIL → DESIGN.md, fusión a main. Capturas en design/capturas/{oscuro,claro}/{360x800,390x844}.
 
 **FASE 2 CERRADA (2026-11-08)**: Wilmer aprobó alcance y prioridad P1/P2/P3 y las 3 funciones "solo web".
 Pendiente sin bloquear: decisión sobre hallazgos H1–H10 (no tocar rakun-web), validar barra inferior por rol en Fase 3,

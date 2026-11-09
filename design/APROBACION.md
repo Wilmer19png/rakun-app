@@ -1,5 +1,7 @@
 # Aprobación del diseño · RAKÜN Studio
 
+> ✅ **DISEÑO APROBADO** por Wilmer el 2026-11-09 (etiqueta `v0.1-diseno-aprobado`). Solicitudes: dirección A. Tema oscuro (defecto) y claro.
+
 > Marca cada pantalla con **[x]** si está bien o escribe al lado qué cambiar.
 > El diseño solo queda aprobado cuando escribas exactamente: **`DISEÑO APROBADO`**.
 > Capturas en `design/capturas/oscuro/` y `design/capturas/claro/`, cada una en `360x800/` y `390x844/` (mismo nombre).

@@ -1,70 +1,203 @@
 ---
 name: RAKÜN Studio
-description: Identidad heredada de RAKÜN Visual Design, punto de partida para la app móvil. La adaptación móvil se define y aprueba en la Fase 3 (design/DESIGN_MOVIL.md).
-source: "rakun-web/DESIGN.md y rakun-web/.impeccable/design.json, commit cd85fe1 (incluye revisiones 2026-10-05)"
-status: base heredada, sin adaptación móvil aprobada
+description: Sistema móvil de RAKÜN Studio (app Android del gestor de RAKÜN Visual Design). La marca grita en los bordes y se calla en el trabajo.
+status: APROBADO por Wilmer Alejandro Buriticá el 2026-11-09 ("DISEÑO APROBADO") · etiqueta v0.1-diseno-aprobado
+source: "design/DESIGN_MOVIL.md + prototipo design/ (tokens exactos en design/proto/app.css). Identidad base: rakun-web/DESIGN.md (cd85fe1)"
+themes: [oscuro (por defecto), claro (crema)]
 colors:
+  # comunes
   pink: "#FF2C68"
-  ink-0: "#010221"
-  navy: "#1B1A35"
-  navy-deep: "#14132B"
-  cream: "#F3F0EA"
-  yellow: "#FFF02B"
-  blue: "#2BCDFF"
-  mist: "#C3C0DD"
-  ink-soft: "#3C3A5C"
-  white: "#FFFFFF"
-  line-dark: "rgba(255, 255, 255, .17)"
-  line-light: "rgba(27, 26, 53, .22)"
-  line-pink: "rgba(27, 26, 53, .3)"
-  # Propuestos para la app en la Fase 3 (pendientes de DISEÑO APROBADO; ver design/DESIGN_MOVIL.md)
-  surface-1: "#0A0A2B"     # campos y filas tocadas sobre la noche
-  dim: "#9A97BD"           # texto terciario: 7,3:1 sobre #010221
-  ok: "#4FB58C"            # ganado/confirmado: el #3C8C6E de la web no pasa AA sobre navy (4,15:1)
-  propuesta: "#8B6CF0"     # estado "Propuesta" de solicitudes (ya existe en la web)
-  # Tema claro (crema), propuesto en la Fase 3
-  light-surface-2: "#E8E4DB"
-  light-surface-3: "#DCD7CC"
-  light-dim: "#5C5980"     # terciario sobre crema: 5,8:1
-  light-ok: "#17664A"      # verde sobre crema: 6,2:1
+  yellow: "#FFF02B"          # solo mundo Marca/Redes y placa del FAB
+  blue: "#2BCDFF"            # solo mundo Producción
+  navy: "#1B1A35"            # tinta sobre color; párpado y pupila del ojo
+  night: "#010221"
+  propuesta: "#8B6CF0"
+  # tema oscuro
+  dark-bg: "#010221"
+  dark-s1: "#0A0A2B"
+  dark-s2: "#14132B"
+  dark-s3: "#1B1A35"
+  dark-text: "#FFFFFF"
+  dark-text-2: "#C3C0DD"
+  dark-text-3: "#9A97BD"
+  dark-ok: "#4FB58C"
+  dark-line: "rgba(255, 255, 255, .14)"
+  dark-line-2: "rgba(255, 255, 255, .28)"
+  # tema claro (crema)
+  light-bg: "#F3F0EA"
+  light-s1: "#FFFFFF"
+  light-s2: "#E8E4DB"
+  light-s3: "#DCD7CC"
+  light-text: "#1B1A35"
+  light-text-2: "#3C3A5C"
+  light-text-3: "#5C5980"
+  light-ok: "#17664A"
+  light-line: "rgba(27, 26, 53, .16)"
+  light-line-2: "rgba(27, 26, 53, .34)"
+  offline-banner: "#C3C0DD"
 typography:
-  display: "Knuckle Down (fonts/KnuckleDown.otf), un solo peso, MAYÚSCULAS, interlineado < 1"
-  body: "Jost (lectura); peso y tracking a validar en móvil en la Fase 3"
-  mono: "JetBrains Mono (índices, metadatos, fechas, cifras)"
+  display: "Knuckle Down (assets/fonts/KnuckleDown.otf), un solo peso, MAYÚSCULAS, interlineado 0,86–0,95"
+  body: "Jost 400 (lectura) y 500 (énfasis, botones)"
+  mono: "JetBrains Mono 500 (índices, fechas, cifras tabulares)"
+  min-functional: "11sp"
 rounded:
   none: "0px"
-  round: "50% (solo iris del ojo y botón redondo)"
+  round: "50% (solo iris del ojo)"
+spacing:
+  gutter: "16dp"
+  grid: "4dp"
+  touch-min: "48dp"
+  row-min: "64dp"
+  nav-bar: "64dp"
+icons: "Material Symbols Sharp, peso 300"
 ---
 
-# Design System: RAKÜN Studio (base heredada)
+# Design System: RAKÜN Studio (app móvil) · APROBADO
 
-> **Estado:** este archivo recoge la identidad de la web tal como está hoy. **No es el diseño aprobado de la app.**
-> La adaptación real a móvil (escala tipográfica, grilla, navegación, componentes táctiles, movimiento) se define en la
-> Fase 3 en `design/DESIGN_MOVIL.md` y solo vale cuando Wilmer escriba `DISEÑO APROBADO`. Entonces este archivo se actualiza.
-> Fuente completa: `rakun-web/DESIGN.md` y la copia de `.impeccable/design.json` en este repositorio.
+> Aprobado por Wilmer el 2026-11-09. Cambiarlo requiere consultarle (regla del encargo).
+> Fuente visual exacta: `design/proto/app.css` y las capturas `design/capturas/{oscuro,claro}/`.
+> Identidad de origen: `rakun-web/DESIGN.md` (commit cd85fe1).
 
-## North Star heredado: "El ojo que te mira"
+## 1. Principio
 
-RAKÜN vende atención; su marca es un ojo vivo. La web es un pliego editorial-brutalista: campos oscuros y crema,
-líneas de 1px, índices mono, tipografía display enorme y color plano saturado.
+**La marca grita en los bordes y se calla en el trabajo.** El ojo, el isotipo, la onda y Knuckle Down gigante viven en la entrada,
+en el saludo de Hoy, en los títulos de sección y en las pantallas vacías. Las listas, fichas y formularios son sobrios, densos y rápidos:
+ahí la marca está en los detalles (el rosa de la acción, el índice mono, la línea de 1 px, el color del mundo).
 
-## Reglas de identidad que la app conserva
+Estructura **Android Material 3**: barra de navegación inferior, barra superior, hojas inferiores para editar, *snackbars* para confirmar,
+gesto Atrás del sistema. La marca entra por el tema: **radio 0**, **sin sombras difusas**, **líneas de 1 px**, tipografía propia.
 
-- **El rosa manda.** `#FF2C68` aparece en toda pantalla. Ningún tema lo reemplaza.
-- **Tinta navy.** Texto navy sobre rosa, amarillo o azul. Blanco solo sobre oscuro.
-- **Nada de rosa pequeño sobre crema.** Rosa como texto en crema solo en tamaño display.
-- **Superficie oscura** `#010221` (el fondo del isotipo); `#1B1A35` es la tinta navy.
-- **Grita y susurra.** Knuckle Down en mayúsculas para títulos, un solo peso, sin negrita ni cursiva sintéticas. Lectura en Jost. Metadatos en JetBrains Mono.
-- **Radio 0** en contenedores y botones. **Sin sombras difusas ni degradados**: la profundidad es una placa plana desplazada. Líneas de 1px.
-- **Índices mono `00`–`12`** por sección. **Colores por mundo:** Marca amarillo, Producción azul, Web rosa.
-- **Firmas:** el ojo vivo (física de resortes de `eye.js`, nunca animación por fotogramas fijos), el isotipo (`assets/rakun-isotipo.svg`), el badge, la onda (`assets/pattern-wave.svg`), los estallidos.
+## 2. Color · dos temas: **oscuro** (por defecto) y **claro** (crema, como el gestor web)
 
-## Lo que la app NO hereda tal cual (a resolver en la Fase 3)
+Se elige en **Más → Cuenta → Apariencia**: Oscuro · Claro · Como el teléfono. Se guarda en el celular.
+La entrada (splash) es siempre noche: es el momento de la marca. La **barra inferior es noche en los dos temas**,
+como el menú lateral del gestor web (contenido crema, navegación noche).
 
-- Cursor personalizado, Lenis y animaciones de scroll: no existen en móvil.
-- El riel de 64px: pasa a una franja compacta con el índice mono.
-- La intro de la web: en la app la entrada dura menos de 1,5 s y respeta "reducir movimiento".
-- Navegación de 13 secciones: barra inferior de máximo 5 destinos según permisos.
-- Arrastrar para reasignar: pasa a una hoja "Reasignar".
-- Jost 300 en pantalla pequeña: validar peso, tracking y contraste AA.
-- Principio del encargo: la marca grita en los bordes (splash, encabezados, vacíos) y se calla en listas y formularios.
+### 2.1 Tema oscuro
+
+| Token | Valor | Uso | Contraste sobre `ink-0` |
+|---|---|---|---|
+| `ink-0` | `#010221` | Fondo de toda la app | — |
+| `s1` | `#0A0A2B` | Campos, fila tocada | — |
+| `s2` | `#14132B` | Hojas inferiores, barra inferior, barra de acción | — |
+| `s3` / navy | `#1B1A35` | Tinta sobre color; plano más alto | — |
+| `pink` | `#FF2C68` | **Acción principal**, vencido, aviso, selección, índice | 5,6:1 |
+| `yellow` | `#FFF02B` | Solo mundo **Marca/Redes** y placa del FAB | 17,2:1 |
+| `blue` | `#2BCDFF` | Solo mundo **Producción** | 10,9:1 |
+| `white` | `#FFFFFF` | Texto principal | 20,4:1 |
+| `mist` | `#C3C0DD` | Texto secundario | 11,5:1 |
+| `dim` *(nuevo)* | `#9A97BD` | Texto terciario, etiquetas de campo | 7,3:1 |
+| `ok` *(nuevo)* | `#4FB58C` | Ganado, confirmado, "con acceso" | 8,1:1 (6,7:1 sobre navy) |
+| `line` | blanco 14 % | Separadores | — |
+| `line-2` | blanco 28 % | Bordes de campos y chips | — |
+
+### 2.2 Tema claro (crema)
+
+| Token | Valor | Uso | Contraste sobre crema |
+|---|---|---|---|
+| fondo | `#F3F0EA` | Crema de la marca | — |
+| `s1` | `#FFFFFF` | Campos | — |
+| `s2` | `#E8E4DB` | Hojas, barras de acción | — |
+| texto | `#1B1A35` navy | Principal | 14,8:1 |
+| secundario | `#3C3A5C` ink-soft | Texto secundario | 9,5:1 |
+| terciario *(nuevo)* | `#5C5980` | Etiquetas, metadatos | 5,8:1 |
+| `ok` *(nuevo)* | `#17664A` | Ganado, confirmado | 6,2:1 |
+
+**Regla de la marca en claro: nunca rosa pequeño sobre crema** (el rosa da 3,18:1). Por eso, en claro:
+- Lo que en oscuro es texto rosa pequeño (vencido, "2 vencidos", índice) pasa a **navy con una marca rosa**: cuadro rosa al lado, subrayado rosa de 2 px o **pastilla rosa con texto navy** (el índice de sección).
+- El rosa sigue en toda pantalla como acción (botones, FAB, aviso), relleno con tinta navy, y como palabra gigante en Knuckle Down (permitido en tamaño display).
+- Los cuadros de mundo (amarillo, azul) llevan un filo navy para verse sobre crema.
+- La franja sin conexión es lila claro `#C3C0DD` con navy en los dos temas.
+
+Reglas que se conservan de la web:
+- **Tinta navy sobre rosa, amarillo o azul** (rosa con navy: 4,67:1, pasa AA).
+- El rosa aparece en **toda** pantalla (acción, índice, barra activa).
+- Colores por **mundo**: Marca amarillo · Producción azul · Web rosa. Se muestran como un **cuadro plano de 8 px + nombre en mono**, nunca como borde izquierdo grueso.
+
+Cambio frente a la web: el verde `#3C8C6E` de "ganado" no pasa AA sobre navy (4,15:1); en la app se usa `#4FB58C`.
+
+## 3. Tipografía (en *sp*, crece con el tamaño de letra del sistema)
+
+| Rol | Fuente | Tamaño / interlínea | Uso |
+|---|---|---|---|
+| Display | Knuckle Down | 48 / 0,86 | Saludo de Hoy, entrada |
+| Headline | Knuckle Down | 34–40 / 0,9 | Título de sección (se encoge a 22 al desplazar), nombre en ficha |
+| Title | Knuckle Down | 20–24 / 0,95 | Título de hoja inferior, bloques, días de la parrilla |
+| Body | Jost **400** | 16 / 1,45 | Lectura, filas |
+| Body small | Jost 400 | 14 / 1,35 | Segunda línea de fila |
+| Label | Jost 500, MAYÚSCULAS, +0,08em | 14 | Botones |
+| Mono | JetBrains Mono 500 | 11–12, +0,04–0,08em | Índices, fechas, cifras (tabulares), etiquetas |
+
+- **Jost 300 → 400.** El 300 de la web se ve débil a 14–16 px sobre fondo oscuro; 400 mantiene el carácter geométrico y lee bien.
+- **Knuckle Down** tiene un solo peso: nunca negrita ni cursiva sintética. Solo en MAYÚSCULAS y nunca en textos de lectura.
+- **Mínimo 11 sp** para texto funcional (detector de Impeccable en verde).
+- Cifras de dinero siempre en mono tabular, para que las columnas no bailen.
+
+## 4. Grilla, espacio y toque
+
+- Margen lateral **16 dp**. Ritmo de 4 dp (4 · 8 · 12 · 16 · 24 · 32 · 48).
+- Más espacio arriba de un encabezado de grupo (24) que debajo (8).
+- **Toque mínimo 48×48 dp**; los chips de 36 dp tienen área táctil ampliada a 48.
+- Filas de lista de **64 dp** mínimo, separadas por **líneas de 1 px**, no por tarjetas.
+- Acción principal **abajo, al alcance del pulgar**: barra de acción fija (Entregar, Aprobar, Registrar pago) o FAB.
+
+## 5. Componentes
+
+| Componente | Decisión | Por qué |
+|---|---|---|
+| **Barra superior grande** | Índice mono rosa + título Knuckle Down; se encoge al desplazar | Es el riel de 64 px de la web convertido en franja |
+| **Barra superior de detalle** | Atrás + nombre en Jost 500 + 1–2 acciones | En el trabajo la marca se calla |
+| **Barra inferior** | Máx. 5 destinos **según permisos**; activo = ícono rosa relleno + barra rosa de 3 px arriba; aviso = cuadro rosa con número | Material 3; la regla por permisos está en `MAPA_NAVEGACION.md` |
+| **Fila de lista** | Título Jost 500 + línea secundaria con el mundo; a la derecha la fecha en mono y **una acción de un toque** (entregar, llamar, Maps) | El dato y la acción, sin abrir nada |
+| **Acciones de contacto** | Tres bloques de 72 dp: Llamar (rosa) · WhatsApp · Correo | "A un toque" del encargo |
+| **Hoja inferior** | Fondo `s2`, filo rosa de 3 px arriba, título Knuckle Down, botón principal fijo abajo | Editar sin perder el contexto; se cierra con Atrás |
+| **FAB** | Cuadrado rosa con **placa amarilla desplazada** 5 px | La única "placa plana desplazada" del sistema (la profundidad de la marca); uno por pantalla |
+| **Chips** | Borde de 1 px; activo = relleno blanco con tinta noche | Filtros sin competir con la acción rosa |
+| **Pestañas** | Subrayado rosa de 3 px; contador en mono | |
+| **Etiqueta de estado** | Bloque plano de color con tinta navy, mono MAYÚSCULAS | Se lee por color **y** por texto |
+| **Semáforo de métricas** | Cuadro (bien), rombo (en medio), triángulo (alerta) | No depende solo del color |
+| **Snackbar** | Blanco con tinta noche; "Deshacer" cuando aplica | Confirmación breve sin interrumpir |
+| **Íconos** | Material Symbols **Sharp**, peso 300 | Esquinas rectas como la marca; un solo estilo |
+
+## 6. Estados
+
+| Estado | Diseño |
+|---|---|
+| Cargando | Esqueleto plano de líneas, sin brillo animado |
+| Vacío | **Momento de marca**: el ojo vivo + frase en Knuckle Down con una palabra rosa + qué hacer |
+| Error | Marco rosa de 1 px, qué pasó en palabras simples, *Reintentar* |
+| Sin conexión | Franja amarilla fija: "ves lo guardado a las 9:12 a. m."; los botones de escribir se desactivan |
+| Sin permiso | Candado rosa + "No está en tus permisos" + ir a Hoy |
+| Llegó algo en vivo | Píldora rosa flotante ("1 solicitud nueva ↑"); **no mueve** la lista ni interrumpe una hoja abierta |
+
+## 7. Movimiento
+
+- **Un solo momento de autor: el ojo.** Se abre en la entrada (menos de 1,5 s) con la misma física de resortes de `eye.js`
+  (el prototipo usa una copia sin cambios), parpadea y explora en Hoy y en los vacíos. Tocarlo lo hace parpadear.
+- Todo lo demás es funcional: hojas que suben (0,35 s, curva exponencial de salida), título que se encoge, *snackbar*.
+- **Reducir movimiento**: el ojo no parpadea ni explora y los resortes se endurecen; las transiciones se vuelven instantáneas.
+
+## 8. Entrada
+
+- **Splash**: el ojo grande se abre sobre la noche, "RAKÜN" con la Ü rosa, "STUDIO" en mono y la **onda** de la marca abajo. Menos de 1,5 s.
+- **Login**: isotipo oficial + "ENTRA AL ESTUDIO." El enlace de recuperar lleva a `cuenta.html` en la web.
+- **Cuenta de cliente**: "Esta app es del equipo" con el ojo y el botón para abrir su portal web.
+
+## 9. Lo que la app NO hereda de la web y por qué
+
+| De la web | En la app | Motivo |
+|---|---|---|
+| Cursor personalizado, Lenis, animaciones de scroll | Nada | No existen en táctil; gastan batería |
+| Riel lateral de 64 px | Índice mono en la barra superior | No cabe a 360 px |
+| Intro larga una vez por sesión | Splash de menos de 1,5 s | Se abre muchas veces al día |
+| Tablas de 6–9 columnas | Filas + hoja de edición | No caben; la hoja da campos de 48 dp |
+| Arrastrar para reasignar | Hoja "Reasignar" (P2) | Arrastrar es impreciso con el pulgar |
+| Fondos crema | Tema claro opcional (crema) + oscuro por defecto | Decisión de Wilmer: elegir según el momento (noche/rodaje u oficina) |
+| Modal centrado | Hoja inferior | Patrón de Android, alcance del pulgar |
+
+## 10. Pendiente para Flutter (Fase 4)
+
+- Empaquetar Knuckle Down (`.otf`), Jost y JetBrains Mono como archivos locales.
+- Íconos: paquete de Material Symbols Sharp (a elegir y justificar con versión real de pub.dev).
+- Tema Material 3 con estos tokens como roles de color (`primary` = rosa, `onPrimary` = navy, `surface` = noche…), `shape` en 0.
+- Portar `eye.js` a Flutter con la misma física de resortes (k/c iguales) y respeto a "reducir movimiento".

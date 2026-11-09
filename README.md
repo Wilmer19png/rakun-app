@@ -152,7 +152,8 @@ La llave de Supabase que usa la app es la **publicable** (la misma de la web). L
 - **Por qué:** el encargo exige aprobar el diseño antes de tocar Flutter.
 - **Comandos:** doble clic en `design/ABRIR-PROTOTIPO.cmd` o `node design/servir.mjs` (abrir; NO con doble clic en index.html), `cd design/tools && npm install && npm run capturas` (capturas),
   `npx impeccable detect …` (revisión automática).
-- **Resultado:** ver `design/REVISION.md`. El diseño **no está aprobado** hasta que Wilmer escriba `DISEÑO APROBADO`.
+- **Resultado:** ver `design/REVISION.md`. Cambios pedidos: tema claro a elección y Solicitudes en dirección A.
+  **DISEÑO APROBADO** por Wilmer el 2026-11-09 → etiqueta `v0.1-diseno-aprobado`; `DESIGN_MOVIL.md` pasó a `DESIGN.md`.
 - **Cómo comprobarlo:** abrir http://localhost:5173 con el servidor encendido.
 
 ## 10. Estado actual y próximos pasos
@@ -160,4 +161,5 @@ La llave de Supabase que usa la app es la **publicable** (la misma de la web). L
 - ✅ Fase 0 · ambiente listo y comprobado.
 - ✅ Fase 1 · repositorio y organización.
 - ✅ Fase 2 · auditoría (`docs/AUDITORIA_GESTOR.md`). Wilmer aprobó el alcance, la prioridad P1/P2/P3 y las funciones "solo web".
-- ⏸️ Fase 3 · prototipo listo en la rama `fase-3/diseno`. **En ALTO**: espera `DISEÑO APROBADO`.
+- ✅ Fase 3 · diseño **aprobado** el 2026-11-09 (etiqueta `v0.1-diseno-aprobado`). Sistema oficial en `DESIGN.md`.
+- ⏭️ Fase 4 · base de la app en Flutter (rama `fase-4/base`).

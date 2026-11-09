@@ -1,7 +1,6 @@
 # DESIGN_MOVIL · RAKÜN Studio
 
-> Fase 3 · 2026-11-09 · **propuesta para aprobar**. Vale solo cuando Wilmer escriba `DISEÑO APROBADO`;
-> entonces pasa a `DESIGN.md` y Flutter lo copia tal cual (Fase 4).
+> Fase 3 · **APROBADO el 2026-11-09** (`DISEÑO APROBADO`). Copiado a `DESIGN.md`, que es la versión oficial; Flutter lo copia tal cual (Fase 4).
 > Fuente de verdad visual del prototipo: `design/proto/app.css`. Este documento explica el **porqué**.
 
 ## 1. Principio
