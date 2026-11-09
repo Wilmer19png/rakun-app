@@ -43,7 +43,8 @@ reemplaza "oscuro siempre"; en claro nunca rosa pequeño sobre crema → navy + 
 inicio en pantalla "Hoy", barra inferior por rol, **Solicitudes = dirección A** (por estado). Mapa de navegación confirmado.
 Prototipo hecho: `design/index.html` (galería) + `design/pantallas/*.html` (21) + `design/proto/` (app.css, app.js, eye.js copia, fuentes).
 Abrir: `node design/servir.mjs` → http://localhost:5173 (los módulos JS no cargan con file://).
-Capturas: `cd design/tools && npm install && npm run capturas` (Playwright 1.65.0, Chrome instalado) → `design/capturas/360x800|390x844`.
+Capturas: `cd design/tools && npm install && npm run capturas` (Playwright 1.65.0, Chrome instalado) → `design/capturas/{oscuro,claro}/{360x800,390x844}`.
+OJO al editar con `node -e "..."` en Bash: los `$(...)`, `$$` y las comillas invertidas se interpretan; usar la herramienta Edit.
 Docs: `design/DESIGN_MOVIL.md`, `design/APROBACION.md`. Revisión: detector + critique (2 subagentes) → `design/REVISION.md`.
 Siguiente: `ALTO` hasta que Wilmer escriba exactamente `DISEÑO APROBADO`; luego etiqueta `v0.1-diseno-aprobado`, pasar
 DESIGN_MOVIL a DESIGN.md y FASE 4. Capturas en design/capturas/{oscuro,claro}/{360x800,390x844}.

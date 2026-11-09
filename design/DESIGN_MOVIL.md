@@ -28,8 +28,8 @@ como el menú lateral del gestor web (contenido crema, navegación noche).
 | `s2` | `#14132B` | Hojas inferiores, barra inferior, barra de acción | — |
 | `s3` / navy | `#1B1A35` | Tinta sobre color; plano más alto | — |
 | `pink` | `#FF2C68` | **Acción principal**, vencido, aviso, selección, índice | 5,6:1 |
-| `yellow` | `#FFF02B` | Mundo **Marca/Redes**, "En revisión", sin conexión, placa del FAB | 17,2:1 |
-| `blue` | `#2BCDFF` | Mundo **Producción**, "En curso" | 10,9:1 |
+| `yellow` | `#FFF02B` | Solo mundo **Marca/Redes** y placa del FAB | 17,2:1 |
+| `blue` | `#2BCDFF` | Solo mundo **Producción** | 10,9:1 |
 | `white` | `#FFFFFF` | Texto principal | 20,4:1 |
 | `mist` | `#C3C0DD` | Texto secundario | 11,5:1 |
 | `dim` *(nuevo)* | `#9A97BD` | Texto terciario, etiquetas de campo | 7,3:1 |
@@ -41,19 +41,19 @@ como el menú lateral del gestor web (contenido crema, navegación noche).
 
 | Token | Valor | Uso | Contraste sobre crema |
 |---|---|---|---|
-| fondo |  | Crema de la marca | — |
-|  |  | Campos | — |
-|  |  | Hojas, barras de acción | — |
-| texto |  navy | Principal | 14,8:1 |
-| secundario |  ink-soft | | 9,5:1 |
-| terciario *(nuevo)* |  | | 5,8:1 |
-|  *(nuevo)* |  | Ganado, confirmado | 6,2:1 |
+| fondo | `#F3F0EA` | Crema de la marca | — |
+| `s1` | `#FFFFFF` | Campos | — |
+| `s2` | `#E8E4DB` | Hojas, barras de acción | — |
+| texto | `#1B1A35` navy | Principal | 14,8:1 |
+| secundario | `#3C3A5C` ink-soft | Texto secundario | 9,5:1 |
+| terciario *(nuevo)* | `#5C5980` | Etiquetas, metadatos | 5,8:1 |
+| `ok` *(nuevo)* | `#17664A` | Ganado, confirmado | 6,2:1 |
 
 **Regla de la marca en claro: nunca rosa pequeño sobre crema** (el rosa da 3,18:1). Por eso, en claro:
 - Lo que en oscuro es texto rosa pequeño (vencido, "2 vencidos", índice) pasa a **navy con una marca rosa**: cuadro rosa al lado, subrayado rosa de 2 px o **pastilla rosa con texto navy** (el índice de sección).
 - El rosa sigue en toda pantalla como acción (botones, FAB, aviso), relleno con tinta navy, y como palabra gigante en Knuckle Down (permitido en tamaño display).
 - Los cuadros de mundo (amarillo, azul) llevan un filo navy para verse sobre crema.
-- La franja sin conexión es lila claro  con navy en los dos temas.
+- La franja sin conexión es lila claro `#C3C0DD` con navy en los dos temas.
 
 Reglas que se conservan de la web:
 - **Tinta navy sobre rosa, amarillo o azul** (rosa con navy: 4,67:1, pasa AA).
