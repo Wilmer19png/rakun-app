@@ -1,0 +1,100 @@
+{
+  "origen": "rakun-web/app/ubicacion.js",
+  "casos": [
+    [
+      "Pereira, Risaralda",
+      {
+        "dep": "Risaralda",
+        "city": "Pereira"
+      }
+    ],
+    [
+      "Manizales, Caldas",
+      {
+        "dep": "Caldas",
+        "city": "Manizales"
+      }
+    ],
+    [
+      "Bogotá",
+      {
+        "dep": "Bogotá D.C.",
+        "city": "Bogotá"
+      }
+    ],
+    [
+      "Bogotá D.C.",
+      {
+        "dep": "Bogotá D.C.",
+        "city": "Bogotá"
+      }
+    ],
+    [
+      "Bogotá, Bogotá D.C.",
+      {
+        "dep": "Bogotá D.C.",
+        "city": "Bogotá"
+      }
+    ],
+    [
+      "Ecuador",
+      {
+        "dep": "Fuera de Colombia",
+        "city": "Ecuador"
+      }
+    ],
+    [
+      "Otro país",
+      {
+        "dep": "Fuera de Colombia",
+        "city": "Otro país"
+      }
+    ],
+    [
+      "Medellín",
+      null
+    ],
+    [
+      "medellín, antioquia",
+      null
+    ],
+    [
+      "Pereira,Risaralda",
+      null
+    ],
+    [
+      "",
+      null
+    ],
+    [
+      null,
+      null
+    ],
+    [
+      "  Leticia, Amazonas  ",
+      {
+        "dep": "Amazonas",
+        "city": "Leticia"
+      }
+    ],
+    [
+      "Inventada, Caldas",
+      null
+    ],
+    [
+      "Carmen de Viboral, Antioquia",
+      null
+    ],
+    [
+      "El Carmen de Viboral, Antioquia",
+      {
+        "dep": "Antioquia",
+        "city": "El Carmen de Viboral"
+      }
+    ],
+    [
+      "Fuera de Colombia",
+      null
+    ]
+  ]
+}

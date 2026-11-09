@@ -177,7 +177,7 @@ class _Rejilla extends StatelessWidget {
                     const SizedBox(height: 20),
                     Text(infoSecciones[claves[i]]!.titulo, style: RkType.bodyMedio.copyWith(fontSize: 18, color: c.texto)),
                     const SizedBox(height: 4),
-                    Text(infoSecciones[claves[i]]!.prioridad == 'P1' ? 'Llega con P1' : 'Llega con P2', style: RkType.small.copyWith(fontSize: 13, color: c.texto3)),
+                    Text(seccionesListas.contains(claves[i]) ? 'Abrir' : 'Llega con ${infoSecciones[claves[i]]!.prioridad}', style: RkType.small.copyWith(fontSize: 13, color: c.texto3)),
                   ]),
                 ),
               ),

@@ -22,6 +22,7 @@ dependencies:
   shared_preferences: ^2.5.6       # guardar el tema elegido (oscuro/claro/teléfono)
   flutter_svg: ^2.3.2              # isotipo oficial en SVG (paquete de flutter.dev)
   url_launcher: ^6.3.3             # llamar, WhatsApp, Maps y abrir el portal web (paquete de flutter.dev)
+  share_plus: ^13.3.1              # hoja "Compartir" de Android para el enlace de acceso (paquete de fluttercommunity)
 
 dev_dependencies:
   flutter_test:

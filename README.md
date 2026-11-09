@@ -248,6 +248,20 @@ La llave `service_role`/secreta **nunca** va en la app: si alguien la pone, la a
   en el emulador con datos reales: lista y ficha, y **cambio de estado de una solicitud PRUEBA APP desde la app** (pasó a Reunión).
   No se probó crear accesos reales (regla: nada de invitaciones reales de prueba).
 
+### 2026-11-09 · Fase 6 · 02 Clientes
+- **Qué se hizo:** lista con buscador y filtro Todos / Con acceso / Sin acceso, mundos de cada cliente (sacados de sus
+  proyectos), llamar a un toque, "Crear acceso" en la fila; ficha en hoja con Llamar · WhatsApp · Correo, datos y
+  "Crear acceso / Nuevo enlace"; "+" → Nuevo cliente (nombre, marca, correo, WhatsApp, departamento → ciudad con buscador)
+  que al guardar abre el acceso, igual que la web. El enlace de acceso ahora también se comparte con la hoja de Android
+  (`share_plus` 13.3.1). Eliminar cliente queda en la web (P3).
+- **Paridad:** la lista de 33 departamentos / 1104 municipios se **genera** desde `colombia.js` de la web
+  (`node tool/generar_colombia.mjs`); `parse` de `ubicacion.js` probado contra el original (`test/paridad/ubicacion.json`).
+- **Ajustes de diseño:** botones Llamar · WhatsApp · Correo pasan a un componente común (`RkAcciones`, ícono arriba:
+  no parte palabras en 360 dp); las hojas inferiores tapan la barra de abajo; Más dice "Abrir" en lo que ya funciona.
+- **Probado:** 87 pruebas; capturas de ejemplo `52-clientes`, `53-nuevo-cliente`, `54-cliente` (dos temas); en el emulador
+  con datos reales: lista (2 clientes, mundos correctos) y **crear un cliente PRUEBA APP desde la app** (se guardó como
+  "Manizales, Caldas" y abrió el acceso; no se creó el acceso). No se probó en el teléfono el aviso de correo repetido.
+
 ## 10. Estado actual y próximos pasos
 
 - ✅ Fase 0 · ambiente listo y comprobado.
@@ -256,4 +270,4 @@ La llave `service_role`/secreta **nunca** va en la app: si alguien la pone, la a
 - ✅ Fase 3 · diseño **aprobado** el 2026-11-09 (etiqueta `v0.1-diseno-aprobado`). Sistema oficial en `DESIGN.md`.
 - ✅ Fase 4 · base de la app (etiqueta `v0.2-base`), probada con la cuenta real de Wilmer.
 - ✅ Fase 5 · en vivo (etiqueta `v0.3-sync`, medido < 1 s). La parte web queda en rama local de rakun-web, sin publicar.
-- ⏭️ Fase 6 · montaje por secciones (P1), empezando por Solicitudes.
+- ⏭️ Fase 6 · montaje por secciones (P1): ✅ Solicitudes · ✅ Clientes · siguen Proyectos, Hoy, Agenda, Parrillas, Mensajes.

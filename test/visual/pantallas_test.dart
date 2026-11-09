@@ -18,6 +18,9 @@ import 'package:app/features/mas/presentation/mas_page.dart';
 import 'package:app/features/seccion/presentation/seccion_pendiente_page.dart';
 import 'package:app/core/supabase/equipo.dart';
 import 'package:app/core/sync/datos.dart';
+import 'package:app/features/clientes/data/clientes_repo.dart';
+import 'package:app/features/clientes/domain/cliente.dart';
+import 'package:app/features/clientes/presentation/clientes_page.dart';
 import 'package:app/features/solicitudes/data/solicitudes_repo.dart';
 import 'package:app/features/solicitudes/domain/solicitud.dart';
 import 'package:app/features/solicitudes/presentation/ficha_solicitud_page.dart';
@@ -49,6 +52,28 @@ final _extraSolicitudes = [
   equipoProvider.overrideWith((ref) async => [_ejemploAdmin]),
 ];
 
+/// Clientes DE EJEMPLO.
+Map<String, dynamic> _cli(String id, String nombre, {String? marca, String? ciudad, bool acceso = false, String? tel = '3000000000'}) => {
+      'id': id, 'created_at': '2026-10-02T15:00:00Z', 'name': nombre, 'company': marca, 'email': '$id@ejemplo.com', 'phone': tel, 'city': ciudad,
+      'user_id': acceso ? 'u-$id' : null,
+    };
+final _clientes = [
+  _cli('c1', 'Ana Ejemplo', marca: 'Marca Ejemplo', ciudad: 'Manizales, Caldas', acceso: true),
+  _cli('c2', 'Dr. Ejemplo Pérez', marca: 'Consultorio Ejemplo', ciudad: 'Medellín, Antioquia'),
+  _cli('c3', 'Colectivo Ejemplo', marca: 'Videoclip Ejemplo', ciudad: 'Bogotá, Bogotá D.C.', acceso: true),
+  _cli('c4', 'Mentor Ejemplo', ciudad: 'Pereira, Risaralda', acceso: true, tel: null),
+  _cli('c5', 'Tienda Ejemplo', ciudad: 'Ecuador'),
+].map(Cliente.desdeFila).toList();
+final _extraClientes = [
+  clientesProvider.overrideWith((ref) async => Datos(_clientes)),
+  mundosPorClienteProvider.overrideWith((ref) async => {
+        'c1': {Mundo.marca, Mundo.produccion},
+        'c2': {Mundo.web},
+        'c3': {Mundo.produccion},
+        'c4': {Mundo.marca},
+      }),
+];
+
 Future<void> _fuentes() async {
   Future<void> f(String familia, String ruta) async => (FontLoader(familia)..addFont(rootBundle.load(ruta))).load();
   await f('KnuckleDown', 'assets/fonts/KnuckleDown.otf');
@@ -66,7 +91,7 @@ void main() {
     await _fuentes();
   });
 
-  Future<void> captura(WidgetTester tester, String nombre, Widget pantalla, {required bool claro, Perfil? perfil, int ms = 1400, List extra = const []}) async {
+  Future<void> captura(WidgetTester tester, String nombre, Widget pantalla, {required bool claro, Perfil? perfil, int ms = 1400, List extra = const [], Future<void> Function(WidgetTester)? accion}) async {
     tester.view.physicalSize = const Size(1080, 2400);
     tester.view.devicePixelRatio = 3;
     tester.view.padding = const FakeViewPadding(top: 72, bottom: 48); // barra de estado y gestos
@@ -93,6 +118,12 @@ void main() {
     for (var i = 0; i < ms ~/ 16; i++) {
       await tester.pump(const Duration(milliseconds: 16));
     }
+    if (accion != null) {
+      await accion(tester);
+      for (var i = 0; i < 40; i++) {
+        await tester.pump(const Duration(milliseconds: 16));
+      }
+    }
     await expectLater(find.byType(MaterialApp), matchesGoldenFile('goldens/$nombre-${claro ? 'claro' : 'oscuro'}.png'));
     await tester.pumpWidget(const SizedBox()); // suelta el ojo y sus temporizadores
     await tester.pump(const Duration(seconds: 1));
@@ -116,6 +147,14 @@ void main() {
         (t) => captura(t, '50-solicitudes', _conBarra(_ejemploAdmin, Destino.solicitudes, const SolicitudesPage()), claro: claro, perfil: _ejemploAdmin, extra: _extraSolicitudes));
     testWidgets('ficha de solicitud ${claro ? 'claro' : 'oscuro'}',
         (t) => captura(t, '51-solicitud', const FichaSolicitudPage(id: 'ej1'), claro: claro, perfil: _ejemploAdmin, extra: _extraSolicitudes));
+    testWidgets('clientes ${claro ? 'claro' : 'oscuro'}',
+        (t) => captura(t, '52-clientes', _conBarra(_ejemploAdmin, Destino.clientes, const ClientesPage()), claro: claro, perfil: _ejemploAdmin, extra: _extraClientes));
+    testWidgets('nuevo cliente ${claro ? 'claro' : 'oscuro'}',
+        (t) => captura(t, '53-nuevo-cliente', _conBarra(_ejemploAdmin, Destino.clientes, const ClientesPage()), claro: claro, perfil: _ejemploAdmin, extra: _extraClientes,
+            accion: (t) => t.tap(find.bySemanticsLabel('Nuevo cliente'))));
+    testWidgets('ficha de cliente ${claro ? 'claro' : 'oscuro'}',
+        (t) => captura(t, '54-cliente', _conBarra(_ejemploAdmin, Destino.clientes, const ClientesPage()), claro: claro, perfil: _ejemploAdmin, extra: _extraClientes,
+            accion: (t) => t.tap(find.text('Marca Ejemplo'))));
     testWidgets('más ${claro ? 'claro' : 'oscuro'}',
         (t) => captura(t, '30-mas', _conBarra(_ejemploAdmin, Destino.mas, const MasPage()), claro: claro, perfil: _ejemploAdmin));
     testWidgets('galería ${claro ? 'claro' : 'oscuro'}',
