@@ -78,6 +78,13 @@ class MasPage extends ConsumerWidget {
               final_: Padding(padding: const EdgeInsets.only(right: 12), child: Icon(Symbols.palette_sharp, color: c.texto3)),
               onTap: () => context.go('/mas/galeria'),
             ),
+          if (perfil?.esAdmin == true)
+            RkFila(
+              titulo: 'En vivo · diagnóstico',
+              subtitulo: const Text('Estado de la conexión y avisos recibidos'),
+              final_: Padding(padding: const EdgeInsets.only(right: 12), child: Icon(Symbols.sensors_sharp, color: c.texto3)),
+              onTap: () => context.go('/mas/en-vivo'),
+            ),
           RkFila(
             titulo: 'Salir',
             final_: Padding(padding: const EdgeInsets.only(right: 12), child: Icon(Symbols.logout_sharp, color: c.esClaro ? c.texto : RkColors.rosa)),
