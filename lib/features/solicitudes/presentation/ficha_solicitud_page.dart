@@ -7,6 +7,7 @@ import 'package:material_symbols_icons/symbols.dart';
 
 import '../../../core/errores/errores.dart';
 import '../../../core/permisos/permisos.dart';
+import '../../../core/supabase/avatar.dart';
 import '../../../core/supabase/equipo.dart';
 import '../../../core/supabase/sesion.dart';
 import '../../../core/sync/en_vivo.dart';
@@ -69,7 +70,7 @@ class _FichaState extends ConsumerState<FichaSolicitudPage> {
         titulo: 'Estado',
         cuerpo: Column(children: [
           for (final e in EstadoSolicitud.values)
-            _Opcion(
+            RkOpcion(
               marcada: e == s.estado,
               onTap: () async {
                 Navigator.pop(context);
@@ -84,7 +85,7 @@ class _FichaState extends ConsumerState<FichaSolicitudPage> {
         context,
         titulo: 'A cargo',
         cuerpo: Column(children: [
-          _Opcion(
+          RkOpcion(
             marcada: s.aCargo == null,
             onTap: () async {
               Navigator.pop(context);
@@ -93,13 +94,13 @@ class _FichaState extends ConsumerState<FichaSolicitudPage> {
             child: Text('Sin asignar', style: RkType.body.copyWith(color: RkColors.of(context).texto)),
           ),
           for (final p in equipo)
-            _Opcion(
+            RkOpcion(
               marcada: p.id == s.aCargo,
               onTap: () async {
                 Navigator.pop(context);
                 if (p.id != s.aCargo) await _cambiar(s, {'assigned_to': p.id}, 'A cargo: ${p.primerNombre}');
               },
-              child: Row(children: [_Avatar(p), const SizedBox(width: 12), Text(p.nombre.isEmpty ? (p.email ?? '') : p.nombre, style: RkType.body.copyWith(color: RkColors.of(context).texto))]),
+              child: Row(children: [avatarDe(p), const SizedBox(width: 12), Text(p.nombre.isEmpty ? (p.email ?? '') : p.nombre, style: RkType.body.copyWith(color: RkColors.of(context).texto))]),
             ),
         ]),
       );
@@ -230,7 +231,7 @@ class _FichaState extends ConsumerState<FichaSolicitudPage> {
           onTap: () => _elegirResponsable(s, equipo),
           child: responsable == null
               ? Text('Sin asignar', style: RkType.bodyMedio.copyWith(color: c.texto2))
-              : Row(children: [_Avatar(responsable, chico: true), const SizedBox(width: 8), Text(responsable.primerNombre, style: RkType.bodyMedio.copyWith(color: c.texto))]),
+              : Row(children: [avatarDe(responsable, chico: true), const SizedBox(width: 8), Text(responsable.primerNombre, style: RkType.bodyMedio.copyWith(color: c.texto))]),
         ),
         _Dato('WhatsApp', Text(telefonoLegible(s.telefono), style: RkType.mono12.copyWith(fontSize: 14, color: c.texto))),
         _Dato('Correo', Text(s.correo)),
@@ -352,51 +353,6 @@ class _Dato extends StatelessWidget {
         const SizedBox(width: 12),
         Expanded(child: DefaultTextStyle.merge(style: RkType.body.copyWith(color: c.texto), child: valor)),
       ]),
-    );
-  }
-}
-
-class _Opcion extends StatelessWidget {
-  const _Opcion({required this.child, required this.marcada, required this.onTap});
-  final Widget child;
-  final bool marcada;
-  final VoidCallback onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    final c = RkColors.of(context);
-    return Semantics(
-      selected: marcada,
-      button: true,
-      child: InkWell(
-        onTap: onTap,
-        child: Container(
-          constraints: const BoxConstraints(minHeight: 56),
-          decoration: BoxDecoration(border: Border(bottom: BorderSide(color: c.linea))),
-          // Align: la etiqueta conserva su tamaño (no se estira a todo el ancho)
-          child: Row(children: [Expanded(child: Align(alignment: Alignment.centerLeft, child: child)), if (marcada) const Icon(Symbols.check_sharp, color: RkColors.rosa)]),
-        ),
-      ),
-    );
-  }
-}
-
-class _Avatar extends StatelessWidget {
-  const _Avatar(this.p, {this.chico = false});
-  final Perfil p;
-  final bool chico;
-
-  @override
-  Widget build(BuildContext context) {
-    final hex = p.color;
-    final color = hex != null && RegExp(r'^#[0-9a-fA-F]{6}$').hasMatch(hex) ? Color(int.parse('FF${hex.substring(1)}', radix: 16)) : RkColors.lila;
-    final lado = chico ? 24.0 : 32.0;
-    return Container(
-      width: lado,
-      height: lado,
-      color: color,
-      alignment: Alignment.center,
-      child: Text(iniciales(p.nombre.isEmpty ? p.email : p.nombre), style: RkType.mono11.copyWith(color: RkColors.navy, fontWeight: FontWeight.w600)),
     );
   }
 }

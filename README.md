@@ -262,6 +262,18 @@ La llave `service_role`/secreta **nunca** va en la app: si alguien la pone, la a
   con datos reales: lista (2 clientes, mundos correctos) y **crear un cliente PRUEBA APP desde la app** (se guardó como
   "Manizales, Caldas" y abrió el acceso; no se creó el acceso). No se probó en el teléfono el aviso de correo repetido.
 
+### 2026-11-09 · Fase 6 · 03 Proyectos (rama fase-6/proyectos, sin fusionar)
+- **Qué se hizo:** lista con filtro Activos / Redes / Producción / Web / Míos / Terminados, buscador, etapa y "N vencidos";
+  ficha con etapa (la ve el cliente), estado y a cargo en hojas, fechas y enlace a su cotización; entregables como
+  tarjetas que se editan en una hoja (nombre, tipo, fecha límite, lo hace, lo revisa, estado, brief, ver entrega, quitar);
+  "+" nuevo entregable; cargar la plantilla del mundo; "+" nuevo proyecto (cliente, tipo, nombre, plan, fechas, a cargo).
+  «Dinero del proyecto» y la pestaña Cotizaciones llegan con P2. Parrilla del proyecto llega con 04 Parrillas.
+- **Paridad:** etapas, plantillas, tipos y estados se **generan** desde content.js y quote-sources.js
+  (etapas 3 mundos · plantillas 17 · tipos 8 · estados 4); fechas límite a las 6 p. m. como la web; plazos (vencido/hoy/semana) como .
+- **Común:** ,  (con buscador), , ; Solicitudes y Clientes los usan.
+- **Probado:** 98 pruebas; capturas , ,  (dos temas, reloj fijo).
+  **Falta** la prueba en el emulador con datos reales (se detuvo por poca memoria del computador).
+
 ## 10. Estado actual y próximos pasos
 
 - ✅ Fase 0 · ambiente listo y comprobado.
@@ -270,4 +282,4 @@ La llave `service_role`/secreta **nunca** va en la app: si alguien la pone, la a
 - ✅ Fase 3 · diseño **aprobado** el 2026-11-09 (etiqueta `v0.1-diseno-aprobado`). Sistema oficial en `DESIGN.md`.
 - ✅ Fase 4 · base de la app (etiqueta `v0.2-base`), probada con la cuenta real de Wilmer.
 - ✅ Fase 5 · en vivo (etiqueta `v0.3-sync`, medido < 1 s). La parte web queda en rama local de rakun-web, sin publicar.
-- ⏭️ Fase 6 · montaje por secciones (P1): ✅ Solicitudes · ✅ Clientes · siguen Proyectos, Hoy, Agenda, Parrillas, Mensajes.
+- ⏭️ Fase 6 · montaje por secciones (P1): ✅ Solicitudes · ✅ Clientes · 🟡 Proyectos (falta emulador) · siguen Hoy, Agenda, Parrillas, Mensajes.

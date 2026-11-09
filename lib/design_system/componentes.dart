@@ -506,3 +506,145 @@ class RkAcciones extends StatelessWidget {
     );
   }
 }
+
+/* ---------------- Opción de una hoja (estado, etapa, persona…) ---------------- */
+class RkOpcion extends StatelessWidget {
+  const RkOpcion({super.key, required this.child, required this.marcada, required this.onTap});
+  final Widget child;
+  final bool marcada;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final c = RkColors.of(context);
+    return Semantics(
+      selected: marcada,
+      button: true,
+      child: InkWell(
+        onTap: onTap,
+        child: Container(
+          constraints: const BoxConstraints(minHeight: 56),
+          decoration: BoxDecoration(border: Border(bottom: BorderSide(color: c.linea))),
+          // Align: la etiqueta conserva su tamaño (no se estira a todo el ancho)
+          child: Row(children: [
+            Expanded(child: Align(alignment: Alignment.centerLeft, child: child)),
+            if (marcada) Icon(Symbols.check_sharp, color: c.rosaTexto),
+          ]),
+        ),
+      ),
+    );
+  }
+}
+
+/// Hoja con una lista de opciones; devuelve la elegida (null si la cierran).
+/// Con más de 8 opciones trae buscador (sin tildes: "bogota" encuentra "Bogotá").
+Future<T?> elegirEnHoja<T>(
+  BuildContext context, {
+  required String titulo,
+  required List<(T, String)> opciones,
+  T? actual,
+  String? ayuda,
+  Widget Function(T valor, String nombre)? dibujar,
+}) =>
+    mostrarHoja<T>(context, titulo: titulo, cuerpo: _Opciones<T>(opciones: opciones, actual: actual, ayuda: ayuda, dibujar: dibujar));
+
+class _Opciones<T> extends StatefulWidget {
+  const _Opciones({required this.opciones, this.actual, this.ayuda, this.dibujar});
+  final List<(T, String)> opciones;
+  final T? actual;
+  final String? ayuda;
+  final Widget Function(T valor, String nombre)? dibujar;
+
+  @override
+  State<_Opciones<T>> createState() => _OpcionesState<T>();
+}
+
+class _OpcionesState<T> extends State<_Opciones<T>> {
+  String _q = '';
+
+  static String _plano(String s) => s
+      .toLowerCase()
+      .replaceAll(RegExp('[áà]'), 'a')
+      .replaceAll(RegExp('[éè]'), 'e')
+      .replaceAll(RegExp('[íì]'), 'i')
+      .replaceAll(RegExp('[óò]'), 'o')
+      .replaceAll(RegExp('[úùü]'), 'u')
+      .replaceAll('ñ', 'n');
+
+  @override
+  Widget build(BuildContext context) {
+    final c = RkColors.of(context);
+    final q = _plano(_q.trim());
+    final lista = widget.opciones.where((o) => q.isEmpty || _plano(o.$2).contains(q)).toList();
+    return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+      if (widget.ayuda != null) Padding(padding: const EdgeInsets.only(bottom: 8), child: Text(widget.ayuda!, style: RkType.small.copyWith(color: c.texto2))),
+      if (widget.opciones.length > 8)
+        Padding(
+          padding: const EdgeInsets.only(bottom: 8),
+          child: TextField(
+            onChanged: (v) => setState(() => _q = v),
+            textInputAction: TextInputAction.search,
+            decoration: const InputDecoration(hintText: 'Buscar…', prefixIcon: Icon(Symbols.search_sharp)),
+          ),
+        ),
+      for (final o in lista)
+        RkOpcion(
+          marcada: o.$1 == widget.actual,
+          onTap: () => Navigator.pop(context, o.$1),
+          child: widget.dibujar?.call(o.$1, o.$2) ?? Text(o.$2, style: RkType.body.copyWith(color: c.texto)),
+        ),
+      if (lista.isEmpty) Padding(padding: const EdgeInsets.symmetric(vertical: 16), child: Text('Nada con «$_q».', style: RkType.body.copyWith(color: c.texto2))),
+    ]);
+  }
+}
+
+/* ---------------- Campo que se elige en una hoja (no se escribe) ---------------- */
+class RkCampoElegible extends StatelessWidget {
+  const RkCampoElegible({super.key, required this.texto, this.vacio = false, this.onTap});
+  final String texto;
+  final bool vacio; // texto en gris: todavía no se eligió nada
+  final VoidCallback? onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final c = RkColors.of(context);
+    return Semantics(
+      button: true,
+      enabled: onTap != null,
+      child: InkWell(
+        onTap: onTap,
+        child: Container(
+          constraints: const BoxConstraints(minHeight: 52),
+          padding: const EdgeInsets.symmetric(horizontal: 12),
+          decoration: BoxDecoration(border: Border.all(color: onTap == null ? c.linea : c.linea2)),
+          child: Row(children: [
+            Expanded(child: Text(texto, maxLines: 1, overflow: TextOverflow.ellipsis, style: RkType.body.copyWith(color: vacio ? c.texto3 : c.texto))),
+            Icon(Symbols.expand_more_sharp, size: 20, color: onTap == null ? c.texto3 : c.texto2),
+          ]),
+        ),
+      ),
+    );
+  }
+}
+
+/* ---------------- Avatar: cuadrado con iniciales sobre el color de la persona ---------------- */
+class RkAvatar extends StatelessWidget {
+  const RkAvatar({super.key, required this.iniciales, this.colorHex, this.chico = false});
+  final String iniciales;
+  final String? colorHex;
+  final bool chico;
+
+  @override
+  Widget build(BuildContext context) {
+    final hex = colorHex;
+    final color = hex != null && RegExp(r'^#[0-9a-fA-F]{6}$').hasMatch(hex) ? Color(int.parse('FF${hex.substring(1)}', radix: 16)) : RkColors.lila;
+    final lado = chico ? 24.0 : 32.0;
+    return Container(
+      width: lado,
+      height: lado,
+      color: color,
+      alignment: Alignment.center,
+      child: Text(iniciales, style: RkType.mono11.copyWith(color: RkColors.navy, fontWeight: FontWeight.w600)),
+    );
+  }
+}

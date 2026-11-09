@@ -21,6 +21,10 @@ import 'package:app/core/sync/datos.dart';
 import 'package:app/features/clientes/data/clientes_repo.dart';
 import 'package:app/features/clientes/domain/cliente.dart';
 import 'package:app/features/clientes/presentation/clientes_page.dart';
+import 'package:app/features/proyectos/data/proyectos_repo.dart';
+import 'package:app/features/proyectos/domain/proyecto.dart';
+import 'package:app/features/proyectos/presentation/ficha_proyecto_page.dart';
+import 'package:app/features/proyectos/presentation/proyectos_page.dart';
 import 'package:app/features/solicitudes/data/solicitudes_repo.dart';
 import 'package:app/features/solicitudes/domain/solicitud.dart';
 import 'package:app/features/solicitudes/presentation/ficha_solicitud_page.dart';
@@ -74,6 +78,42 @@ final _extraClientes = [
       }),
 ];
 
+/// Proyectos y entregables DE EJEMPLO (fechas relativas a hoy, así la etiqueta "vencido" no cambia con el tiempo).
+final _hoy = DateTime(2026, 11, 9); // reloj fijo de las etiquetas de fecha (ver setUpAll)
+final _equipoEj = [
+  _ejemploAdmin,
+  const Perfil(id: 'ej-sofia', rol: 'equipo', nombre: 'Sofía Ejemplo', color: '#2BCDFF'),
+  const Perfil(id: 'ej-alex', rol: 'equipo', nombre: 'Alexander Ejemplo', color: '#FFF02B'),
+];
+Map<String, dynamic> _pj(String id, String nombre, String mundo, String cliente, String etapa, {String? plan, String estado = 'activo', String? dueno}) => {
+      'id': id, 'client_id': 'c-$id', 'world': mundo, 'name': nombre, 'status': estado, 'stage': etapa, 'plan': plan,
+      'owner_id': dueno, 'clients': {'name': cliente}, 'start_date': '2026-11-01',
+    };
+final _proyectos = [
+  _pj('p1', 'Redes · noviembre', 'marca', 'Marca Ejemplo', 'Guiones', plan: 'Equilibrio', dueno: 'ejemplo-admin'),
+  _pj('p2', 'Página de citas', 'web', 'Consultorio Ejemplo', 'Wireframe', dueno: 'ej-sofia'),
+  _pj('p3', 'Videoclip «Ejemplo»', 'produccion', 'Colectivo Ejemplo', 'Postproducción', dueno: 'ej-alex'),
+  _pj('p4', 'Redes · octubre', 'marca', 'Mentor Ejemplo', 'Publicación', plan: 'Ritmo', estado: 'pausado', dueno: 'ejemplo-admin'),
+].map(Proyecto.desdeFila).toList();
+Map<String, dynamic> _ent(String id, String titulo, String tipo, String estado, int dias, {String? hace, String? revisa}) => {
+      'id': id, 'project_id': 'p1', 'title': titulo, 'kind': tipo, 'status': estado, 'assignee_id': hace, 'reviewer_id': revisa,
+      'due_at': _hoy.add(Duration(days: dias, hours: 18)).toUtc().toIso8601String(), 'brief_url': 'https://docs.google.com/ejemplo',
+    };
+final _entregables = [
+  _ent('d1', 'Estrategia y parrilla del mes', 'estrategia', 'aprobado', -8, hace: 'ejemplo-admin'),
+  _ent('d2', 'Guiones del mes', 'guion', 'en_curso', -1, hace: 'ej-sofia', revisa: 'ejemplo-admin'),
+  _ent('d3', 'Carruseles del mes', 'diseno', 'por_hacer', 0, hace: 'ej-sofia'),
+  _ent('d4', 'Sesión de grabación', 'grabacion', 'por_hacer', 4, hace: 'ej-alex'),
+  _ent('d5', 'Ediciones del mes', 'edicion', 'en_revision', 13, hace: 'ej-alex', revisa: 'ejemplo-admin'),
+].map(Entregable.desdeFila).toList();
+final _extraProyectos = [
+  proyectosProvider.overrideWith((ref) async => Datos(_proyectos)),
+  pendientesPorProyectoProvider.overrideWith((ref) async => {'p1': _entregables.where((e) => e.estado != EstadoEntregable.aprobado).toList()}),
+  proyectoProvider.overrideWith((ref, id) async => Datos(_proyectos.firstWhere((p) => p.id == id))),
+  entregablesProvider.overrideWith((ref, id) async => Datos(id == 'p1' ? _entregables : <Entregable>[])),
+  equipoProvider.overrideWith((ref) async => _equipoEj),
+];
+
 Future<void> _fuentes() async {
   Future<void> f(String familia, String ruta) async => (FontLoader(familia)..addFont(rootBundle.load(ruta))).load();
   await f('KnuckleDown', 'assets/fonts/KnuckleDown.otf');
@@ -89,6 +129,7 @@ void main() {
   setUpAll(() async {
     TestWidgetsFlutterBinding.ensureInitialized();
     await _fuentes();
+    reloj = () => DateTime(2026, 11, 9, 14); // lunes 9 nov, 2 p. m.
   });
 
   Future<void> captura(WidgetTester tester, String nombre, Widget pantalla, {required bool claro, Perfil? perfil, int ms = 1400, List extra = const [], Future<void> Function(WidgetTester)? accion}) async {
@@ -155,6 +196,13 @@ void main() {
     testWidgets('ficha de cliente ${claro ? 'claro' : 'oscuro'}',
         (t) => captura(t, '54-cliente', _conBarra(_ejemploAdmin, Destino.clientes, const ClientesPage()), claro: claro, perfil: _ejemploAdmin, extra: _extraClientes,
             accion: (t) => t.tap(find.text('Marca Ejemplo'))));
+    testWidgets('proyectos ${claro ? 'claro' : 'oscuro'}',
+        (t) => captura(t, '60-proyectos', _conBarra(_ejemploAdmin, Destino.proyectos, const ProyectosPage()), claro: claro, perfil: _ejemploAdmin, extra: _extraProyectos));
+    testWidgets('ficha de proyecto ${claro ? 'claro' : 'oscuro'}',
+        (t) => captura(t, '61-proyecto', const FichaProyectoPage(id: 'p1'), claro: claro, perfil: _ejemploAdmin, extra: _extraProyectos));
+    testWidgets('entregable ${claro ? 'claro' : 'oscuro'}',
+        (t) => captura(t, '62-entregable', const FichaProyectoPage(id: 'p1'), claro: claro, perfil: _ejemploAdmin, extra: _extraProyectos,
+            accion: (t) => t.tap(find.text('Guiones del mes'))));
     testWidgets('más ${claro ? 'claro' : 'oscuro'}',
         (t) => captura(t, '30-mas', _conBarra(_ejemploAdmin, Destino.mas, const MasPage()), claro: claro, perfil: _ejemploAdmin));
     testWidgets('galería ${claro ? 'claro' : 'oscuro'}',

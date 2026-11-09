@@ -11,6 +11,8 @@ import '../../features/diagnostico/presentation/en_vivo_page.dart';
 import '../../features/galeria/presentation/galeria_page.dart';
 import '../../features/hoy/presentation/hoy_page.dart';
 import '../../features/mas/presentation/mas_page.dart';
+import '../../features/proyectos/presentation/ficha_proyecto_page.dart';
+import '../../features/proyectos/presentation/proyectos_page.dart';
 import '../../features/seccion/presentation/seccion_pendiente_page.dart';
 import '../../features/solicitudes/presentation/ficha_solicitud_page.dart';
 import '../../features/solicitudes/presentation/solicitudes_page.dart';
@@ -89,6 +91,7 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(path: '/recuperar', builder: (_, _) => const RecuperarPage()),
       GoRoute(path: '/sin-acceso', builder: (_, _) => const SinAccesoPage()),
       // fichas: encima de la lista, sin barra inferior (como el diseño); Atrás vuelve a la lista
+      GoRoute(path: '/proyectos/:id', builder: (_, s) => FichaProyectoPage(id: s.pathParameters['id']!)),
       GoRoute(path: '/solicitudes/:id', builder: (_, s) => FichaSolicitudPage(id: s.pathParameters['id']!)),
       ShellRoute(
         builder: (context, state, child) => AppShell(ubicacion: state.matchedLocation, child: child),
@@ -97,7 +100,7 @@ final routerProvider = Provider<GoRouter>((ref) {
           GoRoute(path: '/solicitudes', pageBuilder: (_, s) => sinAnimacion(const SolicitudesPage(), s)),
           GoRoute(path: '/clientes', pageBuilder: (_, s) => sinAnimacion(const ClientesPage(), s)),
           GoRoute(path: '/agenda', pageBuilder: (_, s) => sinAnimacion(const SeccionPendientePage(seccion: 'agenda'), s)),
-          GoRoute(path: '/proyectos', pageBuilder: (_, s) => sinAnimacion(const SeccionPendientePage(seccion: 'proyectos'), s)),
+          GoRoute(path: '/proyectos', pageBuilder: (_, s) => sinAnimacion(const ProyectosPage(), s)),
           GoRoute(path: '/parrillas', pageBuilder: (_, s) => sinAnimacion(const SeccionPendientePage(seccion: 'parrillas'), s)),
           GoRoute(path: '/mensajes', pageBuilder: (_, s) => sinAnimacion(const SeccionPendientePage(seccion: 'mensajes'), s)),
           GoRoute(
@@ -119,5 +122,6 @@ final routerProvider = Provider<GoRouter>((ref) {
 Widget paginaDesdeMas(String clave) => switch (clave) {
       'solicitudes' => const SolicitudesPage(),
       'clientes' => const ClientesPage(),
+      'proyectos' => const ProyectosPage(),
       _ => SeccionPendientePage(seccion: clave, desdeMas: true),
     };
