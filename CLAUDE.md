@@ -39,13 +39,13 @@ Es la fuente de las fases, reglas y puntos `ALTO`.
 
 ## Estado actual · 2026-11-09
 **FASE 3 APROBADA 2026-11-09** ("DISEÑO APROBADO", etiqueta v0.1-diseno-aprobado; DESIGN.md = oficial; cambiarlo requiere consultar a Wilmer).
-**FASE 4 casi cerrada (rama fase-4/base, 2026-11-09).** Proyecto Flutter en la raíz (lib/core, lib/design_system,
+**FASE 4 CERRADA 2026-11-09** (Wilmer entró con su cuenta real; etiqueta v0.2-base, fusionada a main). **FASE 5 en curso (rama fase-5/sync).** Proyecto Flutter en la raíz (lib/core, lib/design_system,
 lib/features, app.dart). Correr: `flutter run --dart-define-from-file=env.json` (env.json local, ignorado).
 54 pruebas: `flutter test` (permisos = perms.js vía test/paridad/permisos.json; regenerar con
 `node test/paridad/generar_permisos.mjs`), rutas, goldens en test/visual (actualizar: `flutter test test/visual --update-goldens`).
 Comparación prototipo|app: `node design/tools/lado-a-lado.mjs` → design/capturas/comparacion/.
 Íconos: usar SIEMPRE `Symbols.<nombre>_sharp` (Symbols.x a secas es Outlined). Isotipo de la app: assets/brand (sin <style>).
-PENDIENTE para cerrar Fase 4: Wilmer entra con su cuenta real; luego fusionar a main y etiquetar `v0.2-base`. Siguiente: FASE 5.
+Fase 5: fase18.sql en rama LOCAL de rakun-web (no push: Netlify y créditos) → ALTO con el SQL.
 Fase 3: decisiones de Wilmer = **tema oscuro (defecto) y claro crema a elección** (2026-11-09,
 reemplaza "oscuro siempre"; en claro nunca rosa pequeño sobre crema → navy + marca rosa; barra inferior noche en ambos),
 inicio en pantalla "Hoy", barra inferior por rol, **Solicitudes = dirección A** (por estado). Mapa de navegación confirmado.

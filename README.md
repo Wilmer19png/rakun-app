@@ -206,7 +206,7 @@ La llave `service_role`/secreta **nunca** va en la app: si alguien la pone, la a
 - **Resultado:** `flutter analyze` sin problemas; **54 pruebas** pasan (permisos idénticos a `perms.js` en 14 perfiles × 13
   secciones, rutas, barra por rol y 19 capturas visuales). La app compila, abre en el emulador y muestra el login.
   Comparación lado a lado con el prototipo en `design/capturas/comparacion/`.
-- **Falta comprobar:** entrar con una cuenta real (la contraseña no pasa por el chat: la prueba Wilmer en el emulador o su celular).
+- **Prueba con cuenta real:** Wilmer entró con su cuenta en el emulador y vio todo (saludo, barra, Más). Etiqueta `v0.2-base`.
 - **Cómo comprobarlo:** `flutter test` y `flutter run --dart-define-from-file=env.json`.
 
 ## 10. Estado actual y próximos pasos
@@ -215,5 +215,5 @@ La llave `service_role`/secreta **nunca** va en la app: si alguien la pone, la a
 - ✅ Fase 1 · repositorio y organización.
 - ✅ Fase 2 · auditoría (`docs/AUDITORIA_GESTOR.md`). Wilmer aprobó el alcance, la prioridad P1/P2/P3 y las funciones "solo web".
 - ✅ Fase 3 · diseño **aprobado** el 2026-11-09 (etiqueta `v0.1-diseno-aprobado`). Sistema oficial en `DESIGN.md`.
-- 🟡 Fase 4 · base de la app hecha y probada (rama `fase-4/base`). Falta: que Wilmer entre con su cuenta real.
+- ✅ Fase 4 · base de la app (etiqueta `v0.2-base`), probada con la cuenta real de Wilmer.
 - ⏭️ Fase 5 · sincronización en vivo (incluye un `ALTO` con el SQL de la fase 18 para la web).
