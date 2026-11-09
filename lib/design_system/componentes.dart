@@ -368,7 +368,7 @@ class RkSinConexion extends StatelessWidget {
         child: Row(children: [
           const Icon(Symbols.cloud_off_sharp, size: 20, color: RkColors.navy),
           const SizedBox(width: 10),
-          Expanded(child: Text('Sin conexión · ves lo guardado a las $desde. Los cambios se activan al volver.', style: RkType.small.copyWith(color: RkColors.navy))),
+          Expanded(child: Text('Sin conexión desde las $desde · ves lo guardado; los cambios se activan al volver.', style: RkType.small.copyWith(color: RkColors.navy))),
         ]),
       ),
     );

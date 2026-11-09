@@ -6,6 +6,7 @@ import '../../features/auth/presentation/entrada_page.dart';
 import '../../features/auth/presentation/login_page.dart';
 import '../../features/auth/presentation/recuperar_page.dart';
 import '../../features/auth/presentation/sin_acceso_page.dart';
+import '../../features/diagnostico/presentation/en_vivo_page.dart';
 import '../../features/galeria/presentation/galeria_page.dart';
 import '../../features/hoy/presentation/hoy_page.dart';
 import '../../features/mas/presentation/mas_page.dart';
@@ -100,6 +101,7 @@ final routerProvider = Provider<GoRouter>((ref) {
             routes: [
               GoRoute(path: 'seccion/:clave', builder: (_, s) => SeccionPendientePage(seccion: s.pathParameters['clave']!, desdeMas: true)),
               GoRoute(path: 'galeria', builder: (_, _) => const GaleriaPage()),
+              GoRoute(path: 'en-vivo', builder: (_, _) => const EnVivoPage()),
             ],
           ),
         ],

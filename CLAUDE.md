@@ -45,7 +45,11 @@ lib/features, app.dart). Correr: `flutter run --dart-define-from-file=env.json` 
 `node test/paridad/generar_permisos.mjs`), rutas, goldens en test/visual (actualizar: `flutter test test/visual --update-goldens`).
 Comparación prototipo|app: `node design/tools/lado-a-lado.mjs` → design/capturas/comparacion/.
 Íconos: usar SIEMPRE `Symbols.<nombre>_sharp` (Symbols.x a secas es Outlined). Isotipo de la app: assets/brand (sin <style>).
-Fase 5: fase18.sql en rama LOCAL de rakun-web (no push: Netlify y créditos) → ALTO con el SQL.
+Fase 5: fase18.sql CORRIDO en producción por Wilmer (17 tablas). App: lib/core/sync (en_vivo.dart, cache_lectura.dart), diag Más→En vivo.
+Web: rakun-web rama LOCAL fase-18/tiempo-real (2 commits: fase18.sql+LEEME, app/realtime.js+admin.js+app.css). SIN push (Netlify).
+Medido: 0,54–0,73 s; anon recibe 0. PRUEBA APP creadas: 3 leads (nombre "PRUEBA APP · sincronización") → Wilmer las borra.
+FASE 5 CERRADA (v0.3-sync). Wilmer: NO publicar la rama web en Netlify todavía (créditos). Limpieza de las 3 PRUEBA APP: SQL dado a Wilmer.
+**FASE 6 en curso**: P1 en orden; rama por sección (fase-6/solicitudes primero).
 Fase 3: decisiones de Wilmer = **tema oscuro (defecto) y claro crema a elección** (2026-11-09,
 reemplaza "oscuro siempre"; en claro nunca rosa pequeño sobre crema → navy + marca rosa; barra inferior noche en ambos),
 inicio en pantalla "Hoy", barra inferior por rol, **Solicitudes = dirección A** (por estado). Mapa de navegación confirmado.

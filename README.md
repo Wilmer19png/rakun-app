@@ -209,6 +209,34 @@ La llave `service_role`/secreta **nunca** va en la app: si alguien la pone, la a
 - **Prueba con cuenta real:** Wilmer entró con su cuenta en el emulador y vio todo (saludo, barra, Más). Etiqueta `v0.2-base`.
 - **Cómo comprobarlo:** `flutter test` y `flutter run --dart-define-from-file=env.json`.
 
+### 2026-11-09 · Fase 5: sincronización en vivo
+- **Qué se hizo:**
+  - `rakun-web/supabase/fase18.sql` (rama local `fase-18/tiempo-real` de la web): publica en Supabase Realtime las 17 tablas
+    del gestor, solo si cada una tiene RLS. **Wilmer lo corrió en producción: 17 tablas publicadas.** No publica
+    `meta_tokens`, `page_events` ni `app_settings`.
+  - App (`lib/core/sync/`): un canal escucha las 17 tablas; de cada aviso solo usa **qué tabla cambió** y la vuelve a
+    consultar (mandan RLS y el permiso de dinero). Agrupa ráfagas, se reconecta sola (espera creciente), recarga al volver
+    a la app, franja "Sin conexión" tras 4 s y caché de lectura por persona (se borra al salir). Diagnóstico en
+    Más → En vivo (solo admin).
+  - Web (`rakun-web/app/realtime.js`, misma rama local): el gestor también se actualiza solo, **sin interrumpir** fichas,
+    ventanas, campos en uso ni editores (muestra "Hay cambios · Actualizar").
+- **Prueba medida** (2026-11-09, emulador Pixel_10, cuenta real de Wilmer). Solicitud `PRUEBA APP` creada igual que el
+  formulario público (misma llave y regla; sin el píxel de Meta para no ensuciar campañas). Reloj del emulador
+  corregido (iba 1,563 s ± 0,025 s atrasado):
+
+  | Prueba | Creada | Llegó a la app | Demora |
+  |---|---|---|---|
+  | 1 | 16:36:32.130 | ≈16:36:32.6–33.1 (sin milisegundos) | < 1 s |
+  | 2 | 16:38:46.812 | 16:38:47.542 | **0,73 s** |
+  | 3 | 16:38:56.174 | 16:38:56.711 | **0,54 s** |
+
+  Objetivo < 3 s: **cumplido**. Un cliente **sin sesión** escuchando `leads` recibió **0 avisos** en las 3 pruebas (RLS
+  funciona en vivo). Corte de red: a los 4 s sale "Sin conexión" y al volver se reconecta solo a "En vivo".
+- **Con Wilmer (2026-11-09):** probó el gestor web local (cambios entre pestañas y en la app). Las 3 solicitudes `PRUEBA APP`
+  se borran con un SQL exacto (solo esas 3 filas) que corre Wilmer: la app no tiene permiso de borrar.
+- **Web sin publicar:** por decisión de Wilmer la rama `fase-18/tiempo-real` de rakun-web queda local (no Netlify) hasta que él diga.
+  "Cambio en la app → se ve en la web" se prueba cuando exista la primera sección que escribe (Fase 6).
+
 ## 10. Estado actual y próximos pasos
 
 - ✅ Fase 0 · ambiente listo y comprobado.
@@ -216,4 +244,5 @@ La llave `service_role`/secreta **nunca** va en la app: si alguien la pone, la a
 - ✅ Fase 2 · auditoría (`docs/AUDITORIA_GESTOR.md`). Wilmer aprobó el alcance, la prioridad P1/P2/P3 y las funciones "solo web".
 - ✅ Fase 3 · diseño **aprobado** el 2026-11-09 (etiqueta `v0.1-diseno-aprobado`). Sistema oficial en `DESIGN.md`.
 - ✅ Fase 4 · base de la app (etiqueta `v0.2-base`), probada con la cuenta real de Wilmer.
-- ⏭️ Fase 5 · sincronización en vivo (incluye un `ALTO` con el SQL de la fase 18 para la web).
+- ✅ Fase 5 · en vivo (etiqueta `v0.3-sync`, medido < 1 s). La parte web queda en rama local de rakun-web, sin publicar.
+- ⏭️ Fase 6 · montaje por secciones (P1), empezando por Solicitudes.

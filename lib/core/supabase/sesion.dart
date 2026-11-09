@@ -3,6 +3,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 import '../config/env.dart';
 import '../permisos/permisos.dart';
+import '../sync/cache_lectura.dart';
 
 /// Cliente de Supabase (se inicializa en main.dart con la llave publicable).
 final supabaseProvider = Provider<SupabaseClient>((ref) => Supabase.instance.client);
@@ -28,8 +29,9 @@ final perfilProvider = FutureProvider<Perfil?>((ref) async {
 
 /// Acciones de cuenta (las mismas que login.js, cuenta.js y password.js de la web).
 class Cuenta {
-  Cuenta(this._sb);
+  Cuenta(this._sb, this._cache);
   final SupabaseClient _sb;
+  final CacheLectura _cache;
 
   Future<void> entrar(String correo, String clave) =>
       _sb.auth.signInWithPassword(email: correo.trim().toLowerCase(), password: clave);
@@ -40,7 +42,11 @@ class Cuenta {
 
   Future<void> cambiarClave(String nueva) => _sb.auth.updateUser(UserAttributes(password: nueva));
 
-  Future<void> salir() => _sb.auth.signOut();
+  /// Al salir se borra la caché de lectura: los datos no se quedan en el teléfono.
+  Future<void> salir() async {
+    await _cache.borrarTodo();
+    await _sb.auth.signOut();
+  }
 }
 
-final cuentaProvider = Provider<Cuenta>((ref) => Cuenta(ref.watch(supabaseProvider)));
+final cuentaProvider = Provider<Cuenta>((ref) => Cuenta(ref.watch(supabaseProvider), ref.watch(cacheLecturaProvider)));

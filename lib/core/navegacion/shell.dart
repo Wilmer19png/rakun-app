@@ -6,7 +6,10 @@ import 'package:material_symbols_icons/symbols.dart';
 import '../../design_system/tipografia.dart';
 import '../../design_system/tokens.dart';
 import '../permisos/permisos.dart';
+import '../../design_system/componentes.dart';
+import '../../core/utils/fechas.dart';
 import '../supabase/sesion.dart';
+import '../sync/en_vivo.dart';
 import 'rutas.dart';
 
 const _info = <Destino, (String, IconData)>{
@@ -35,8 +38,16 @@ class AppShell extends ConsumerWidget {
       orElse: () => Destino.mas, // subpantalla que no está en la barra: se ilumina su padre
     );
     if (!destinos.contains(actual)) actual = Destino.mas;
+    ref.watch(enVivoProvider); // el canal en vivo vive mientras haya pantallas con barra
+    final cortado = ref.watch(sinConexionProvider);
+    final desde = ref.watch(enVivoProvider.select((s) => s.desde));
     return Scaffold(
-      body: child,
+      body: cortado
+          ? Column(children: [
+              SafeArea(bottom: false, child: RkSinConexion(desde: desde == null ? 'hace un momento' : horaCorta(desde))),
+              Expanded(child: MediaQuery.removePadding(context: context, removeTop: true, child: child)),
+            ])
+          : child,
       bottomNavigationBar: RkBarraInferior(
         destinos: destinos,
         actual: actual,
