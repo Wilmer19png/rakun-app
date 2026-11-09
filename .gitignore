@@ -1,0 +1,72 @@
+# ── Secretos: NUNCA al repositorio ─────────────────────────────
+env.json
+.env
+.env.*
+!env.example.json
+*.jks
+*.keystore
+key.properties
+**/android/key.properties
+*service_role*
+*.pem
+*.p12
+
+# ── Flutter / Dart ─────────────────────────────────────────────
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+build/
+coverage/
+*.g.dart.bak
+.metadata.bak
+pubspec_overrides.yaml
+
+# ── Android ────────────────────────────────────────────────────
+**/android/**/gradle-wrapper.jar
+**/android/.gradle
+**/android/captures/
+**/android/gradlew
+**/android/gradlew.bat
+**/android/local.properties
+**/android/**/GeneratedPluginRegistrant.java
+**/android/app/debug
+**/android/app/profile
+**/android/app/release
+.cxx/
+*.apk
+*.aab
+
+# ── iOS / macOS (por si se configura después) ──────────────────
+**/ios/**/Pods/
+**/ios/**/.symlinks/
+**/ios/Flutter/Generated.xcconfig
+**/ios/Flutter/flutter_export_environment.sh
+**/ios/Runner/GeneratedPluginRegistrant.*
+**/ios/**/DerivedData/
+**/ios/**/xcuserdata
+
+# ── Editores y sistema ─────────────────────────────────────────
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/*
+!.vscode/settings.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.DS_Store
+Thumbs.db
+desktop.ini
+*.log
+*.swp
+
+# ── Herramientas locales ───────────────────────────────────────
+.claude/settings.local.json
+.impeccable/config.local.json
+node_modules/
+
+# Motor binario de Impeccable: se reinstala con 'npx impeccable install --providers=claude --scope=project'
+.claude/skills/impeccable/scripts/bin/
