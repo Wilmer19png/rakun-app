@@ -222,10 +222,30 @@ class _MensajesPageState extends ConsumerState<MensajesPage> {
           padding: const EdgeInsets.fromLTRB(RkSpace.g, 8, RkSpace.g, 10),
           decoration: BoxDecoration(color: c.s2, border: Border(top: BorderSide(color: c.linea2))),
           child: Column(mainAxisSize: MainAxisSize.min, crossAxisAlignment: CrossAxisAlignment.start, children: [
-            TextButton.icon(
-              onPressed: sinRed ? null : () => _elegirPara(equipo, d.proyectos, yo),
-              icon: Icon(_para == 'persona' ? Symbols.person_sharp : _para == 'proyecto' ? Symbols.folder_open_sharp : Symbols.groups_sharp, size: 18),
-              label: Text('Para: $paraTexto${_fijar ? ' · fijado' : ''}', style: RkType.small.copyWith(color: c.texto)),
+            // se ve como un campo para elegir (borde + flecha), como en el prototipo
+            Semantics(
+              button: true,
+              label: 'Para: $paraTexto. Cambiar destinatario',
+              excludeSemantics: true,
+              child: InkWell(
+                onTap: sinRed ? null : () => _elegirPara(equipo, d.proyectos, yo),
+                child: Container(
+                  constraints: const BoxConstraints(minHeight: 44),
+                  margin: const EdgeInsets.only(bottom: 8),
+                  padding: const EdgeInsets.fromLTRB(12, 6, 8, 6),
+                  decoration: BoxDecoration(border: Border.all(color: c.linea2)),
+                  child: Row(mainAxisSize: MainAxisSize.min, children: [
+                    Icon(_para == 'persona' ? Symbols.person_sharp : _para == 'proyecto' ? Symbols.folder_open_sharp : Symbols.groups_sharp, size: 18, color: c.texto2),
+                    const SizedBox(width: 8),
+                    Flexible(
+                      child: Text('Para: $paraTexto${_fijar ? ' · fijado' : ''}',
+                          maxLines: 1, overflow: TextOverflow.ellipsis, style: RkType.small.copyWith(color: c.texto, fontWeight: FontWeight.w500)),
+                    ),
+                    const SizedBox(width: 4),
+                    Icon(Symbols.expand_more_sharp, size: 20, color: c.texto2),
+                  ]),
+                ),
+              ),
             ),
             Row(crossAxisAlignment: CrossAxisAlignment.end, children: [
               Expanded(
