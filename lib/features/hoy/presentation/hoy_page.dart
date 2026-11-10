@@ -18,7 +18,7 @@ class HoyPage extends ConsumerWidget {
     final c = RkColors.of(context);
     final perfil = ref.watch(perfilProvider).value;
     final nombre = perfil?.primerNombre ?? 'equipo';
-    final ahora = DateTime.now();
+    final ahora = reloj();
     return SafeArea(
       bottom: false,
       child: ListView(padding: EdgeInsets.zero, children: [

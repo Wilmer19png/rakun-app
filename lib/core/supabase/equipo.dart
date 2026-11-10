@@ -12,7 +12,7 @@ final equipoProvider = FutureProvider<List<Perfil>>((ref) async {
   final d = await conCache<List<Perfil>>(
     ref,
     'equipo',
-    () => sb.from('profiles').select('id, full_name, email, role, area, color, perms').inFilter('role', ['admin', 'equipo']).order('full_name'),
+    () => sb.from('profiles').select('id, full_name, email, role, area, color, perms').inFilter('role', ['admin', 'equipo']).order('full_name', ascending: true),
     (crudo) => [for (final f in (crudo as List? ?? const [])) Perfil.desdeFila(Map<String, dynamic>.from(f as Map))],
   );
   return d.valor;

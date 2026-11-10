@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:material_symbols_icons/symbols.dart';
 
 import '../../../core/datos/ubicacion.dart';
 import '../../../core/errores/errores.dart';
@@ -76,7 +75,7 @@ class _NuevoState extends ConsumerState<_Nuevo> {
   Future<void> _elegir({required bool departamento}) async {
     final opciones = departamento ? departamentos : opcionesDe(_dep);
     final titulo = departamento ? 'Departamento' : (_dep == fueraDeColombia ? 'País' : 'Ciudad');
-    final r = await mostrarHoja<String>(context, titulo: titulo, cuerpo: _Lista(opciones: opciones, actual: departamento ? _dep : _ciudad));
+    final r = await elegirEnHoja<String>(context, titulo: titulo, opciones: [for (final o in opciones) (o, o)], actual: departamento ? _dep : _ciudad);
     if (r == null) return;
     setState(() {
       if (departamento) {
@@ -121,103 +120,18 @@ class _NuevoState extends ConsumerState<_Nuevo> {
         ),
       ),
       Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Expanded(child: campo('Departamento', _Selector(valor: _dep, vacio: 'Elegir', onTap: () => _elegir(departamento: true)))),
+        Expanded(child: campo('Departamento', RkCampoElegible(texto: _dep ?? 'Elegir', vacio: _dep == null, onTap: () => _elegir(departamento: true)))),
         const SizedBox(width: 10),
         Expanded(
           child: campo(
             _dep == fueraDeColombia ? 'País' : 'Ciudad',
-            _Selector(valor: _ciudad, vacio: _dep == null ? 'Primero el depto.' : 'Elegir', onTap: _dep == null ? null : () => _elegir(departamento: false)),
+            RkCampoElegible(texto: _ciudad ?? (_dep == null ? 'Primero el depto.' : 'Elegir'), vacio: _ciudad == null, onTap: _dep == null ? null : () => _elegir(departamento: false)),
           ),
         ),
       ]),
       if (_error != null) ...[Text(_error!, style: RkType.small.copyWith(color: c.texto)), const SizedBox(height: 12)],
       const SizedBox(height: 4),
       FilledButton(onPressed: _guardando ? null : _guardar, child: Text(_guardando ? 'GUARDANDO…' : 'GUARDAR Y CREAR ACCESO')),
-    ]);
-  }
-}
-
-/// Parece un campo; al tocarlo abre la lista (nadie escribe la ciudad a mano).
-class _Selector extends StatelessWidget {
-  const _Selector({required this.valor, required this.vacio, this.onTap});
-  final String? valor;
-  final String vacio;
-  final VoidCallback? onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    final c = RkColors.of(context);
-    return Semantics(
-      button: true,
-      enabled: onTap != null,
-      child: InkWell(
-        onTap: onTap,
-        child: Container(
-          constraints: const BoxConstraints(minHeight: 52),
-          padding: const EdgeInsets.symmetric(horizontal: 12),
-          decoration: BoxDecoration(border: Border.all(color: onTap == null ? c.linea : c.linea2)),
-          child: Row(children: [
-            Expanded(
-              child: Text(valor ?? vacio, maxLines: 1, overflow: TextOverflow.ellipsis, style: RkType.body.copyWith(color: valor == null ? c.texto3 : c.texto)),
-            ),
-            Icon(Symbols.expand_more_sharp, size: 20, color: onTap == null ? c.texto3 : c.texto2),
-          ]),
-        ),
-      ),
-    );
-  }
-}
-
-/// Lista para elegir, con buscador (Antioquia tiene 125 municipios).
-class _Lista extends StatefulWidget {
-  const _Lista({required this.opciones, this.actual});
-  final List<String> opciones;
-  final String? actual;
-
-  @override
-  State<_Lista> createState() => _ListaState();
-}
-
-class _ListaState extends State<_Lista> {
-  String _q = '';
-
-  static String _sinTildes(String s) => s
-      .toLowerCase()
-      .replaceAll(RegExp('[áà]'), 'a')
-      .replaceAll(RegExp('[éè]'), 'e')
-      .replaceAll(RegExp('[íì]'), 'i')
-      .replaceAll(RegExp('[óò]'), 'o')
-      .replaceAll(RegExp('[úùü]'), 'u')
-      .replaceAll('ñ', 'n');
-
-  @override
-  Widget build(BuildContext context) {
-    final c = RkColors.of(context);
-    final q = _sinTildes(_q.trim());
-    final lista = widget.opciones.where((o) => q.isEmpty || _sinTildes(o).contains(q)).toList();
-    return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-      if (widget.opciones.length > 8)
-        Padding(
-          padding: const EdgeInsets.only(bottom: 8),
-          child: TextField(
-            onChanged: (v) => setState(() => _q = v),
-            textInputAction: TextInputAction.search,
-            decoration: const InputDecoration(hintText: 'Buscar…', prefixIcon: Icon(Symbols.search_sharp)),
-          ),
-        ),
-      for (final o in lista)
-        InkWell(
-          onTap: () => Navigator.pop(context, o),
-          child: Container(
-            constraints: const BoxConstraints(minHeight: 48),
-            decoration: BoxDecoration(border: Border(bottom: BorderSide(color: c.linea))),
-            child: Row(children: [
-              Expanded(child: Text(o, style: RkType.body.copyWith(color: c.texto))),
-              if (o == widget.actual) Icon(Symbols.check_sharp, size: 20, color: c.rosaTexto),
-            ]),
-          ),
-        ),
-      if (lista.isEmpty) Padding(padding: const EdgeInsets.symmetric(vertical: 16), child: Text('Nada con «$_q».', style: RkType.body.copyWith(color: c.texto2))),
     ]);
   }
 }
