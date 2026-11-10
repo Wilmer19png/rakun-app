@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:material_symbols_icons/symbols.dart';
 
 import '../../../core/config/env.dart';
@@ -15,6 +16,7 @@ import '../../../core/utils/fechas.dart';
 import '../../../design_system/componentes.dart';
 import '../../../design_system/tipografia.dart';
 import '../../../design_system/tokens.dart';
+import '../../parrillas/data/parrilla_repo.dart';
 import '../data/proyectos_repo.dart';
 import '../domain/proyecto.dart';
 import 'entregable_hoja.dart';
@@ -179,6 +181,19 @@ class _FichaProyectoPageState extends ConsumerState<FichaProyectoPage> {
                     label: Text('COTIZACIÓN ${p.cotizacionNumero ?? ''}'.trim()),
                   ),
               ]),
+            ),
+          if (p.mundo == Mundo.marca && puede(perfil, 'parrillas'))
+            Padding(
+              padding: const EdgeInsets.fromLTRB(RkSpace.g, 16, RkSpace.g, 0),
+              child: OutlinedButton.icon(
+                onPressed: () {
+                  ref.read(seleccionParrillaProvider.notifier).proyecto(p.id);
+                  // la parrilla está en la barra de abajo o en Más, según el rol
+                  barraPara(perfil).contains(Destino.parrillas) ? context.go('/parrillas') : context.push('/mas/seccion/parrillas');
+                },
+                icon: const Icon(Symbols.grid_view_sharp, size: 20),
+                label: const Text('IR A LA PARRILLA'),
+              ),
             ),
           RkGrupo('Entregables', cuenta: entregables.length),
           if (entAsync.hasError && entAsync.value == null)

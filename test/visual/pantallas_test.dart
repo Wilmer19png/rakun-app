@@ -29,6 +29,9 @@ import 'package:app/core/utils/fechas.dart';
 import 'package:app/features/clientes/data/clientes_repo.dart';
 import 'package:app/features/clientes/domain/cliente.dart';
 import 'package:app/features/clientes/presentation/clientes_page.dart';
+import 'package:app/features/parrillas/data/parrilla_repo.dart';
+import 'package:app/features/parrillas/domain/pieza.dart';
+import 'package:app/features/parrillas/presentation/parrilla_page.dart';
 import 'package:app/features/proyectos/data/proyectos_repo.dart';
 import 'package:app/features/proyectos/domain/proyecto.dart';
 import 'package:app/features/proyectos/presentation/ficha_proyecto_page.dart';
@@ -187,6 +190,26 @@ final _extraAgenda = [
   equipoProvider.overrideWith((ref) async => _equipoEj),
 ];
 
+/// Parrilla DE EJEMPLO (como el prototipo aprobado).
+const ProyectoRedes _pRedes = (id: 'p1', nombre: 'Redes · noviembre', clienteId: 'c1', cliente: 'Marca Ejemplo');
+Pieza _pz(String id, String titulo, String formato, String estado, DateTime cuando, List<String> redes, {String? aCargo, bool pauta = false, String? nota}) => Pieza.desdeFila({
+      'id': id, 'project_id': 'p1', 'client_id': 'c1', 'publish_at': cuando.toUtc().toIso8601String(), 'title': titulo, 'format': formato,
+      'networks': redes, 'status': estado, 'assigned_to': aCargo, 'has_ads': pauta, 'client_note': nota, 'copy': 'Texto de ejemplo para la pieza.',
+    });
+final _piezas = [
+  _pz('z1', 'rutina de 15 min', 'carrusel', 'aprobada', DateTime(2026, 11, 3, 12), ['IG', 'FB']),
+  _pz('z2', '“3 errores al entrenar”', 'reel', 'lista', DateTime(2026, 11, 10, 18, 30), ['IG', 'TT'], aCargo: 'ej-alex'),
+  _pz('z3', 'rutina de 15 min', 'carrusel', 'por_aprobar', DateTime(2026, 11, 10, 12), ['IG', 'FB']),
+  _pz('z4', 'detrás de cámara', 'reel', 'cambios', DateTime(2026, 11, 12, 18, 30), ['IG', 'TT'], nota: 'Que se vea más el producto'),
+  _pz('z5', 'encuesta', 'historias', 'borrador', DateTime(2026, 11, 14, 9), ['IG']),
+  _pz('z6', 'testimonio', 'reel', 'lista', DateTime(2026, 11, 14, 18, 30), ['IG', 'TT', 'YT'], pauta: true),
+];
+final _extraParrilla = [
+  proyectosRedesProvider.overrideWith((ref) async => const Datos([_pRedes])),
+  piezasProvider.overrideWith((ref, clave) async => Datos(_piezas)),
+  equipoProvider.overrideWith((ref) async => _equipoEj),
+];
+
 final _extraHoyVacio = [
   agendaDeHoyProvider.overrideWith((ref) async => (hoy: const <Evento>[], pedidas: const <Reunion>[])),
   tareasProvider.overrideWith((ref) async => const Datos(<Tarea>[])),
@@ -304,6 +327,17 @@ void main() {
             accion: (t) => t.tap(find.bySemanticsLabel('Programar'))));
     testWidgets('grabación ${claro ? 'claro' : 'oscuro'}',
         (t) => captura(t, '73-grabacion', const GrabacionPage(id: 'g1'), claro: claro, perfil: _ejemploAdmin, extra: _extraAgenda));
+    testWidgets('parrilla ${claro ? 'claro' : 'oscuro'}',
+        (t) => captura(t, '80-parrilla', _conBarra(_ejemploAdmin, Destino.mas, const ParrillaPage()), claro: claro, perfil: _ejemploAdmin, extra: _extraParrilla));
+    testWidgets('parrilla mes ${claro ? 'claro' : 'oscuro'}',
+        (t) => captura(t, '81-parrilla-mes', _conBarra(_ejemploAdmin, Destino.mas, const ParrillaPage()), claro: claro, perfil: _ejemploAdmin, extra: _extraParrilla,
+            accion: (t) => t.tap(find.byTooltip('Mes'))));
+    testWidgets('pieza ${claro ? 'claro' : 'oscuro'}',
+        (t) => captura(t, '82-pieza', _conBarra(_ejemploAdmin, Destino.mas, const ParrillaPage()), claro: claro, perfil: _ejemploAdmin, extra: _extraParrilla,
+            accion: (t) async {
+              await t.scrollUntilVisible(find.text('Reel · detrás de cámara'), 200, scrollable: find.byType(Scrollable).first);
+              await t.tap(find.text('Reel · detrás de cámara'));
+            }));
     testWidgets('más ${claro ? 'claro' : 'oscuro'}',
         (t) => captura(t, '30-mas', _conBarra(_ejemploAdmin, Destino.mas, const MasPage()), claro: claro, perfil: _ejemploAdmin));
     testWidgets('galería ${claro ? 'claro' : 'oscuro'}',

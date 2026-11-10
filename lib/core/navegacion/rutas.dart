@@ -14,6 +14,7 @@ import '../../features/galeria/presentation/galeria_page.dart';
 import '../../features/hoy/presentation/hoy_page.dart';
 import '../../features/hoy/presentation/tarea_page.dart';
 import '../../features/mas/presentation/mas_page.dart';
+import '../../features/parrillas/presentation/parrilla_page.dart';
 import '../../features/proyectos/presentation/ficha_proyecto_page.dart';
 import '../../features/proyectos/presentation/proyectos_page.dart';
 import '../../features/seccion/presentation/seccion_pendiente_page.dart';
@@ -107,7 +108,7 @@ final routerProvider = Provider<GoRouter>((ref) {
           GoRoute(path: '/clientes', pageBuilder: (_, s) => sinAnimacion(const ClientesPage(), s)),
           GoRoute(path: '/agenda', pageBuilder: (_, s) => sinAnimacion(const AgendaPage(), s)),
           GoRoute(path: '/proyectos', pageBuilder: (_, s) => sinAnimacion(const ProyectosPage(), s)),
-          GoRoute(path: '/parrillas', pageBuilder: (_, s) => sinAnimacion(const SeccionPendientePage(seccion: 'parrillas'), s)),
+          GoRoute(path: '/parrillas', pageBuilder: (_, s) => sinAnimacion(const ParrillaPage(), s)),
           GoRoute(path: '/mensajes', pageBuilder: (_, s) => sinAnimacion(const SeccionPendientePage(seccion: 'mensajes'), s)),
           GoRoute(
             path: '/mas',
@@ -130,5 +131,6 @@ Widget paginaDesdeMas(String clave) => switch (clave) {
       'clientes' => const ClientesPage(),
       'proyectos' => const ProyectosPage(),
       'agenda' => const AgendaPage(),
+      'parrillas' => const ParrillaPage(),
       _ => SeccionPendientePage(seccion: clave, desdeMas: true),
     };

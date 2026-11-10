@@ -318,6 +318,20 @@ La llave `service_role`/secreta **nunca** va en la app: si alguien la pone, la a
   Sin probar con datos reales: confirmar una reunión pedida (hoy no hay ninguna) y Llamar/WhatsApp (el cliente de
   prueba no tiene teléfono).
 
+### 2026-11-10 · Fase 6 · 04 Parrillas (rama fase-6/parrillas)
+- **Qué se hizo:** proyecto de Redes + mes (‹ ›); vista **lista por día** o **mes** (calendario con una marca por pieza
+  del color de su estado; tocar un día muestra sus piezas o agrega una); contadores por estado; «Ver red» atenúa lo que
+  no va en esa red; barra **Enviar al cliente** (lo "Lista" pasa a "Por aprobar", con confirmación); **Duplicar al mes
+  siguiente** como borrador (con confirmación); **ficha de pieza** en hoja: aviso del cambio que pidió el cliente,
+  título, formato, estado, fecha, hora, redes, texto, texto para TikTok/YouTube, enlaces (video/diseño, guion, post
+  publicado), a cargo, pauta, eliminar. **Ir a la parrilla** desde la ficha de un proyecto de Redes.
+- **Paridad:** redes, formatos y estados se **generan** de content.js (`node tool/generar_parrilla.mjs`); duplicar copia
+  igual que la web (día recortado al último del mes, `copy_variants` entero, sin enlace publicado).
+- **Probado:** 143 pruebas (6 de Parrillas) y capturas 80–82. **Emulador con datos reales:** «Ir a la parrilla» desde
+  `PRUEBA APP proyecto`; se creó una pieza PRUEBA APP "Lista", se **envió al cliente** (pasó a "Por aprobar"), se
+  **duplicó** a diciembre como borrador y se **eliminaron** las dos. No quedó nada. Los proyectos reales no tienen piezas
+  en noviembre, así que la vista con datos reales llenos se ve en las capturas de ejemplo.
+
 ## 10. Estado actual y próximos pasos
 
 - ✅ Fase 0 · ambiente listo y comprobado.
@@ -326,4 +340,4 @@ La llave `service_role`/secreta **nunca** va en la app: si alguien la pone, la a
 - ✅ Fase 3 · diseño **aprobado** el 2026-11-09 (etiqueta `v0.1-diseno-aprobado`). Sistema oficial en `DESIGN.md`.
 - ✅ Fase 4 · base de la app (etiqueta `v0.2-base`), probada con la cuenta real de Wilmer.
 - ✅ Fase 5 · en vivo (etiqueta `v0.3-sync`, medido < 1 s). La parte web queda en rama local de rakun-web, sin publicar.
-- ⏭️ Fase 6 · montaje por secciones (P1): ✅ Solicitudes · ✅ Clientes · ✅ Proyectos · ✅ Hoy (sin campañas) · ✅ Agenda · siguen Parrillas, Mensajes.
+- ⏭️ Fase 6 · montaje por secciones (P1): ✅ Solicitudes · ✅ Clientes · ✅ Proyectos · ✅ Hoy (sin campañas) · ✅ Agenda · ✅ Parrillas · sigue Mensajes.

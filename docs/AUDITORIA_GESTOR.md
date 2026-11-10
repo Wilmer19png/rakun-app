@@ -93,7 +93,7 @@ Columnas: **Función** · **Tablas / RPC / almacenamiento** · **Permiso** (inte
 | Crear acceso / nuevo enlace (enlace para WhatsApp o correo de invitación) | función `invitar`, `cuenta.html?activar=…` | staff (ver H9) | **Igual**; compartir con la hoja nativa de Android | P1 |
 | Eliminar cliente: muestra qué se borra y pide **escribir el nombre** | Storage `documentos`, RPC `delete_client` | `admin` | **Igual**, misma confirmación fuerte | P3 |
 
-#### 03 · Proyectos (`admin-proyectos.js`, `admin-entregables.js`, `admin-dinero.js`) · P1 ✅ en la app (Fase 6, probado con datos reales y fusionado 2026-11-10) salvo «Ir a la parrilla» (llega con 04); dinero = P2
+#### 03 · Proyectos (`admin-proyectos.js`, `admin-entregables.js`, `admin-dinero.js`) · P1 ✅ en la app (Fase 6, probado con datos reales y fusionado 2026-11-10) («Ir a la parrilla» ✅ desde 2026-11-10); dinero = P2
 | Función | Datos | Permiso | Decisión | Prio |
 |---|---|---|---|---|
 | Lista: mundo, cliente, plan, **etapa (la ve el cliente)**, estado, a cargo | `projects`, `clients`, `profiles` | `can(proyectos)` | **Adaptada**: tarjeta; cambios en una hoja inferior | P1 |
@@ -124,7 +124,7 @@ Columnas: **Función** · **Tablas / RPC / almacenamiento** · **Permiso** (inte
 | Con el pago: comisiones, estado "anticipo"/"pagada"; con el **primero**, crea un proyecto por bloque con sus entregables y ofrece crear acceso | `commissions`, `quotes`, `projects`, `deliverables`, `invitar` | ídem | **Igual** (ver H5: no es atómico) | P2 |
 | Marcar como rechazada · Eliminar (borrador o rechazada) | `quotes` | ídem · eliminar: `admin` | **Igual** | P2 |
 
-#### 04 · Parrillas (`admin-parrilla.js`)
+#### 04 · Parrillas (`admin-parrilla.js`) · ✅ en la app (Fase 6, 2026-11-10)
 | Función | Datos | Permiso | Decisión | Prio |
 |---|---|---|---|---|
 | Elegir proyecto de Redes y mes; anterior/siguiente | `projects` (mundo marca), `posts` | `can(parrillas)` | **Adaptada** | P1 |
