@@ -182,7 +182,7 @@ Columnas: **Función** · **Tablas / RPC / almacenamiento** · **Permiso** (inte
 | Editar el área de cada persona | `profiles.area` | `admin` | **Igual** | P3 |
 | Invitar al equipo (enlace de un solo uso) | función `invitar` (role `equipo`) | `admin` | **Igual** | P3 |
 | **Permisos** por persona: rol listo o personalizado, ver/editar por sección, ve plata | `profiles.perms` | `admin` | **Adaptada** | P3 |
-| **Mensajes**: a todos, a una persona o al equipo de un proyecto; fijar; visto por; borrar | `team_messages`, `message_reads` | staff (RLS `message_for_me`) | **Adaptada**: pantalla propia en la app | P1 |
+| **Mensajes**: a todos, a una persona o al equipo de un proyecto; fijar; visto por; borrar | `team_messages`, `message_reads` | staff (RLS `message_for_me`) | **Adaptada**: pantalla propia en la app · ✅ (2026-11-10) | P1 |
 | **Carga de trabajo**: columnas por persona; **arrastrar para reasignar** | `deliverables` | `can(proyectos, editar)` para reasignar | **Adaptada**: lista por persona + hoja **"Reasignar"** | P2 |
 | Pagos y comisiones: lo que se le debe a cada quien; marcar pagado | `deliverables.paid_at`, `commissions` | `admin` | **Igual** | P2 |
 

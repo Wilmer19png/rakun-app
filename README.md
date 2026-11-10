@@ -332,6 +332,16 @@ La llave `service_role`/secreta **nunca** va en la app: si alguien la pone, la a
   **duplicó** a diciembre como borrador y se **eliminaron** las dos. No quedó nada. Los proyectos reales no tienen piezas
   en noviembre, así que la vista con datos reales llenos se ve en las capturas de ejemplo.
 
+### 2026-11-10 · Fase 6 · Mensajes (rama fase-6/mensajes)
+- **Qué se hizo:** pantalla propia (en la web está dentro de 10 Equipo): Todos / Para mí / Fijados; tarjetas con autor,
+  destino ("todo el equipo", "para Sofía", "equipo de Videoclip"), NUEVO y MARCAR VISTO, "Visto por N" (o Visto / Sin
+  ver si es para una persona) para quien lo escribió o el admin; fijar/desfijar y borrar (con confirmación); escribir
+  abajo con «Para»: todo el equipo, una persona o el equipo de un proyecto activo, y «Fijar arriba». Aviso en la barra:
+  mensajes sin ver. Quién lo ve lo decide la base de datos (`message_for_me`), igual que en la web.
+- **Probado:** 150 pruebas (5 de Mensajes) y captura 90. **Emulador con datos reales:** se publicó un mensaje PRUEBA APP
+  solo para el equipo de `PRUEBA APP proyecto` (solo Wilmer), se fijó y se **borró**. No quedó nada. Arreglado: el
+  teclado volvía a abrirse solo al cerrar un menú.
+
 ## 10. Estado actual y próximos pasos
 
 - ✅ Fase 0 · ambiente listo y comprobado.
@@ -340,4 +350,4 @@ La llave `service_role`/secreta **nunca** va en la app: si alguien la pone, la a
 - ✅ Fase 3 · diseño **aprobado** el 2026-11-09 (etiqueta `v0.1-diseno-aprobado`). Sistema oficial en `DESIGN.md`.
 - ✅ Fase 4 · base de la app (etiqueta `v0.2-base`), probada con la cuenta real de Wilmer.
 - ✅ Fase 5 · en vivo (etiqueta `v0.3-sync`, medido < 1 s). La parte web queda en rama local de rakun-web, sin publicar.
-- ⏭️ Fase 6 · montaje por secciones (P1): ✅ Solicitudes · ✅ Clientes · ✅ Proyectos · ✅ Hoy (sin campañas) · ✅ Agenda · ✅ Parrillas · sigue Mensajes.
+- ⏭️ Fase 6 · montaje por secciones (P1): ✅ Solicitudes · ✅ Clientes · ✅ Proyectos · ✅ Hoy (sin campañas) · ✅ Agenda · ✅ Parrillas · ✅ Mensajes. **P1 completo.** Sigue: APK de prueba y ALTO para opinión de Wilmer.

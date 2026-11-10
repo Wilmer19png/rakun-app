@@ -50,6 +50,7 @@ class AppShell extends ConsumerWidget {
     final nuevas = destinos.contains(Destino.solicitudes) && puede(perfil, 'solicitudes')
         ? (ref.watch(solicitudesProvider).value?.valor ?? const <Solicitud>[]).where((s) => s.estado == EstadoSolicitud.nueva).length
         : 0;
+    final sinVer = destinos.contains(Destino.mensajes) ? (ref.watch(mensajesSinVerProvider).value?.length ?? 0) : 0;
     final pedidas = destinos.contains(Destino.agenda) ? (ref.watch(reunionesPedidasProvider).value ?? 0) : 0;
     return Scaffold(
       body: cortado
@@ -61,7 +62,7 @@ class AppShell extends ConsumerWidget {
       bottomNavigationBar: RkBarraInferior(
         destinos: destinos,
         actual: actual,
-        avisos: {Destino.hoy: pendientes, Destino.solicitudes: nuevas, Destino.agenda: pedidas},
+        avisos: {Destino.hoy: pendientes, Destino.solicitudes: nuevas, Destino.agenda: pedidas, Destino.mensajes: sinVer},
         onElegir: (d) => context.go(rutaDe[d]!),
       ),
     );
