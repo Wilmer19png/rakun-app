@@ -340,7 +340,7 @@ La llave `service_role`/secreta **nunca** va en la app: si alguien la pone, la a
   mensajes sin ver. Quién lo ve lo decide la base de datos (`message_for_me`), igual que en la web.
 - **Probado:** 150 pruebas (5 de Mensajes) y captura 90. **Emulador con datos reales:** se publicó un mensaje PRUEBA APP
   solo para el equipo de `PRUEBA APP proyecto` (solo Wilmer), se fijó y se **borró**. No quedó nada. Arreglado: el
-  teclado volvía a abrirse solo al cerrar un menú.
+  teclado volvía a abrirse solo al cerrar un menú. Tras la revisión de Wilmer: «Para» ahora se ve como campo elegible (borde y flecha).
 
 ## 10. Estado actual y próximos pasos
 
