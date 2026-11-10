@@ -17,6 +17,9 @@ import '../../../design_system/componentes.dart';
 import '../../../design_system/ojo/ojo.dart';
 import '../../../design_system/tipografia.dart';
 import '../../../design_system/tokens.dart';
+import '../../agenda/data/agenda_repo.dart';
+import '../../agenda/presentation/agenda_page.dart';
+import '../../agenda/presentation/programar_hoja.dart';
 import '../../proyectos/domain/proyecto.dart';
 import '../../solicitudes/data/solicitudes_repo.dart';
 import '../../solicitudes/domain/solicitud.dart';
@@ -42,6 +45,7 @@ class _HoyPageState extends ConsumerState<HoyPage> {
     ref.invalidate(tareasProvider);
     ref.invalidate(mensajesSinVerProvider);
     ref.invalidate(gananciasProvider);
+    ref.invalidate(agendaDeHoyProvider);
     await ref.read(tareasProvider.future);
   }
 
@@ -119,6 +123,25 @@ class _HoyPageState extends ConsumerState<HoyPage> {
       }
     }
 
+    final agenda = terminados ? null : ref.watch(agendaDeHoyProvider).value;
+    if (agenda != null && (agenda.hoy.isNotEmpty || agenda.pedidas.isNotEmpty)) {
+      final refsAg = ref.watch(referenciasAgendaProvider).value ?? const Referencias();
+      final confirma = puede(perfil, 'reuniones', editar: true) && !sinRed;
+      hijos.add(RkGrupo('Agenda de hoy', accion: 'Agenda', onAccion: () => context.go('/agenda')));
+      for (final e in agenda.hoy) {
+        hijos.add(e.g != null
+            ? FilaGrabacion(g: e.g!, cliente: refsAg.cliente(e.g!.clienteId)?.nombre ?? '—')
+            : FilaReunion(
+                m: e.r!,
+                cliente: refsAg.cliente(e.r!.clienteId)?.nombre ?? '—',
+                conQuien: persona(e.r!.conQuien)?.primerNombre,
+                onTap: confirma ? () => mostrarProgramar(context, reunion: e.r) : null,
+              ));
+      }
+      for (final m in agenda.pedidas.take(3)) {
+        hijos.add(FilaPedida(m: m, cliente: refsAg.cliente(m.clienteId)?.nombre ?? '—', onConfirmar: confirma ? () => mostrarProgramar(context, reunion: m) : null));
+      }
+    }
     if (nuevas.isNotEmpty) {
       hijos.add(RkGrupo('Solicitudes nuevas', accion: 'Ver todas', onAccion: () => context.go('/solicitudes')));
       for (final s in nuevas) {
@@ -133,7 +156,7 @@ class _HoyPageState extends ConsumerState<HoyPage> {
     }
     if (ganancias.hayAlgo) hijos.add(_LoQueGanas(g: ganancias));
 
-    final todoAlDia = datos != null && !terminados && tareas.isEmpty && nuevas.isEmpty && mensajes.isEmpty;
+    final todoAlDia = datos != null && !terminados && tareas.isEmpty && nuevas.isEmpty && mensajes.isEmpty && (agenda == null || (agenda.hoy.isEmpty && agenda.pedidas.isEmpty));
     if (todoAlDia) {
       hijos.add(const RkVacio(antes: 'Todo', rosa: 'al día.', texto: 'No tienes pendientes ni revisiones. Cuando te asignen un entregable o llegue una solicitud, aparece aquí.'));
     }

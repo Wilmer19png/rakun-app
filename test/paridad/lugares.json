@@ -1,0 +1,91 @@
+[
+  {
+    "entrada": {
+      "name": "Estudio Ejemplo",
+      "street": "Calle 10",
+      "housenumber": "23-45",
+      "locality": "El Cable",
+      "city": "Manizales",
+      "state": "Caldas",
+      "country": "Colombia"
+    },
+    "salida": {
+      "name": "Estudio Ejemplo",
+      "address": "Calle 10 23-45, El Cable, Manizales, Caldas"
+    }
+  },
+  {
+    "entrada": {
+      "name": "Clínica Ejemplo",
+      "city": "Bogotá",
+      "state": "Bogotá, Distrito Capital",
+      "country": "Colombia"
+    },
+    "salida": {
+      "name": "Clínica Ejemplo",
+      "address": "Bogotá, Distrito Capital"
+    }
+  },
+  {
+    "entrada": {
+      "street": "Carrera 43A",
+      "housenumber": "1-50",
+      "district": "El Poblado",
+      "city": "Medellín",
+      "state": "Antioquia",
+      "country": "Colombia"
+    },
+    "salida": {
+      "name": "Carrera 43A 1-50",
+      "address": "Carrera 43A 1-50, El Poblado, Medellín, Antioquia"
+    }
+  },
+  {
+    "entrada": {
+      "name": "Parque",
+      "city": "Quito",
+      "state": "Pichincha",
+      "country": "Ecuador"
+    },
+    "salida": {
+      "name": "Parque",
+      "address": "Quito, Pichincha, Ecuador"
+    }
+  },
+  {
+    "entrada": {
+      "city": "Pereira",
+      "county": "Pereira",
+      "state": "Risaralda",
+      "country": "Colombia"
+    },
+    "salida": {
+      "name": "Pereira",
+      "address": "Pereira, Risaralda"
+    }
+  },
+  {
+    "entrada": {
+      "name": "Café",
+      "locality": "Chapinero",
+      "county": "Bogotá",
+      "state": "Bogotá",
+      "country": "Colombia"
+    },
+    "salida": {
+      "name": "Café",
+      "address": "Chapinero, Bogotá"
+    }
+  },
+  {
+    "entrada": {
+      "name": "Sitio",
+      "state": "Caldas",
+      "country": "Colombia"
+    },
+    "salida": {
+      "name": "Sitio",
+      "address": "Caldas"
+    }
+  }
+]

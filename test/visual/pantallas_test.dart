@@ -8,6 +8,10 @@ import 'package:app/core/supabase/sesion.dart';
 import 'package:app/design_system/apariencia.dart';
 import 'package:app/design_system/tema.dart';
 import 'package:app/design_system/tokens.dart';
+import 'package:app/features/agenda/data/agenda_repo.dart';
+import 'package:app/features/agenda/domain/agenda.dart';
+import 'package:app/features/agenda/presentation/agenda_page.dart';
+import 'package:app/features/agenda/presentation/grabacion_page.dart';
 import 'package:app/features/auth/presentation/entrada_page.dart';
 import 'package:app/features/auth/presentation/login_page.dart';
 import 'package:app/features/auth/presentation/recuperar_page.dart';
@@ -153,8 +157,38 @@ final _extraHoy = [
       ]),
   gananciasProvider.overrideWith((ref) async => const Ganancias(aprobadas: 300000, comisiones: 186000, enCurso: 212000)),
   equipoProvider.overrideWith((ref) async => _equipoEj),
+  agendaDeHoyProvider.overrideWith((ref) async => (hoy: [Evento.grabacion(_grabaciones.first)], pedidas: [_reuniones.first])),
+  referenciasAgendaProvider.overrideWith((ref) async => _refsAg),
 ];
+/// Agenda DE EJEMPLO (como el prototipo aprobado).
+const _refsAg = Referencias(
+  clientes: [
+    (id: 'c1', nombre: 'Marca Ejemplo', telefono: '3000000000'),
+    (id: 'c2', nombre: 'Consultorio Ejemplo', telefono: null),
+    (id: 'c3', nombre: 'Videoclip Ejemplo', telefono: '3000000000'),
+    (id: 'c4', nombre: 'Mentor Ejemplo', telefono: null),
+  ],
+  proyectos: [(id: 'p1', nombre: 'Redes · noviembre', clienteId: 'c1')],
+);
+final _grabaciones = [
+  Grabacion(id: 'g1', clienteId: 'c1', proyectoId: 'p1', inicio: DateTime(2026, 11, 9, 15), horas: 3, lugar: 'Estudio Ejemplo', direccion: 'Calle Ejemplo # 00-00, Manizales',
+      equipo: const ['ej-alex', 'ej-sofia'], prepara: const ['3 cambios de ropa en colores lisos', 'Revisar los guiones que le enviamos', 'Llegar sin maquillaje pesado'], respuesta: 'confirmada'),
+  Grabacion(id: 'g2', clienteId: 'c3', inicio: DateTime(2026, 11, 12, 9), horas: 8, lugar: 'Locación Ejemplo', equipo: const ['ej-alex'], respuesta: 'reprogramar'),
+];
+final _reuniones = [
+  const Reunion(id: 'r1', clienteId: 'c2', titulo: 'Revisión del diseño', tipo: 'revision', estado: 'solicitada', notaCliente: 'Quiero revisar el diseño antes del viernes.'),
+  Reunion(id: 'r2', clienteId: 'c4', titulo: 'Reporte del mes', tipo: 'reporte', inicio: DateTime(2026, 11, 10, 10), minutos: 20, enlace: 'https://meet.google.com/ejemplo', conQuien: 'ej-sofia'),
+];
+final _extraAgenda = [
+  grabacionesProvider.overrideWith((ref) async => Datos(_grabaciones)),
+  reunionesProvider.overrideWith((ref) async => Datos(_reuniones)),
+  grabacionProvider.overrideWith((ref, id) async => Datos(_grabaciones.firstWhere((g) => g.id == id))),
+  referenciasAgendaProvider.overrideWith((ref) async => _refsAg),
+  equipoProvider.overrideWith((ref) async => _equipoEj),
+];
+
 final _extraHoyVacio = [
+  agendaDeHoyProvider.overrideWith((ref) async => (hoy: const <Evento>[], pedidas: const <Reunion>[])),
   tareasProvider.overrideWith((ref) async => const Datos(<Tarea>[])),
   mensajesSinVerProvider.overrideWith((ref) async => const <MensajeSinVer>[]),
   gananciasProvider.overrideWith((ref) async => const Ganancias()),
@@ -260,6 +294,16 @@ void main() {
     testWidgets('entregable ${claro ? 'claro' : 'oscuro'}',
         (t) => captura(t, '62-entregable', const FichaProyectoPage(id: 'p1'), claro: claro, perfil: _ejemploAdmin, extra: _extraProyectos,
             accion: (t) => t.tap(find.text('Guiones del mes'))));
+    testWidgets('agenda ${claro ? 'claro' : 'oscuro'}',
+        (t) => captura(t, '70-agenda', _conBarra(_ejemploAdmin, Destino.agenda, const AgendaPage()), claro: claro, perfil: _ejemploAdmin, extra: _extraAgenda));
+    testWidgets('agenda confirmar ${claro ? 'claro' : 'oscuro'}',
+        (t) => captura(t, '71-agenda-confirmar', _conBarra(_ejemploAdmin, Destino.agenda, const AgendaPage()), claro: claro, perfil: _ejemploAdmin, extra: _extraAgenda,
+            accion: (t) => t.tap(find.text('Revisión del diseño'))));
+    testWidgets('agenda programar ${claro ? 'claro' : 'oscuro'}',
+        (t) => captura(t, '72-agenda-programar', _conBarra(_ejemploAdmin, Destino.agenda, const AgendaPage()), claro: claro, perfil: _ejemploAdmin, extra: _extraAgenda,
+            accion: (t) => t.tap(find.bySemanticsLabel('Programar'))));
+    testWidgets('grabación ${claro ? 'claro' : 'oscuro'}',
+        (t) => captura(t, '73-grabacion', const GrabacionPage(id: 'g1'), claro: claro, perfil: _ejemploAdmin, extra: _extraAgenda));
     testWidgets('más ${claro ? 'claro' : 'oscuro'}',
         (t) => captura(t, '30-mas', _conBarra(_ejemploAdmin, Destino.mas, const MasPage()), claro: claro, perfil: _ejemploAdmin));
     testWidgets('galería ${claro ? 'claro' : 'oscuro'}',

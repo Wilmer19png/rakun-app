@@ -28,6 +28,11 @@ abstract final class Abrir {
         ].join('&'),
       ));
 
+  /// Google Maps con la búsqueda (mapLink de places.js): abre la app de Maps si está.
+  static Future<bool> mapa(String q) => q.trim().isEmpty
+      ? Future.value(false)
+      : launchUrl(Uri.https('www.google.com', '/maps/search/', {'api': '1', 'query': q.trim()}), mode: LaunchMode.externalApplication);
+
   static Future<bool> enlace(String raw) {
     final s = enlaceSeguro(raw);
     return s.isEmpty ? Future.value(false) : launchUrl(Uri.parse(s), mode: LaunchMode.externalApplication);

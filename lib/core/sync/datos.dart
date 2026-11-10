@@ -3,6 +3,7 @@
 library;
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:supabase_flutter/supabase_flutter.dart' show PostgrestException;
 
 import '../supabase/sesion.dart';
 import 'cache_lectura.dart';
@@ -33,6 +34,8 @@ Future<Datos<T>> conCache<T>(
     final crudo = await pedir();
     await cache.guardar(uid, clave, crudo ?? const []);
     return Datos(leer(crudo));
+  } on PostgrestException {
+    rethrow; // la base respondió (p. ej. el registro ya no existe): no es falta de conexión
   } catch (e) {
     final g = cache.leer(uid, clave);
     if (g == null) rethrow;
