@@ -16,7 +16,7 @@ class InfoSeccion {
 }
 
 /// Secciones que ya funcionan en la app (Fase 6); las demás muestran "Llega con P1/P2".
-const seccionesListas = {'solicitudes', 'clientes', 'proyectos', 'agenda'};
+const seccionesListas = {'solicitudes', 'clientes', 'proyectos', 'agenda', 'parrillas'};
 
 final infoSecciones = <String, InfoSeccion>{
   'solicitudes': InfoSeccion('01', 'Solicitudes', 'P1', (p) => puede(p, 'solicitudes')),
