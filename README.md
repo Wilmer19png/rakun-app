@@ -262,7 +262,7 @@ La llave `service_role`/secreta **nunca** va en la app: si alguien la pone, la a
   con datos reales: lista (2 clientes, mundos correctos) y **crear un cliente PRUEBA APP desde la app** (se guardó como
   "Manizales, Caldas" y abrió el acceso; no se creó el acceso). No se probó en el teléfono el aviso de correo repetido.
 
-### 2026-11-09 · Fase 6 · 03 Proyectos (rama fase-6/proyectos, sin fusionar)
+### 2026-11-09 · Fase 6 · 03 Proyectos (rama fase-6/proyectos, fusionada 2026-11-10)
 - **Qué se hizo:** lista con filtro Activos / Redes / Producción / Web / Míos / Terminados, buscador, etapa y "N vencidos";
   ficha con etapa (la ve el cliente), estado y a cargo en hojas, fechas y enlace a su cotización; entregables como
   tarjetas que se editan en una hoja (nombre, tipo, fecha límite, lo hace, lo revisa, estado, brief, ver entrega, quitar);
@@ -272,7 +272,12 @@ La llave `service_role`/secreta **nunca** va en la app: si alguien la pone, la a
   (`node tool/generar_proyectos.mjs`); fechas límite a las 6 p. m. como la web; plazos (vencido/hoy/semana) como `bucket`.
 - **Común:** `RkOpcion`, `elegirEnHoja` (con buscador), `RkCampoElegible`, `RkAvatar`; Solicitudes y Clientes los usan.
 - **Probado:** 98 pruebas; capturas `60-proyectos`, `61-proyecto`, `62-entregable` (dos temas, reloj fijo).
-  **Falta** la prueba en el emulador con datos reales (se detuvo por poca memoria del computador).
+  **Emulador, datos reales (2026-11-10):** lista con los 2 proyectos reales; se creó `PRUEBA APP proyecto` bajo
+  `PRUEBA APP cliente` (sin a cargo), se cargó la plantilla de Redes (6 entregables, fechas desde hoy), se cambió un
+  entregable a "En curso" y la etapa a "Guiones"; la lista y la ficha se actualizaron solas.
+- **Arreglos tras la prueba:** en supabase_flutter `.order()` sin dirección ordena de **mayor a menor** (en la web es al
+  revés): clientes, equipo y orden de entregables ahora `ascending: true`. Aire bajo la ficha para que el "+" no tape
+  el último botón. El reloj fijo `reloj` pasó a `core/utils/fechas.dart` y Hoy lo usa (su captura cambiaba cada día).
 
 ## 10. Estado actual y próximos pasos
 
@@ -282,4 +287,4 @@ La llave `service_role`/secreta **nunca** va en la app: si alguien la pone, la a
 - ✅ Fase 3 · diseño **aprobado** el 2026-11-09 (etiqueta `v0.1-diseno-aprobado`). Sistema oficial en `DESIGN.md`.
 - ✅ Fase 4 · base de la app (etiqueta `v0.2-base`), probada con la cuenta real de Wilmer.
 - ✅ Fase 5 · en vivo (etiqueta `v0.3-sync`, medido < 1 s). La parte web queda en rama local de rakun-web, sin publicar.
-- ⏭️ Fase 6 · montaje por secciones (P1): ✅ Solicitudes · ✅ Clientes · 🟡 Proyectos (falta emulador) · siguen Hoy, Agenda, Parrillas, Mensajes.
+- ⏭️ Fase 6 · montaje por secciones (P1): ✅ Solicitudes · ✅ Clientes · ✅ Proyectos · siguen Hoy, Agenda, Parrillas, Mensajes.

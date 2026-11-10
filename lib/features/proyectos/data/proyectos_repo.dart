@@ -61,7 +61,7 @@ class ProyectosRepo {
   }
 
   Future<List<Map<String, dynamic>>> entregables(String proyectoId) async => List<Map<String, dynamic>>.from(
-        await _sb.from('deliverables').select().eq('project_id', proyectoId).order('due_at', ascending: true, nullsFirst: false).order('sort'),
+        await _sb.from('deliverables').select().eq('project_id', proyectoId).order('due_at', ascending: true, nullsFirst: false).order('sort', ascending: true),
       );
 
   Future<void> cambiarEntregable(String id, Map<String, Object?> campos) => _sb.from('deliverables').update(campos).eq('id', id);
@@ -133,6 +133,6 @@ final entregablesProvider = FutureProvider.family<Datos<List<Entregable>>, Strin
 final clientesParaProyectoProvider = FutureProvider<List<(String, String)>>((ref) async {
   ref.watch(revisionesProvider.select((r) => r['clients'] ?? 0));
   final sb = ref.watch(supabaseProvider);
-  final filas = await sb.from('clients').select('id, name').order('name');
+  final filas = await sb.from('clients').select('id, name').order('name', ascending: true);
   return [for (final f in filas) (f['id'] as String, (f['name'] as String?) ?? '—')];
 });

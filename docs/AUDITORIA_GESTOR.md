@@ -93,7 +93,7 @@ Columnas: **Función** · **Tablas / RPC / almacenamiento** · **Permiso** (inte
 | Crear acceso / nuevo enlace (enlace para WhatsApp o correo de invitación) | función `invitar`, `cuenta.html?activar=…` | staff (ver H9) | **Igual**; compartir con la hoja nativa de Android | P1 |
 | Eliminar cliente: muestra qué se borra y pide **escribir el nombre** | Storage `documentos`, RPC `delete_client` | `admin` | **Igual**, misma confirmación fuerte | P3 |
 
-#### 03 · Proyectos (`admin-proyectos.js`, `admin-entregables.js`, `admin-dinero.js`) · P1 hecho en la app (Fase 6, rama fase-6/proyectos) salvo «Ir a la parrilla» (llega con 04); dinero = P2
+#### 03 · Proyectos (`admin-proyectos.js`, `admin-entregables.js`, `admin-dinero.js`) · P1 ✅ en la app (Fase 6, probado con datos reales y fusionado 2026-11-10) salvo «Ir a la parrilla» (llega con 04); dinero = P2
 | Función | Datos | Permiso | Decisión | Prio |
 |---|---|---|---|---|
 | Lista: mundo, cliente, plan, **etapa (la ve el cliente)**, estado, a cargo | `projects`, `clients`, `profiles` | `can(proyectos)` | **Adaptada**: tarjeta; cambios en una hoja inferior | P1 |

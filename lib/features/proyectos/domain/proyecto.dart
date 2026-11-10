@@ -143,9 +143,6 @@ class Entregable {
   final int orden;
 }
 
-/// Reloj de las etiquetas de fecha (las pruebas lo fijan para que las capturas no cambien cada día).
-DateTime Function() reloj = DateTime.now;
-
 /// `bucket` de admin-entregables.js.
 enum Plazo { vencido, hoy, semana, luego, sin }
 

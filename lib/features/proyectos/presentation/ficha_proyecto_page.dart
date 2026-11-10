@@ -203,6 +203,7 @@ class _FichaProyectoPageState extends ConsumerState<FichaProyectoPage> {
               padding: const EdgeInsets.fromLTRB(RkSpace.g, 16, RkSpace.g, 0),
               child: OutlinedButton(onPressed: () => _plantilla(p, entregables.length), child: Text('CARGAR PLANTILLA DE ${p.mundo.nombre.toUpperCase()}')),
             ),
+          const SizedBox(height: 112), // aire para que el botón + no tape lo último
         ]),
       ),
     );
