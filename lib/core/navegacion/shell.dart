@@ -8,6 +8,9 @@ import '../../design_system/tokens.dart';
 import '../permisos/permisos.dart';
 import '../../design_system/componentes.dart';
 import '../../core/utils/fechas.dart';
+import '../../features/hoy/data/hoy_repo.dart';
+import '../../features/solicitudes/data/solicitudes_repo.dart';
+import '../../features/solicitudes/domain/solicitud.dart';
 import '../supabase/sesion.dart';
 import '../sync/en_vivo.dart';
 import 'rutas.dart';
@@ -41,6 +44,11 @@ class AppShell extends ConsumerWidget {
     ref.watch(enVivoProvider); // el canal en vivo vive mientras haya pantallas con barra
     final cortado = ref.watch(sinConexionProvider);
     final desde = ref.watch(enVivoProvider.select((s) => s.desde));
+    // avisos de la barra: mis pendientes (setBadge de la web) y solicitudes nuevas
+    final pendientes = ref.watch(cuantosPendientesProvider).value ?? 0;
+    final nuevas = destinos.contains(Destino.solicitudes) && puede(perfil, 'solicitudes')
+        ? (ref.watch(solicitudesProvider).value?.valor ?? const <Solicitud>[]).where((s) => s.estado == EstadoSolicitud.nueva).length
+        : 0;
     return Scaffold(
       body: cortado
           ? Column(children: [
@@ -51,6 +59,7 @@ class AppShell extends ConsumerWidget {
       bottomNavigationBar: RkBarraInferior(
         destinos: destinos,
         actual: actual,
+        avisos: {Destino.hoy: pendientes, Destino.solicitudes: nuevas},
         onElegir: (d) => context.go(rutaDe[d]!),
       ),
     );

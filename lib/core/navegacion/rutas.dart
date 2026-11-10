@@ -10,6 +10,7 @@ import '../../features/clientes/presentation/clientes_page.dart';
 import '../../features/diagnostico/presentation/en_vivo_page.dart';
 import '../../features/galeria/presentation/galeria_page.dart';
 import '../../features/hoy/presentation/hoy_page.dart';
+import '../../features/hoy/presentation/tarea_page.dart';
 import '../../features/mas/presentation/mas_page.dart';
 import '../../features/proyectos/presentation/ficha_proyecto_page.dart';
 import '../../features/proyectos/presentation/proyectos_page.dart';
@@ -91,6 +92,8 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(path: '/recuperar', builder: (_, _) => const RecuperarPage()),
       GoRoute(path: '/sin-acceso', builder: (_, _) => const SinAccesoPage()),
       // fichas: encima de la lista, sin barra inferior (como el diseño); Atrás vuelve a la lista
+      GoRoute(path: '/hoy/tarea/:id', builder: (_, s) => TareaPage(id: s.pathParameters['id']!)),
+      GoRoute(path: '/hoy/revisar/:id', builder: (_, s) => RevisarPage(id: s.pathParameters['id']!)),
       GoRoute(path: '/proyectos/:id', builder: (_, s) => FichaProyectoPage(id: s.pathParameters['id']!)),
       GoRoute(path: '/solicitudes/:id', builder: (_, s) => FichaSolicitudPage(id: s.pathParameters['id']!)),
       ShellRoute(

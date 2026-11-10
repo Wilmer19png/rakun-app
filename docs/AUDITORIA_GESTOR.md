@@ -56,7 +56,7 @@ Columnas: **Función** · **Tablas / RPC / almacenamiento** · **Permiso** (inte
 
 ### 2.2 Secciones
 
-#### 00 · Mis pendientes (`admin-entregables.js` → `viewPending`)
+#### 00 · Mis pendientes (`admin-entregables.js` → `viewPending`) · ✅ en la app como «Hoy» (Fase 6, 2026-11-10) salvo «Seguimientos de campañas» (llega con 11 Métricas) y «Agenda de hoy» del prototipo (llega con 02 Agenda)
 | Función | Datos | Permiso | Decisión | Prio |
 |---|---|---|---|---|
 | Saludo y resumen ("tienes N pendientes, M vencidos") | `deliverables` + `projects` + `clients` | siempre (cada quien lo suyo) | **Igual** | P1 |
