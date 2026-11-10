@@ -29,6 +29,9 @@ import 'package:app/core/utils/fechas.dart';
 import 'package:app/features/clientes/data/clientes_repo.dart';
 import 'package:app/features/clientes/domain/cliente.dart';
 import 'package:app/features/clientes/presentation/clientes_page.dart';
+import 'package:app/features/mensajes/data/mensajes_repo.dart';
+import 'package:app/features/mensajes/domain/mensaje.dart';
+import 'package:app/features/mensajes/presentation/mensajes_page.dart';
 import 'package:app/features/parrillas/data/parrilla_repo.dart';
 import 'package:app/features/parrillas/domain/pieza.dart';
 import 'package:app/features/parrillas/presentation/parrilla_page.dart';
@@ -210,6 +213,24 @@ final _extraParrilla = [
   equipoProvider.overrideWith((ref) async => _equipoEj),
 ];
 
+/// Mensajes DE EJEMPLO (como el prototipo aprobado).
+Mensaje _msj(String id, String autor, String texto, Duration antes, {String para = 'todos', String? proyecto, bool fijado = false}) => Mensaje.desdeFila({
+      'id': id, 'author_id': autor, 'body': texto, 'created_at': _a14.subtract(antes).toUtc().toIso8601String(), 'to_kind': para,
+      'project_id': proyecto == null ? null : 'p3', 'projects': proyecto == null ? null : {'name': proyecto}, 'pinned': fijado,
+    });
+final _extraMensajes = [
+  mensajesProvider.overrideWith((ref) async => Datos(DatosMensajes(
+        mensajes: [
+          _msj('m1', 'ejemplo-admin', 'Desde esta semana las entregas de edición van por Frame.io, no por Drive.', const Duration(days: 3), fijado: true),
+          _msj('m2', 'ej-sofia', 'El lunes cambiamos la grabación de Marca Ejemplo a las 10 a. m. por la luz del estudio.', const Duration(hours: 1)),
+          _msj('m3', 'ej-alex', 'El cliente aprobó el guion. Rodaje confirmado para el jueves 13.', const Duration(hours: 26), para: 'proyecto', proyecto: 'Videoclip'),
+        ],
+        leidos: const {'m1': ['ej-sofia', 'ej-alex'], 'm3': ['ejemplo-admin']},
+        proyectos: const [('p1', 'Redes · noviembre')],
+      ))),
+  equipoProvider.overrideWith((ref) async => _equipoEj),
+];
+
 final _extraHoyVacio = [
   agendaDeHoyProvider.overrideWith((ref) async => (hoy: const <Evento>[], pedidas: const <Reunion>[])),
   tareasProvider.overrideWith((ref) async => const Datos(<Tarea>[])),
@@ -338,6 +359,8 @@ void main() {
               await t.scrollUntilVisible(find.text('Reel · detrás de cámara'), 200, scrollable: find.byType(Scrollable).first);
               await t.tap(find.text('Reel · detrás de cámara'));
             }));
+    testWidgets('mensajes ${claro ? 'claro' : 'oscuro'}',
+        (t) => captura(t, '90-mensajes', _conBarra(_ejemploAdmin, Destino.mas, const MensajesPage()), claro: claro, perfil: _ejemploAdmin, extra: _extraMensajes));
     testWidgets('más ${claro ? 'claro' : 'oscuro'}',
         (t) => captura(t, '30-mas', _conBarra(_ejemploAdmin, Destino.mas, const MasPage()), claro: claro, perfil: _ejemploAdmin));
     testWidgets('galería ${claro ? 'claro' : 'oscuro'}',
