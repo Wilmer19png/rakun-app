@@ -70,3 +70,6 @@ node_modules/
 
 # Motor binario de Impeccable: se reinstala con 'npx impeccable install --providers=claude --scope=project'
 .claude/skills/impeccable/scripts/bin/
+
+# imágenes de comparación que genera flutter test cuando falla una captura
+test/visual/failures/
