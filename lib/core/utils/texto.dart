@@ -47,3 +47,15 @@ String hace(DateTime fecha, {DateTime? ahora}) {
   final f = fecha.toLocal();
   return '${f.day} ${meses[f.month - 1]}';
 }
+
+/// `cop` de la web: "$486.000" (redondeado, miles con punto como es-CO).
+String pesos(num? n) {
+  final v = (n ?? 0).round();
+  final d = v.abs().toString();
+  final b = StringBuffer();
+  for (var i = 0; i < d.length; i++) {
+    if (i > 0 && (d.length - i) % 3 == 0) b.write('.');
+    b.write(d[i]);
+  }
+  return '${v < 0 ? '-' : ''}\$$b';
+}

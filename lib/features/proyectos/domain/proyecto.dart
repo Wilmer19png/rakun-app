@@ -104,7 +104,8 @@ enum EstadoEntregable {
 
 String nombreTipo(String? k) => tiposWeb[k] ?? tiposWeb['otro']!;
 
-/// Una fila de `deliverables` (fase7.sql). El dinero (pay_amount…) no se lee aquí: es P2.
+/// Una fila de `deliverables` (fase7.sql). El pago de la tarea (fase10/fase15) se lee para Hoy;
+/// en la ficha del proyecto no se muestra (el dinero del proyecto es P2).
 class Entregable {
   const Entregable({
     required this.id,
@@ -119,6 +120,10 @@ class Entregable {
     this.entrega,
     this.notaEntrega,
     this.orden = 0,
+    this.entregadoA,
+    this.pago,
+    this.notaPago,
+    this.pagoRonda,
   });
 
   factory Entregable.desdeFila(Map<String, dynamic> f) => Entregable(
@@ -134,13 +139,19 @@ class Entregable {
         entrega: f['delivery_url'] as String?,
         notaEntrega: f['delivery_note'] as String?,
         orden: (f['sort'] as num?)?.toInt() ?? 0,
+        entregadoA: f['delivered_at'] == null ? null : DateTime.parse(f['delivered_at'] as String).toLocal(),
+        pago: (f['pay_amount'] as num?)?.toDouble(),
+        notaPago: f['pay_note'] as String?,
+        pagoRonda: (f['round_pay'] as num?)?.toDouble(),
       );
 
   final String id, proyectoId, titulo, tipo;
   final EstadoEntregable estado;
   final String? hace, revisa, brief, entrega, notaEntrega;
-  final DateTime? vence;
+  final DateTime? vence, entregadoA;
   final int orden;
+  final double? pago, pagoRonda; // pay_amount, round_pay
+  final String? notaPago;
 }
 
 /// `bucket` de admin-entregables.js.

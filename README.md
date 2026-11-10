@@ -279,6 +279,25 @@ La llave `service_role`/secreta **nunca** va en la app: si alguien la pone, la a
   revés): clientes, equipo y orden de entregables ahora `ascending: true`. Aire bajo la ficha para que el "+" no tape
   el último botón. El reloj fijo `reloj` pasó a `core/utils/fechas.dart` y Hoy lo usa (su captura cambiaba cada día).
 
+### 2026-11-10 · Fase 6 · 00 Hoy (rama fase-6/hoy)
+- **Qué se hizo:** saludo + resumen ("Tienes N pendientes en M proyectos · X vencidos · Y para hoy"); mis pendientes en
+  grupos Vencido · Te toca revisar · Hoy · Esta semana · Más adelante · Sin fecha; Pendientes / Terminados y filtros
+  Proyecto y Tipo (en hojas); solicitudes nuevas (3); mensajes sin ver (3) con «Marcar visto»; «Lo que ganas»
+  (por cobrar y en curso). **Tarea**: estado, quién revisa, tipo, brief, mi entrega, nota y lo que gano; **Entregar** con
+  enlace o archivo (cámara, galería o archivos, hasta 50 MB, a la carpeta privada `entregas`). **Revisar**: ver la entrega,
+  Aprobar o Devolver con nota (y ronda extra pagada si la tarea tiene valor de ronda, RPC `extra_round`).
+  Avisos en la barra: pendientes en Hoy y solicitudes nuevas en Solicitudes.
+- **Paridad:** mismas consultas que `viewPending`; regla al entregar (revisor distinto de mí → En revisión, si no →
+  Aprobado); nota "Devuelto: …"; ruta del archivo como `uploadDelivery`; `pesos()` = `cop()`.
+- **Paquetes nuevos:** `file_picker 13.3.3` y `image_picker 1.2.4` (pub.dev). OJO: file_picker 13 cambió a
+  `FilePicker.pickFiles()` estático que devuelve una lista.
+- **Quedan para después (anotado en la auditoría):** «Agenda de hoy» llega con 02 Agenda; «Seguimiento de campañas»
+  con 11 Métricas.
+- **Probado:** 115 pruebas (9 nuevas de Hoy) y capturas 10–15 en los dos temas. **Emulador con datos reales:** en
+  `PRUEBA APP proyecto` se asignó una tarea a Wilmer y otra para que él la revise; se entregó una **foto de la cámara**
+  (subió a `entregas` y se abrió con enlace firmado), se **devolvió** con nota y se **aprobó**; los avisos y las listas
+  se actualizaron solos.
+
 ## 10. Estado actual y próximos pasos
 
 - ✅ Fase 0 · ambiente listo y comprobado.
@@ -287,4 +306,4 @@ La llave `service_role`/secreta **nunca** va en la app: si alguien la pone, la a
 - ✅ Fase 3 · diseño **aprobado** el 2026-11-09 (etiqueta `v0.1-diseno-aprobado`). Sistema oficial en `DESIGN.md`.
 - ✅ Fase 4 · base de la app (etiqueta `v0.2-base`), probada con la cuenta real de Wilmer.
 - ✅ Fase 5 · en vivo (etiqueta `v0.3-sync`, medido < 1 s). La parte web queda en rama local de rakun-web, sin publicar.
-- ⏭️ Fase 6 · montaje por secciones (P1): ✅ Solicitudes · ✅ Clientes · ✅ Proyectos · siguen Hoy, Agenda, Parrillas, Mensajes.
+- ⏭️ Fase 6 · montaje por secciones (P1): ✅ Solicitudes · ✅ Clientes · ✅ Proyectos · ✅ Hoy (sin Agenda de hoy ni campañas) · siguen Agenda, Parrillas, Mensajes.

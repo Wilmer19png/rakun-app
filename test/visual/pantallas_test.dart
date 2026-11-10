@@ -13,7 +13,10 @@ import 'package:app/features/auth/presentation/login_page.dart';
 import 'package:app/features/auth/presentation/recuperar_page.dart';
 import 'package:app/features/auth/presentation/sin_acceso_page.dart';
 import 'package:app/features/galeria/presentation/galeria_page.dart';
+import 'package:app/features/hoy/data/hoy_repo.dart';
+import 'package:app/features/hoy/domain/tarea.dart';
 import 'package:app/features/hoy/presentation/hoy_page.dart';
+import 'package:app/features/hoy/presentation/tarea_page.dart';
 import 'package:app/features/mas/presentation/mas_page.dart';
 import 'package:app/features/seccion/presentation/seccion_pendiente_page.dart';
 import 'package:app/core/supabase/equipo.dart';
@@ -115,6 +118,49 @@ final _extraProyectos = [
   equipoProvider.overrideWith((ref) async => _equipoEj),
 ];
 
+/// Hoy DE EJEMPLO (como el prototipo aprobado), con el reloj fijo: lunes 9 nov, 2 p. m.
+final _a14 = DateTime(2026, 11, 9, 14);
+Map<String, dynamic> _tar(String id, String titulo, String tipo, String estado, Duration vence,
+        {required String pid, required String proyecto, required String mundo, required String cliente, String? hace, String? revisa, String? nota, num? pago, String? notaPago, num? ronda}) =>
+    {
+      'id': id, 'project_id': pid, 'title': titulo, 'kind': tipo, 'status': estado, 'assignee_id': hace, 'reviewer_id': revisa,
+      'due_at': _a14.add(vence).toUtc().toIso8601String(), 'brief_url': 'https://docs.google.com/document/d/brief-ejemplo',
+      'delivery_note': nota, 'delivery_url': nota == null ? null : 'https://frame.io/ediciones-ejemplo',
+      'delivered_at': nota == null ? null : DateTime(2026, 11, 9, 8, 40).toUtc().toIso8601String(),
+      'pay_amount': pago, 'pay_note': notaPago, 'round_pay': ronda,
+      'projects': {'id': pid, 'name': proyecto, 'world': mundo, 'clients': {'name': cliente}},
+    };
+final _tareasFilas = [
+  _tar('h1', 'Guiones del mes', 'guion', 'en_curso', const Duration(hours: -20), pid: 'p1', proyecto: 'Redes · noviembre', mundo: 'marca', cliente: 'Marca Ejemplo',
+      hace: 'ejemplo-admin', revisa: 'ej-sofia', nota: null, pago: 400000, notaPago: '16 guiones'),
+  _tar('h2', 'Wireframe', 'diseno', 'por_hacer', const Duration(days: -3), pid: 'p2', proyecto: 'Página de citas', mundo: 'web', cliente: 'Consultorio Ejemplo', hace: 'ejemplo-admin'),
+  _tar('h3', 'Ediciones del mes', 'edicion', 'en_revision', const Duration(days: 2), pid: 'p1', proyecto: 'Redes · noviembre', mundo: 'marca', cliente: 'Marca Ejemplo',
+      hace: 'ej-alex', revisa: 'ejemplo-admin', nota: 'Van 12 de 14, faltan 2 Premium', pago: 588000, ronda: 18000),
+  _tar('h4', 'Carruseles del mes', 'diseno', 'por_hacer', const Duration(hours: 4), pid: 'p1', proyecto: 'Redes · noviembre', mundo: 'marca', cliente: 'Marca Ejemplo', hace: 'ejemplo-admin'),
+  _tar('h5', 'Montaje · versión 2', 'edicion', 'en_curso', const Duration(hours: 4, minutes: 1), pid: 'p3', proyecto: 'Videoclip «Ejemplo»', mundo: 'produccion', cliente: 'Colectivo Ejemplo', hace: 'ejemplo-admin'),
+];
+final _tareas = [for (final f in _tareasFilas) Tarea.desdeFila(f, yo: 'ejemplo-admin')];
+final _leadsHoy = [
+  _lead('ej1', 'Ana Ejemplo', 'marca', 'Gestión completa · Equilibrio', 'nueva', 0),
+  _lead('ej2', 'Dr. Ejemplo Pérez', 'web', 'Página de citas', 'nueva', 0, anuncio: 'Médicos · ejemplo'),
+].map((f) => Solicitud.desdeFila({...f, 'created_at': _a14.subtract(Duration(minutes: f['id'] == 'ej1' ? 12 : 130)).toUtc().toIso8601String()})).toList();
+final _extraHoy = [
+  tareasProvider.overrideWith((ref) async => Datos(_tareas)),
+  tareaProvider.overrideWith((ref, id) async => Datos(_tareas.firstWhere((t) => t.id == id))),
+  solicitudesProvider.overrideWith((ref) async => Datos(_leadsHoy)),
+  mensajesSinVerProvider.overrideWith((ref) async => [
+        MensajeSinVer(id: 'm1', autor: 'ej-sofia', texto: 'El lunes cambiamos la grabación de Marca Ejemplo a las 10 a. m. por la luz del estudio.', paraMi: false, creado: _a14),
+      ]),
+  gananciasProvider.overrideWith((ref) async => const Ganancias(aprobadas: 300000, comisiones: 186000, enCurso: 212000)),
+  equipoProvider.overrideWith((ref) async => _equipoEj),
+];
+final _extraHoyVacio = [
+  tareasProvider.overrideWith((ref) async => const Datos(<Tarea>[])),
+  mensajesSinVerProvider.overrideWith((ref) async => const <MensajeSinVer>[]),
+  gananciasProvider.overrideWith((ref) async => const Ganancias()),
+  equipoProvider.overrideWith((ref) async => _equipoEj),
+];
+
 Future<void> _fuentes() async {
   Future<void> f(String familia, String ruta) async => (FontLoader(familia)..addFont(rootBundle.load(ruta))).load();
   await f('KnuckleDown', 'assets/fonts/KnuckleDown.otf');
@@ -178,9 +224,19 @@ void main() {
     testWidgets('recuperar ${claro ? 'claro' : 'oscuro'}', (t) => captura(t, '03-recuperar', const RecuperarPage(), claro: claro));
     testWidgets('sin acceso ${claro ? 'claro' : 'oscuro'}', (t) => captura(t, '04-sin-acceso', const SinAccesoPage(), claro: claro));
     testWidgets('hoy admin ${claro ? 'claro' : 'oscuro'}',
-        (t) => captura(t, '10-hoy-admin', _conBarra(_ejemploAdmin, Destino.hoy, const HoyPage()), claro: claro, perfil: _ejemploAdmin));
+        (t) => captura(t, '10-hoy-admin', _conBarra(_ejemploAdmin, Destino.hoy, const HoyPage()), claro: claro, perfil: _ejemploAdmin, extra: _extraHoy));
     testWidgets('hoy editor ${claro ? 'claro' : 'oscuro'}',
-        (t) => captura(t, '11-hoy-editor', _conBarra(_ejemploEditor, Destino.hoy, const HoyPage()), claro: claro, perfil: _ejemploEditor));
+        (t) => captura(t, '11-hoy-editor', _conBarra(_ejemploEditor, Destino.hoy, const HoyPage()), claro: claro, perfil: _ejemploEditor, extra: _extraHoyVacio));
+    testWidgets('hoy entregar ${claro ? 'claro' : 'oscuro'}',
+        (t) => captura(t, '12-hoy-entregar', _conBarra(_ejemploAdmin, Destino.hoy, const HoyPage()), claro: claro, perfil: _ejemploAdmin, extra: _extraHoy,
+            accion: (t) => t.tap(find.byTooltip('Entregar').first)));
+    testWidgets('tarea ${claro ? 'claro' : 'oscuro'}',
+        (t) => captura(t, '13-tarea', const TareaPage(id: 'h1'), claro: claro, perfil: _ejemploAdmin, extra: _extraHoy));
+    testWidgets('revisar ${claro ? 'claro' : 'oscuro'}',
+        (t) => captura(t, '14-revisar', const RevisarPage(id: 'h3'), claro: claro, perfil: _ejemploAdmin, extra: _extraHoy));
+    testWidgets('devolver ${claro ? 'claro' : 'oscuro'}',
+        (t) => captura(t, '15-devolver', const RevisarPage(id: 'h3'), claro: claro, perfil: _ejemploAdmin, extra: _extraHoy,
+            accion: (t) => t.tap(find.text('DEVOLVER'))));
     testWidgets('sección ${claro ? 'claro' : 'oscuro'}',
         (t) => captura(t, '20-seccion', _conBarra(_ejemploAdmin, Destino.solicitudes, const SeccionPendientePage(seccion: 'solicitudes')), claro: claro, perfil: _ejemploAdmin));
     testWidgets('sin permiso ${claro ? 'claro' : 'oscuro'}',
