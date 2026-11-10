@@ -8,6 +8,7 @@ import '../../design_system/tokens.dart';
 import '../permisos/permisos.dart';
 import '../../design_system/componentes.dart';
 import '../../core/utils/fechas.dart';
+import '../../features/agenda/data/agenda_repo.dart';
 import '../../features/hoy/data/hoy_repo.dart';
 import '../../features/solicitudes/data/solicitudes_repo.dart';
 import '../../features/solicitudes/domain/solicitud.dart';
@@ -49,6 +50,7 @@ class AppShell extends ConsumerWidget {
     final nuevas = destinos.contains(Destino.solicitudes) && puede(perfil, 'solicitudes')
         ? (ref.watch(solicitudesProvider).value?.valor ?? const <Solicitud>[]).where((s) => s.estado == EstadoSolicitud.nueva).length
         : 0;
+    final pedidas = destinos.contains(Destino.agenda) ? (ref.watch(reunionesPedidasProvider).value ?? 0) : 0;
     return Scaffold(
       body: cortado
           ? Column(children: [
@@ -59,7 +61,7 @@ class AppShell extends ConsumerWidget {
       bottomNavigationBar: RkBarraInferior(
         destinos: destinos,
         actual: actual,
-        avisos: {Destino.hoy: pendientes, Destino.solicitudes: nuevas},
+        avisos: {Destino.hoy: pendientes, Destino.solicitudes: nuevas, Destino.agenda: pedidas},
         onElegir: (d) => context.go(rutaDe[d]!),
       ),
     );

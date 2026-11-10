@@ -298,6 +298,26 @@ La llave `service_role`/secreta **nunca** va en la app: si alguien la pone, la a
   (subió a `entregas` y se abrió con enlace firmado), se **devolvió** con nota y se **aprobó**; los avisos y las listas
   se actualizaron solos.
 
+### 2026-11-10 · Fase 6 · 05·06 Agenda (rama fase-6/agenda)
+- **Qué se hizo:** grabaciones y reuniones en una sola agenda (Todo / Grabaciones / Reuniones); «Pedidas por clientes»
+  arriba con CONFIRMAR («Ponle fecha»); luego por día (Hoy, Mañana, fecha); el reloj muestra las anteriores.
+  **Grabación**: cuándo, estado y respuesta del cliente, Cómo llegar (Google Maps), Llamar y WhatsApp al cliente,
+  lugar, proyecto, equipo y qué prepara el cliente. **Programar/editar/eliminar** grabación (cliente, proyecto, fecha,
+  hora, duración, estado, lugar con buscador, dirección, equipo obligatorio, qué prepara, «ya acordamos la nueva fecha»)
+  y reunión (cliente, tema, tipo, fecha, hora, Meet, con quién, duración, estado, acuerdos).
+  **Hoy** ya muestra «Agenda de hoy» (grabaciones y reuniones de hoy + pedidas). Aviso en la barra: reuniones pedidas.
+- **Paridad:** tipos y estados se **generan** de content.js (`node tool/generar_agenda.mjs`); el buscador de lugares es
+  Photon/OpenStreetMap como places.js y `toPlace` se compara con el ORIGINAL (`node test/paridad/generar_lugares.mjs`);
+  mismas reglas: próximas desde hace 2 h, equipo obligatorio salvo cancelada, la respuesta del cliente se reinicia al
+  cambiar la fecha.
+- **Arreglo general:** la caché sin conexión ya no tapa errores de la base de datos (antes, un registro borrado se
+  mostraba como "sin conexión"); solo se usa cuando de verdad no hay conexión.
+- **Probado:** 131 pruebas (8 de Agenda) y capturas 70–73. **Emulador con datos reales:** se vio una grabación real
+  anterior; se programó una grabación PRUEBA APP con lugar buscado ("Teatro Fundadores", Manizales), se abrió Cómo
+  llegar en Google Maps, se editó y se **eliminó**; se agendó y **eliminó** una reunión PRUEBA APP. No quedó nada.
+  Sin probar con datos reales: confirmar una reunión pedida (hoy no hay ninguna) y Llamar/WhatsApp (el cliente de
+  prueba no tiene teléfono).
+
 ## 10. Estado actual y próximos pasos
 
 - ✅ Fase 0 · ambiente listo y comprobado.
@@ -306,4 +326,4 @@ La llave `service_role`/secreta **nunca** va en la app: si alguien la pone, la a
 - ✅ Fase 3 · diseño **aprobado** el 2026-11-09 (etiqueta `v0.1-diseno-aprobado`). Sistema oficial en `DESIGN.md`.
 - ✅ Fase 4 · base de la app (etiqueta `v0.2-base`), probada con la cuenta real de Wilmer.
 - ✅ Fase 5 · en vivo (etiqueta `v0.3-sync`, medido < 1 s). La parte web queda en rama local de rakun-web, sin publicar.
-- ⏭️ Fase 6 · montaje por secciones (P1): ✅ Solicitudes · ✅ Clientes · ✅ Proyectos · ✅ Hoy (sin Agenda de hoy ni campañas) · siguen Agenda, Parrillas, Mensajes.
+- ⏭️ Fase 6 · montaje por secciones (P1): ✅ Solicitudes · ✅ Clientes · ✅ Proyectos · ✅ Hoy (sin campañas) · ✅ Agenda · siguen Parrillas, Mensajes.
