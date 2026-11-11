@@ -65,7 +65,7 @@ Pendiente sin bloquear: decisión sobre hallazgos H1–H10 (no tocar rakun-web),
 2 preguntas de negocio antes de P2. **Siguiente: FASE 3 (diseño) en la rama `fase-3/diseno`.**
 Hallazgos clave (NO corregidos): H1 autoaprobación de entregables vía API; H2 comprobantes en bucket `entregas` legibles por todo staff;
 H4 fechas "hoy" en UTC (comprobado); H6 comisión mal calculada si se quita la grabación a un plan "con grabación" (comprobado con Node).
-DECIDIDO 2026-11-10: se corrigen. Rama LOCAL rakun-web `fase-19/hallazgos` (commit 0fe1059, SIN push): fase19.sql (H1 H2 H3 H7 H10), invitar (H9), H4 `todayCO()` en app/util.js, H6 en comisiones.js. Pendiente de Wilmer: correr fase19.sql y desplegar invitar. En la app (P2): fechas de Colombia (H4), H6 corregido, H5 como RPC. Prueba local de SQL: PGlite (@electric-sql/pglite) en el scratchpad.
+DECIDIDO 2026-11-10: se corrigen. Rama LOCAL rakun-web `fase-19/hallazgos` (commit 0fe1059, SIN push): fase19.sql (H1 H2 H3 H7 H10), invitar (H9), H4 `todayCO()` en app/util.js, H6 en comisiones.js. Wilmer (2026-11-10) dijo «listo»: corrió fase19.sql y desplegó invitar (invitar responde 401 sin sesión = OK). PENDIENTE: que Wilmer corra supabase/fase19_comprobar.sql (no cambia nada; sale en rojo a propósito) y pegue el RESULTADO; esperado «H1 OK · H2 OK · H3 OK · H7 OK · H10 OK». Si algo sale MAL, revisar antes de seguir. Después: P2 (tras las 2 preguntas de negocio). En la app (P2): fechas de Colombia (H4), H6 corregido, H5 como RPC. Prueba local de SQL: PGlite (@electric-sql/pglite) en el scratchpad.
 
 **FASE 1 COMPLETA.**
 
