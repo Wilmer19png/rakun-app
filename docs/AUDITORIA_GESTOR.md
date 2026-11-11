@@ -361,7 +361,7 @@ Pagos y comisiones (admin) · 11 Métricas de consulta y seguimiento · 12 Tarif
 
 - ✅ **Alcance y prioridad P1 / P2 / P3: aprobados.**
 - ✅ **Las tres funciones "solo web" (sección 2.4): aprobadas.**
-- ⏳ Hallazgos H1–H10: sin decisión aún. Quedan anotados; **no se toca `rakun-web`** hasta que Wilmer lo pida.
+- ✅ Hallazgos (2026-11-10, Wilmer: «arranca así»): se CORRIGEN. H1, H2, H3, H7, H10 → `rakun-web/supabase/fase19.sql` (base de datos: arregla web y app a la vez; probada en base local, 19 casos); H9 → función `invitar`; H4 (fecha de Colombia) y H6 (comisión sin grabación) → código de la web en la rama local `fase-19/hallazgos` (sin push: Netlify) y la app los hará bien desde P2; H5 → RPC de una sola transacción al empezar P2; H8 → 1 h entregas, 5 min documentos y comprobantes (sugerido).
 - ⏳ Barra inferior por rol (3.3): se usa como punto de partida del diseño en la Fase 3; se valida allí.
 - ⏳ Preguntas de negocio (descuento desde el mes 2, ronda extra): se resuelven antes de montar P2.
 
